@@ -1,4 +1,4 @@
-# Custom
+# Custom Memory Blocks
 
 Раздел посвящен различным блокам памяти внутри PSXCPU.
 

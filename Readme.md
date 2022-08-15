@@ -4,9 +4,9 @@ Reverse engineering of the SONY PlayStation 1 CPU (CXD8530CQ).
 
 :warning: The information was moved from the old wiki in Russian. Information may need to be clarified here and there, and all sections will be translated to Eng.
 
-## Обзор IC103
+## IC103 Overview
 
-Центральный процессор на всех ревизиях материнских плат представлен одной большой микросхемой на 208 контактов, под индексом IC103.
+The CPU on all revisions of the motherboard is represented by one large chip with 208 pins, under the designation IC103.
 
 |PCB|PU-7|older PU-8|newer PU-8|PU-18|PU-20|PU-22|PU-23|PM-41|PM-41(2)|
 |---|---|---|---|---|---|---|---|---|---|
@@ -14,53 +14,54 @@ Reverse engineering of the SONY PlayStation 1 CPU (CXD8530CQ).
 ||8530BQ|8530BQ|8530CQ|8606AQ|8606BQ|8606BQ|8606BQ|8606BQ|8606CQ|
 ||L9A0025|L9A0025|L9A0048|L9A0082|L9B0082|L9B0082|L9B0082|L9B0082|L9A0182|
 
-В состав центрального процессора, помимо немного измененного [ядра LSI LR33300](core.md) входят следующие компоненты:
+The CPU consists of the following components:
 
-- Cистемный сопроцессор 2 ([GTE](gte.md))
-- [MDEC](mdec.md) (декодер JPEG-подобного видео)
-- Контроллер DMA (DMAC) (7 каналов)
-- Контроллер прерываний (INTC)
-- Контролер DRAM (DRAMC)
-- [Контроллер шины](bu.md) (интерфейс для ROM BIOS / GPU)
-- Контроллер [SIO](sio.md) (последовательный интерфейс похожий на RS-232), на два порта (SIO0 и SIO1)
-- Контроллер [PIO](pio.md) (порт расширений для дополнительных устройств)
-- [Root counters](rcnt.md) (3 аппаратных счетчика)
-- Встроенные кэш инструкций и кэш данных (кэш данных с возможностью прямого доступа)
-- Специальные "мини-кэши" (R-buffer и W-buffer)
+- Slightly modified [LSI LR33300 core](core.md)
+- System coprocessor 2 ([GTE](gte.md))
+- [MDEC](mdec.md) (JPEG-like video decoder)
+- DMA controller (DMAC) (7 channels)
+- Interrupt controller (INTC)
+- DRAM controller (DRAMC)
+- [Bus controller](bu.md) (interface for ROM BIOS / GPU)
+- [SIO](sio.md) controller (RS-232-like serial interface), for two ports (SIO0 and SIO1)
+- [PIO](pio.md) controller (expansion port for additional devices)
+- [Root counters](rcnt.md) (3 hardware counters)
+- Built-in instruction cache and data cache (data cache with direct access capability)
+- Dedicated "mini-caches" (R-buffer and W-buffer)
 
-Микрофотография микросхемы:
+Microphotograph of a chip:
 
 ![Cpu_overview](/imgstore/Cpu_overview.jpg)
 
-Как видно большую часть микросхемы занимает "каша" из синтезированной HDL-логики, а по краям находятся различная память и регистры (см. [Кастомные блоки](custom.md)).
+As you can see most of the chip is taken up by the "mess" of synthesized HDL logic, and at the edges there are various memory and registers (see [Custom Blocks](custom.md)).
 
-## Ревизии CPU
+## CPU Revisions
 
-- Самые первые японские консоли (SCPH-1000 / PU-7), а также старые версии PU-8 шли с ревизией 90025.
-- Потом их быстро заменили на более новые консоли (там был какой-то баг в MDEC), в которых уже стоял чип ревизии 90048
-- Начиная с SCPH-5500 (PU-18) в консолях появились чипы ревизии 90082. Эти чипы стояли во всех последних моделях PSX, а также в первой версии материнок PSOne (PM-41)
-- Последние версии PSOne с материнками PM-41(2) содержали чип ревизии 90182.
+- The very first Japanese consoles (SCPH-1000 / PU-7) and old versions of PU-8 came with revision 90025.
+- Then they were quickly replaced by newer consoles (there was some bug in MDEC) which already had the revision 90048 chip.
+- In consoles since SCPH-5500 (PU-18) the 90082 revision of the chips were added. These chips were present in all latest PSX models, also in the first version of PSOne motherboards (PM-41).
+- The latest versions of PSOne with PM-41(2) motherboards contained 90182 revision of the chip.
 
-На этом сайте мы изучаем процессор ревизии `90048` (который стоял в SCPH-1001). Вероятно новые ревизии существенно отличаются разводкой M1/M2, поскольку чип новой ревизии "пересобирается" заново из Verilog/VHDL. Поэтому трассировать другие ревизии - это считай заново трассировать весь процессор %)
+On this site we are examining the `90048` revision (which was in SCPH-1001). It is likely that the new revisions differ significantly in M1/M2 wiring as the new revision chip is "reassembled" from Verilog/VHDL. So, to trace other revisions means to re-trace the whole processor %)
 
-Узнать ревизию чипа можно из маркировки на крышке, убрав лишние буквы (например L9A0048 будет означать ревизию 90048). Какой-то смысл в буквах наверное есть, но скорее всего это связано с улучшением техпроцесса.
+You can find out the revision of the chip from the marking on the cover, removing unnecessary letters (e.g. L9A0048 means revision 90048). There must be some sense in the letters, but most likely it is related to the improvement of the technological process.
 
-На кристалле также выбита татуировка в правом нижнем углу. Ревизия чипа указана в первой строчке:
+There is also a tattoo on the lower right corner of the chip. The revision of the chip is indicated in the first line:
 
 ![6f18eaaedc260890621c89afba5b0b46](/imgstore/6f18eaaedc260890621c89afba5b0b46.jpg)
 
-## Сопутствующие микросхемы
+## Related ICs
 
-К сопутствующим микросхемам относятся [CPU DRAM](dram.md) (оперативная память) и [BIOS ROM](bios.md).
+Related chips include [CPU DRAM](dram.md) and [ROM BIOS](bios.md).
 
-В ранних версиях материнской платы оперативная память была представлена четырьмя модулями 8-битовой памяти. Позже она была заменена на один блок 32-битной.
+In early versions of the motherboard, the DRAM was represented by four 8-bit memory packages. Later it was replaced by a single 32-bit package.
 
 ![Cpu_ram_nec_424805al-a60](/imgstore/Cpu_ram_nec_424805al-a60.jpg)
 
-## Аппаратный интерфейс
+## Hardware Interface
 
-Мы будем ориентироваться на картинку из сервисного мануала по PU-22 (SCPH-7500), когда CPU был наиболее полно соединен с остальными частями.
+We will be guided by the picture from the PU-22 (SCPH-7500) service manual when the CPU was most fully connected to the other parts.
 
-Начиная с PU-23 (SCPH-9000) у него отобрали параллельный порт (PIO), а в PM-41 (PSOne) отобрали также и последовательный (SIO).
+Starting with PU-23 (SCPH-9000) the parallel port (PIO) was taken away from it, and in PM-41 (PSOne) the serial port (SIO) was also taken away.
 
 ![CPU_Block](/imgstore/CPU_Block.jpg)
