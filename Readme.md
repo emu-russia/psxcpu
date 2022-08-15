@@ -2,6 +2,8 @@
 
 Reverse engineering of the SONY PlayStation 1 CPU (CXD8530CQ).
 
+:warning: The information was moved from the old wiki in Russian. Information may need to be clarified here and there, and all sections will be translated to Eng.
+
 ## Обзор IC103
 
 Центральный процессор на всех ревизиях материнских плат представлен одной большой микросхемой на 208 контактов, под индексом IC103.
