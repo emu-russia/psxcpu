@@ -53,7 +53,7 @@ Reverse engineering of the SONY PlayStation 1 CPU (CXD8530CQ).
 
 В ранних версиях материнской платы оперативная память была представлена четырьмя модулями 8-битовой памяти. Позже она была заменена на один блок 32-битной.
 
-![cpu_ram_nec_424805al-a60](/imgstore/cpu_ram_nec_424805al-a60.jpg)
+![Cpu_ram_nec_424805al-a60](/imgstore/Cpu_ram_nec_424805al-a60.jpg)
 
 ## Аппаратный интерфейс
 
