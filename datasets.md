@@ -31,7 +31,7 @@ Within the same row, cells are often directly connected to each other using M1.
 
 To make it easier to navigate, all the rows of cells with M1 were stitched together. We got such long "sausages".
 
-https://drive.google.com/drive/folders/1RRScSK1xoU807RtxnDKJNyQKCcT8BQb3?usp=sharing
+https://drive.google.com/drive/u/1/folders/1RRScSK1xoU807RtxnDKJNyQKCcT8BQb3
 
 ### DCache
 
@@ -41,6 +41,6 @@ DCache Topology.
 |---|
 |![DCache_poly_Fused_small.jpg](/imgstore/custom/DCache_poly_Fused_small.jpg)|
 
-https://drive.google.com/drive/folders/1HmSBhooLXZUca-wyuODboJaf1--ViG13?usp=sharing
+https://drive.google.com/drive/u/1/folders/1_lbN6prezh-VNFZgkcWtbipd6SjFXTWO
 
 TBD: You can't see the poly in the upper right corner, so you'll have to take additional photos.
