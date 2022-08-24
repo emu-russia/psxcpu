@@ -18,7 +18,7 @@ Cells under a microscope look like this:
 
 ![Cells.jpg](/imgstore/cells/Cells.jpg)
 
-Standard cell patterns may be rotated by 180<sup>o</sup>, as the power and ground in alternating rows changes, due to the fact that the cells are stacked zigzag. Let us try to identify all types of standard cells from the existing material.
+Standard cell patterns may be rotated by 180<sup>o</sup>, as the power and ground in alternating rows changes, due to the fact that the cells are stacked zigzag.
 
 In some cases, the cell is also mirrored relative to a vertical axis. It seems that fitter tool has a feedback from wire router. Wire routrer (if it is more convenient) can give fitter signal flip cell to wire it easier to get to her input/outputs.
 
