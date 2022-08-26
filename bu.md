@@ -1,11 +1,13 @@
 # Bus Interface Unit
 
+16- and 32- bit bus controller.
+
 CPU работает с двумя шинами, которыми управляет bus unit (B/U):
 
-- Main bus: проходит внутри процессора, а также соединяется с [[CPU-RAM|DRAM]] и [[GPU]]
-- Sub bus: на этой шине располагаются все устройства подсистемы (ROM BIOS, [[SPU]], [[CD-ROM]]) и параллельный порт (который на самом деле тоже является своего рода внешним устройством)
+- Main bus: проходит внутри процессора, а также соединяется с DRAM и GPU
+- Sub bus: на этой шине располагаются все устройства подсистемы (ROM BIOS, SPU, CD-ROM) и параллельный порт (который на самом деле тоже является своего рода внешним устройством).
 
-== Hardware registers ==
+## Hardware registers
 
 Маппинг регистров внутри CPU: 0x1F801000-0x1F80????
 
@@ -78,13 +80,13 @@ CPU работает с двумя шинами, которыми управля
 * 0x1f801134	- t3_mode?
 * 0x1f801138	- t3_target?
 
-===CDROM (outside)===
+===CDROM ===
 * 0x1f801800	- cdrom_reg0
 * 0x1f801801	- cdrom_reg1
 * 0x1f801802	- cdrom_reg2
 * 0x1f801803	- cdrom_reg3
 
-===GPU (outside)===
+===GPU ===
 * 0x1f801810	- gpu_reg0
 * 0x1f801814	- gpu_reg1
 
@@ -92,9 +94,19 @@ CPU работает с двумя шинами, которыми управля
 * 0x1f801820	- mdec_reg0
 * 0x1f801824	- mdec_reg1
 
-===SPU (outside) ===
+===SPU ===
 * (0x1f801c00-0x1f801dff)
 
 ===DEBUG ???===
 * 0x1f802030	- int_2000
 * 0x1f802040	- dip_switches
+
+## BIU/Cache Configuration
+
+Mysterious register 0xFFFE_0130.
+
+![BCC_001](/imgstore/core/BCC_001.jpg)
+
+![BCC_002](/imgstore/core/BCC_002.jpg)
+
+![BCC_003](/imgstore/core/BCC_003.jpg)
