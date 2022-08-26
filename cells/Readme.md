@@ -16,24 +16,6 @@ Workspaces (\*.wrk) for patterns tool to identify cells over polysilicon images 
 
 See notes.txt about current progress and some info.
 
-## cells_active
-
-Cells polysilicon images (at least for some).
-
-Very uncomplete.
-
-## cells_circuits
-
-Reversed standard cells transistor circuits via various ways (hand drawing, logisim etc.)
-
-Somewhat uncompleted and messy.
-
-## m1_cells
-
-M1 layer images.
-
-Somewhat uncomplete.
-
 ## Additional resources
 
 - M1 cells interconnections stitched by rows: https://drive.google.com/file/d/1A6z6ZubVnuhC8zOan4aQl5zeZk-KMy15/view?usp=sharing

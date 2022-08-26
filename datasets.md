@@ -27,19 +27,29 @@ This section contains more or less processed datasets.
 
 Within the same row, cells are often directly connected to each other using M1.
 
-![row_m1.jpg](/imgstore/cells/row_m1.jpg)
+![row_m1](/imgstore/cells/row_m1.jpg)
 
 To make it easier to navigate, all the rows of cells with M1 were stitched together. We got such long "sausages".
 
 https://drive.google.com/drive/u/1/folders/1RRScSK1xoU807RtxnDKJNyQKCcT8BQb3
 
+### Missing M1
+
+Missing parts of M1 that, for some reason, did not make it into the original M1 datasets.
+
+For the most part, this applies to the right side of the processor (3 right rows of cells), which immediately lapped down to "meat".
+
+![lapping_disaster](/imgstore/cells/lapping_disaster.jpg)
+
+https://drive.google.com/drive/u/2/folders/1oexmDc3mREyYFzV5wCQ7gH5R2jsMz9bk
+
 ### DCache
 
 DCache Topology.
 
-|![DCache_m2_Fused_small.jpg](/imgstore/custom/DCache_m2_Fused_small.jpg)|
+|![DCache_m2_Fused_small](/imgstore/custom/DCache_m2_Fused_small.jpg)|
 |---|
-|![DCache_poly_Fused_small.jpg](/imgstore/custom/DCache_poly_Fused_small.jpg)|
+|![DCache_poly_Fused_small](/imgstore/custom/DCache_poly_Fused_small.jpg)|
 
 https://drive.google.com/drive/u/1/folders/1_lbN6prezh-VNFZgkcWtbipd6SjFXTWO
 
