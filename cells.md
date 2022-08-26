@@ -298,37 +298,29 @@ s1 s0 | какой входной контакт подать на выход
 
 #### OR, OR2X, OR3X
 
-![Or_small](/imgstore/cells/Or_small.jpg)
-
-![Or2x](/imgstore/cells/Or2x.jpg)
-
-![Or3x](/imgstore/cells/Or3x.jpg)
-
-![OR4X](/imgstore/cells/OR4X.jpg)
+|OR|OR2X|OR3X|OR4|
+|---|---|---|---|
+|![Or_small](/imgstore/cells/Or_small.jpg)|![Or2x](/imgstore/cells/Or2x.jpg)|![Or3x](/imgstore/cells/Or3x.jpg)|![OR4X](/imgstore/cells/OR4X.jpg)|
 
 #### 3-OR, 3-OR2X
 
-![3or](/imgstore/cells/3or.jpg)
-
-![3or2x](/imgstore/cells/3or2x.jpg)
+|3-OR|3-OR2X|
+|---|---|
+|![3or](/imgstore/cells/3or.jpg)|![3or2x](/imgstore/cells/3or2x.jpg)|
 
 ### Logic elements NOR
 
 #### NOR, NOR2X, NOR3X
 
-![Nor](/imgstore/cells/Nor.jpg)
-
-![Nor2x](/imgstore/cells/Nor2x.jpg)
-
-![Nor3x_trans](/imgstore/cells/Nor3x_trans.jpg)
+|NOR|NOR2X|NOR3X|
+|---|---|---|
+|![Nor](/imgstore/cells/Nor.jpg)|![Nor2x](/imgstore/cells/Nor2x.jpg)|![Nor3x_trans](/imgstore/cells/Nor3x_trans.jpg)|
 
 #### 3-NOR, 3-NOR2X, 3-NOR4X
 
-![3-nor](/imgstore/cells/3-nor.jpg)
-
-![3-nor-2x](/imgstore/cells/3-nor-2x.jpg)
-
-![3-nor-4x](/imgstore/cells/3-nor-4x.jpg)
+|3-NOR|3-NOR2X|3-NOR4X|
+|---|---|---|
+|![3-nor](/imgstore/cells/3-nor.jpg)|![3-nor-2x](/imgstore/cells/3-nor-2x.jpg)|![3-nor-4x](/imgstore/cells/3-nor-4x.png)|
 
 #### 5-NOR
 
@@ -352,21 +344,15 @@ s1 s0 | какой входной контакт подать на выход
 
 #### NAND, NAND2X, NAND3X, NAND4X
 
-![Nand](/imgstore/cells/Nand.jpg)
+|NAND|NAND2X|NAND3X|NAND4X|
+|---|---|---|---|
+|![Nand](/imgstore/cells/Nand.jpg)|![Nand2x](/imgstore/cells/Nand2x.jpg)|![Nand3x](/imgstore/cells/Nand3x.jpg)|![Nand-2](/imgstore/cells/Nand-2.jpg)|
 
-![Nand2x](/imgstore/cells/Nand2x.jpg)
+#### 3-NAND, 3-NAND2X, 3-NAND4X
 
-![Nand3x](/imgstore/cells/Nand3x.jpg)
-
-![Nand-2](/imgstore/cells/Nand-2.jpg)
-
-#### 3-NAND,3-NAND2X,3-NAND4X
-
-![3-nand](/imgstore/cells/3-nand.jpg)
-
-![3nand_2x](/imgstore/cells/3nand_2x.jpg)
-
-![3-nand_4x](/imgstore/cells/3-nand_4x.jpg)
+|3-NAND|3-NAND2X|3-NAND4X|
+|---|---|---|
+|![3-nand](/imgstore/cells/3-nand.jpg)|![3nand_2x](/imgstore/cells/3nand_2x.jpg)|![3-nand_4x](/imgstore/cells/3-nand_4x.jpg)|
 
 #### 5-NAND
 
@@ -374,9 +360,9 @@ s1 s0 | какой входной контакт подать на выход
 
 #### 6-NAND, 6-NAND3X
 
-![6-nand](/imgstore/cells/6-nand.jpg)
-
-![6-nand3x](/imgstore/cells/6-nand3x.jpg)
+|6-NAND|6-NAND3X|
+|---|---|
+|![6-nand](/imgstore/cells/6-nand.jpg)|![6-nand3x](/imgstore/cells/6-nand3x.png)|
 
 ### Logic elements XOR/XNOR
 
@@ -462,7 +448,7 @@ y = ~ (a & (b|c));
 
 #### 12-AOI
 
-![12-aoi](/imgstore/cells/12-aoi.jpg)
+![12-aoi](/imgstore/cells/12-aoi.png)
 
 y = ~ (a | (b&c));
 
@@ -506,7 +492,7 @@ nand(a,b,c) & ~d
 
 #### NOR | AND
 
-![Nor_or_and](/imgstore/cells/Nor_or_and.jpg)
+![Nor_or_and](/imgstore/cells/Nor_or_and.png)
 
 Используется в счётчиках, в роли элемента XNOR.
 
@@ -663,8 +649,9 @@ out2 = OR (a,b) = carry out
 
 #### Weighted Sum
 
-|![WS1_circuit](/imgstore/cells/WS1_circuit.jpg)|![WS2_circuit](/imgstore/cells/WS2_circuit.jpg)|
+|WS1|WS2|
 |---|---|
+|![WS1_circuit](/imgstore/cells/WS1_circuit.jpg)|![WS2_circuit](/imgstore/cells/WS2_circuit.jpg)|
 
 Не до конца понятно назначение этих ячеек, но они обычно находятся на последних стадиях умножителей. Так что скорее всего они занимаются вычислением взвешенной суммы промежуточных результатов.
 
