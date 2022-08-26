@@ -72,6 +72,8 @@ Further description of the cell is divided into categories for easier reference.
 
 ### Cells for use with buses (Bus keeper, Tri-states)
 
+#### Bus Keeper
+
 |![BUS_KEEPER_1](/imgstore/cells/poly/BUS_KEEPER_1.jpg) ![BUS_KEEPER_2](/imgstore/cells/poly/BUS_KEEPER_2.jpg)|![BUS_KEEPER](/imgstore/cells/m1/BUS_KEEPER.jpg)|
 |---|---|
 
