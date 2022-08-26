@@ -39,7 +39,7 @@ Missing parts of M1 that, for some reason, did not make it into the original M1 
 
 For the most part, this applies to the right side of the processor (3 right rows of cells), which immediately lapped down to "meat".
 
-![lapping_disaster](/imgstore/cells/lapping_disaster.jpg)
+![lapping_disaster](/imgstore/lapping_disaster.jpg)
 
 https://drive.google.com/drive/u/2/folders/1oexmDc3mREyYFzV5wCQ7gH5R2jsMz9bk
 
