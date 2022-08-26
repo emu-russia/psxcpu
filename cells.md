@@ -42,6 +42,28 @@ Cells Heatmap:
 
 ![Psxcpu_cells_map_sm](/imgstore/cells/Psxcpu_cells_map_sm.jpg)
 
+## Cells Addressing
+
+Чтобы определиться с соединением между двумя блоками необходимо разработать механизм адресации на топологии процессора.
+
+Как мы уже ранее решили - процессор делится на 4 больших части: 00, 01, 02, 03.
+
+Поэтому адресация между ячейками будет базироваться на этих 4 частях.
+
+Ряды стандартных ячеек будут нумероваться слева-направо, внутри каждой из частей, начиная с '''00'''
+
+Внутри ряда ячейки будет нумероваться сверху-вниз, начиная с '''00'''
+
+Количество рядов в каждой из частей:
+
+![Psxcpu-cell-rows](/imgstore/cells/Psxcpu-cell-rows.jpg)
+[[File:Psxcpu-cell-rows.jpg]]
+
+- Part 00: 81 rows
+- Part 01: 81 rows
+- Part 02: 66 rows (counting from 16)
+- Part 03: 81 rows
+
 ## Cells By Category
 
 Further description of the cell is divided into categories for easier reference.
