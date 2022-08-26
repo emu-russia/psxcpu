@@ -8,7 +8,7 @@ Thus M1 runs parallel to the rows of cells, and M2 (the top layer) - perpendicul
 
 Quite often automatic router place route directly on the area of the cell, if there exist free space for it:
 
-![row_m1.jpg](/imgstore/cells/row_m1.jpg)
+![row_m1](/imgstore/cells/row_m1.jpg)
 
 Ground and power supply are also by M1.
 
@@ -16,7 +16,7 @@ M1 is also sometimes used for the connection between adjacent cells, just inside
 
 Cells under a microscope look like this:
 
-![Cells.jpg](/imgstore/cells/Cells.jpg)
+![Cells](/imgstore/cells/Cells.jpg)
 
 Standard cell patterns may be rotated by 180<sup>o</sup>, as the power and ground in alternating rows changes, due to the fact that the cells are stacked zigzag.
 
@@ -34,13 +34,13 @@ That is, the first letter indicates what operation is used within the groups, an
 
 For convenience we have divided the types of categories and assigned them a cell color:
 
-![Cell_types.jpg](/imgstore/cells/Cell_types.jpg)
+![Cell_types](/imgstore/cells/Cell_types.jpg)
 
 At the moment, we made the identification of almost all cells. PSX CPU contains about 37,600 cells of 150 different types.
 
 Cells Heatmap:
 
-![Psxcpu_cells_map_sm.jpg](/imgstore/cells/Psxcpu_cells_map_sm.jpg)
+![Psxcpu_cells_map_sm](/imgstore/cells/Psxcpu_cells_map_sm.jpg)
 
 ## Cells By Category
 
@@ -72,6 +72,13 @@ Further description of the cell is divided into categories for easier reference.
 
 ### Cells for use with buses (Bus keeper, Tri-states)
 
+|![BUS_KEEPER_1](/imgstore/cells/poly/BUS_KEEPER_1.jpg) ![BUS_KEEPER_2](/imgstore/cells/poly/BUS_KEEPER_2.jpg)|![BUS_KEEPER](/imgstore/cells/m1/BUS_KEEPER.jpg)|
+|---|---|
+
+BUS keeper is to keep last state on the bus, basically, it's flipflop constructed by two inverter, but its output drive ability is limited. its output is connected on bus. in normal operation, it take no effect on normal logic level, but when bus is into tristate, the last logic level is keeped by bus keeper to prevent bus from floating.
+
+![bus_keeper](/cells/cells_circuits/bus_keeper.png)
+
 ## Lambda cell parameters
 
 Each standard cell library have so-called lambda parameters. They define in units of cells ratio of areas: how much place will take P-diffusion, how much takes the gap between the P- and N- diffusion regions, what size of wires and how they can pass through the cell when installing routing and so forth.
@@ -82,11 +89,11 @@ Calculate lambda parameters of some cell.
 
 First, we find the thickness of the polysilicon, as the average sum:
 
-![Lambda_avg_poly.jpg](/imgstore/cells/Lambda_avg_poly.jpg)
+![Lambda_avg_poly](/imgstore/cells/Lambda_avg_poly.jpg)
 
 Then we measure the width of the different parts of the cell and divide by the thickness of the polysilicon. We get the lambda values:
 
-![Lamda_parts.jpg](/imgstore/cells/Lamda_parts.jpg)
+![Lamda_parts](/imgstore/cells/Lamda_parts.jpg)
 
 - The width of the P-diffusion 13 lambda
 - The width of the gap 7 lambda
@@ -100,6 +107,6 @@ Lambda parameters allow you to accurately describe the cell and can be used for 
 
 PSXCPU uses P-pockets. For a long time it was not clear at all whether they are there (obviously they should be). But they are practically not visible and appear only when lapping the chip:
 
-![pocket.jpg](/imgstore/cells/pocket.jpg)
+![pocket](/imgstore/cells/pocket.jpg)
 
 On the domestic side this knowledge is of little use when studying the cells (it is already clear where the P-MOS FETs are), but when studying [Custom Blocks](custom.md) it is very important, because there is a whole mess of N and P. Somewhere you can guess, but there are places where without visible pockets is very difficult.
