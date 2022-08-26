@@ -90,7 +90,7 @@ MDEC используется для декодирования потоково
 
 ![Circuit002_logic3](/imgstore/mdec/Circuit002_logic3.jpg)
 
-![002_conv](/imgstore/mdec/002_conv.jpg)
+![002_conv](/imgstore/mdec/002_conv.png)
 
 #### Управление IDCT
 
