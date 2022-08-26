@@ -52,7 +52,7 @@
 - /DWE: write enable
 - /DRAS0, /DCAS0, /DCAS1, /DCAS2, /DCAS3: рефреш
 
-![DA0_routing](/imgstore/pads/DA0_routing.jpg)
+![DA0_routing](/imgstore/pads/DA0_routing.png)
 
 ## ROM BIOS + Sub Bus
 
