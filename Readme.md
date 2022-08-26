@@ -68,7 +68,7 @@ Starting with PU-23 (SCPH-9000) the parallel port (PIO) was taken away from it, 
 
 ## Old Silicon
 
-This document by Ken Kutaragi (http://www.hotchips.org/wp-content/uploads/hc_archives/hc11/2_Mon/hc99.k1.kutaragi.pdf) shows the old architecture compared to the one we are studying (though the second picture is on the side :smiley:
+This document by Ken Kutaragi (http://www.hotchips.org/wp-content/uploads/hc_archives/hc11/2_Mon/hc99.k1.kutaragi.pdf) shows the old architecture compared to the one we are studying, though the second picture is on the side :smiley:
 
 ![old_silicon](/imgstore/old_silicon.jpg)
 
