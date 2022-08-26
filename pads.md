@@ -20,7 +20,7 @@
 - SYSCLK0: CLK на вход GPU (33.3 MHz)
 - SYSCLK1: CLK на девайсы Sub bus (33.3 MHz)
 - DSYSCLK: CLK \* 2 на вход GPU (66.67 MHz NTSC, 64.5 MHz PAL)
-- /EXT RESET: сброс (приходит с общего сигнала RES3.3 от блока питания)
+- /EXT_RESET: сброс (приходит с общего сигнала RES3.3 от блока питания)
 
 ![CPU_clk](/imgstore/pads/CPU_clk.jpg)
 
