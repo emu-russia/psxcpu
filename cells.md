@@ -71,6 +71,8 @@ Further description of the cell is divided into categories for easier reference.
 
 :warning: Некоторые ячейки вообще не понятно как называть, большая часть таких вынесены в категорию "композитных".
 
+Transistor schematic sources for all cells can be found here: https://drive.google.com/drive/u/2/folders/1ZomLORsXA5cFluM0va30vhQP0l_kxcaR
+
 ### Inverters
 
 Тут будут инверторы.
