@@ -65,3 +65,13 @@ We will be guided by the picture from the PU-22 (SCPH-7500) service manual when 
 Starting with PU-23 (SCPH-9000) the parallel port (PIO) was taken away from it, and in PM-41 (PSOne) the serial port (SIO) was also taken away.
 
 ![CPU_Block](/imgstore/CPU_Block.jpg)
+
+## Old Silicon
+
+This document by Ken Kutaragi (http://www.hotchips.org/wp-content/uploads/hc_archives/hc11/2_Mon/hc99.k1.kutaragi.pdf) shows the old architecture compared to the one we are studying (though the second picture is on the side :smiley:
+
+![old_silicon](/imgstore/old_silicon.jpg)
+
+From the picture you can conclude roughly the location of the main components (the location of MDEC, GTE and instruction cache are exactly the same).
+
+Also there is information about number of transistors in final revision of CPU - 850K (2 layers Al, 350 nm). The old architecture contains 1000K transistors and 3 layers of metal.
