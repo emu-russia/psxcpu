@@ -164,14 +164,12 @@ out = in
 :warning: Верхняя часть этой ячейки очень похожа на NOR2X:
 
 ![Nor2x](/imgstore/cells/Nor2x.jpg)
-[[File:Nor2x.jpg]]
 
 Не перепутай!!
 
 #### Двойной буфер, 4 пары транзисторов
 
 ![Buf2x](/imgstore/cells/Buf2x.jpg)
-[[File:Buf2x.jpg]]
 
 ### Multiplexers
 
