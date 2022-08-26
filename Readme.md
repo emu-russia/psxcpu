@@ -1,6 +1,6 @@
 # PSXCPU
 
-Reverse engineering of the SONY PlayStation 1 CPU (CXD8530CQ).
+Reverse engineering of the SONY PlayStation CPU (CXD8530CQ).
 
 :warning: The information was moved from the old wiki in Russian. Information may need to be clarified here and there, and all sections will be translated to Eng.
 
