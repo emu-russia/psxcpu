@@ -50,14 +50,6 @@ There is also a tattoo on the lower right corner of the chip. The revision of th
 
 ![6f18eaaedc260890621c89afba5b0b46](/imgstore/6f18eaaedc260890621c89afba5b0b46.jpg)
 
-## Related ICs
-
-Related chips include [CPU DRAM](dram.md) and [ROM BIOS](bios.md).
-
-In early versions of the motherboard, the DRAM was represented by four 8-bit memory packages. Later it was replaced by a single 32-bit package.
-
-![Cpu_ram_nec_424805al-a60](/imgstore/Cpu_ram_nec_424805al-a60.jpg)
-
 ## Hardware Interface
 
 We will be guided by the picture from the PU-22 (SCPH-7500) service manual when the CPU was most fully connected to the other parts.
