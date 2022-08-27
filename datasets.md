@@ -43,6 +43,14 @@ For the most part, this applies to the right side of the processor (3 right rows
 
 https://drive.google.com/drive/u/2/folders/1oexmDc3mREyYFzV5wCQ7gH5R2jsMz9bk
 
+### Poly Stitched
+
+Stitched areas with standard cells.
+
+![poly_stitched](/imgstore/poly_stitched.jpg)
+
+https://drive.google.com/drive/u/2/folders/1fDKUR1nrEk5RCaYHKYP0jsDJLMzKCZ7X
+
 ### DCache
 
 DCache Topology.
