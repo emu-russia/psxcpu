@@ -1,17 +1,17 @@
 # Custom Memory Blocks
 
-Раздел посвящен различным блокам памяти внутри PSXCPU.
+This section is about the different memory blocks inside the PSXCPU.
 
 :warning: The section needs to be re-checked and cleared of bitard-punk vocabulary.
 
-Чип CPU сделан по технологии semi-custom IC. Это означает что большая часть логики генерируется автоматически, но часть специальных блоков сделана "руками".
+The CPU chip is made with semi-custom IC technology. This means that most of the logic is generated automatically, but some of the special blocks are made "by hand".
 
-По краям центрального процессора находится множество таких блоков, назначение большинства которых еще не выяснено.
-Блоки пронумерованы в соответствии с частью процессора в которой они расположены для облегчения их идентификации. По мере понимания какую функцию они выполняют они будут переименованы.
+At the edges of the CPU there are many such blocks, the purpose of most of which is not yet clear.
+The blocks are numbered according to the part of the CPU in which they are located to make them easy to identify. As we understand what function they perform, they will be renamed.
 
 ![Cpu_units](/imgstore/custom/Cpu_units.jpg)
 
-Всего на чипе расположено 16 блоков, которые можно разделить на 3 типа. Все блоки одного типа имеют одинаковую структуру, схожие блоки и отличаются только количеством столбцов и колонок.
+There are a total of 16 blocks on the chip, which can be divided into 3 types. All blocks of the same type have the same structure, similar blocks and differ only in the number of rows and columns.
 
 - Constant Table Memory:
 	- Unit-00: ScaleTableMatrix 8x8 (32 registers per 26 bits) used as 64 records per 13bits.
@@ -35,46 +35,46 @@
 
 ## Constant Table Memory
 
-В блоках этого типа хранятся таблицы с константами или временные результаты вычислений.
+Blocks of this type store tables with constants or temporary results of calculations.
 
 ![Cpu_unit_type1](/imgstore/custom/Cpu_unit_type1.jpg)
 
-Типовые элементы этих блоков одинаковые, отличаются только способом подключения друг к другу (и соответственно разводкой металла).
+Typical elements of these units are the same, differing only in the way they are connected to each other (and, accordingly, the wiring of the metal).
 
 ### Cell
 
 ![Unit00_cell](/imgstore/custom/Unit00_cell.jpg)
 
-Обычная би-стабильная защёлка на базе двух инверторов и управляющие транзисторы:
+Normal bi-stable latch based on two inverters and control transistors:
 
-- IE (input enable) : разрешает запись в защелку. Output Enable не предусмотрен.
-- row: вместо Output Enable используется row select, который выбирает целый ряд ячеек для чтения/записи.
-- in: входное значение
-- out: выходное значение
+- IE (input enable): Enables write to latch. Output Enable is not provided.
+- row: row select is used instead of Output Enable, which selects a range of cells to read/write.
+- in: input value
+- out: output value
 
-Примечание: значение на защёлке хранится в инвертированной форме (так удобнее).
+Note: the value on the latch is stored in inverted form (more convenient).
 
 ### 2-to-4 decoders
 
 ![Unit00_decoder1](/imgstore/custom/Unit00_decoder1.jpg)
 
-В эту часть декодера поступают входные разряды индекса, которые затем комбинируются в разной последовательности в схемах ANDs, для окончательного выбора ряда.
+This part of the decoder receives the input index bits, which are then combined in a different sequence in ANDs circuits, for the final row selection.
 
-### ANDs (вторая стадия декодирования)
+### ANDs (second stage of decoding)
 
 ![Unit00_decoder2](/imgstore/custom/Unit00_decoder2.jpg)
 
-Совместно два этих этапа формируют декодер большей разрядности (например у Unit-00 получается декодер 5-в-32).
+These two steps together form a higher bit decoder (for example, Unit-00 results in a 5-in-32 decoder).
 
-### IO tri-state buffers
+### IO TriState Buffers
 
 ![Unit00_tristate](/imgstore/custom/Unit00_tristate.jpg)
 
-Обычные tri-state буферы, управляемые контрольными сигналами OE (output enable) и IE (input enable).
+Common tri-state buffers controlled by the control signals OE (output enable) and IE (input enable).
 
-Если OE или IE равны 0, то входы/выходы "отключаются" (Z), иначе входы/выходы подключаются к выбранной ячейке для обмена данными.
+If OE or IE is 0, the I/Os are "off" (Z), otherwise the I/Os are connected to the selected cell for data exchange.
 
-### IO enable
+### IO Enable
 
 ![Unit00_io_enable](/imgstore/custom/Unit00_io_enable.jpg)
 
@@ -86,72 +86,71 @@
 
 ![Unit00_overview](/imgstore/custom/Unit00_overview.jpg)
 
-Организована в виде 32 рядов по 26 ячеек. При этом внешние схемы разбивают 26 разрядов на две 13-разрядные половинки, в результате значения матрицы Scale Table хранятся как 64 13-разрядных слов.
+It is organized as 32 rows of 26 cells. The external circuits split the 26 bits into two 13-bit halves, as a result, the Scale Table matrix values are stored as 64 13-bit words.
 
-5-й бит индекса ряда не используется (подключен к земле), так как у нас адресуется только 32 ряда ячеек (биты индекса 0-4).
+The 5th bit of the row index is not used (connected to ground), because we only have 32 rows of cells addressed (index bits 0-4).
 
-На SVN находится полная логическая схема, которая работает в симуляторе Logisim.
-
-Дополнительным элементом этого юнита является разделение ячеек на верхнюю и нижнюю половину (по 16 рядов), с добавлением дополнительной логики выбора половины, на основе 5го разряда индекса:
+An additional element of this unit is the division of the cells into upper and lower halves (16 rows each), with the addition of additional logic to select the half, based on the 5th bit of the index:
 
 ![Unit00_gap](/imgstore/custom/Unit00_gap.jpg)
 
-Схема комбинирует 5-й разряд и входной контрольный сигнал input enable, для "подключения" верхней или нижней половины. Output enable контроль однако не предусмотрен и контролируется только декодером (row select).
+The circuit combines the 5th bit and the input enable control signal, to "connect" the top or bottom half. Output enable control, however, is not provided and is only controlled by the decoder (row select).
 
-Output enable Unit-00 всегда включен (подключен к питанию), то есть выходы всегда нагружены последним записанным значением.
+Output enable Unit-00 is always on (connected to the power supply), i.e. the outputs are always loaded with the last stored value.
 
-Контакты (**смотри внимательно входы/выходы чередуются**):
+Ports (**look carefully at the inputs/outputs alternating**):
 
 ![Unit00_pads](/imgstore/custom/Unit00_pads.jpg)
 
-### Unit-01: Промежуточный результат вычислений IDCT
+### Unit-01: Intermediate result of IDCT calculations
 
 ![Unit01_overview](/imgstore/custom/Unit01_overview.jpg)
 
-Блок состоит из типовых компонентов: ячейки, tri-state буферы и 2 декодера 4-в-16.
+The block consists of typical components: cells, tri-state buffers and 2 4-in-16 decoders.
 
-Схема IO enable стандартным образом основана на альтернативном роутинге первых 4х буферов (биты 0-3).
+The IO enable circuit is based in a typical way on alternate routing of the first 4 buffers (bits 0-3).
 
-Особенности:
+Features:
 
-- Ячейки имеют разделенный ввод/вывод. То есть для входа может быть выбрана одна ячейка, а для выхода - другая. Это нужно для того чтобы организовать распределенное умножение IDCT в 2 прохода. Пока один проход использует один промежуточный результат, второй проход использует другой.
-- Соответственно для этой цели вместо подачи одного провода "row" на каждую ячейку подается 2 провода: "row_in" и "row_out"
-- Также вместо одного декодера используется 2: один для выбора входной ячейки, второй для выбора выходной.
+- Cells have split I/O. That is, one cell can be selected for input and another for output. This is needed to arrange distributed IDCT multiplication in 2 passes. While one pass uses one intermediate result, the second pass uses the other.
+- Accordingly, for this purpose, instead of feeding one "row" wire, 2 wires are fed to each cell: "row_in" and "row_out"
+- Also, instead of one decoder, 2 are used: one to select the input cell, the second to select the output cell.
 
-Ячейка:
+Cell:
 
 ![Unit01_cell](/imgstore/custom/Unit01_cell.jpg)
 
-Контакты (**опять будь внимателен, входы/выходы чередуются in/out -> out/in**)
+Terminals (**be careful again, inputs/outputs alternate in/out -> out/in**):
 
 ![Unit01_pads](/imgstore/custom/Unit01_pads.jpg)
 
 ## Dual port registers
 
-Позволяют одновременно записать в два разных регистра, а также выдать значение двух любых регистров на 2 разных выхода, за одно действие.
+Allow you to simultaneously write to two different registers, as well as output the value of any two registers to 2 different outputs, in a single step.
 
 ![Cpu_unit_type2](/imgstore/custom/Cpu_unit_type2.jpg)
 
-### 16-разрядные dual port registers
+### 16-bit dual port registers
 
 ![Unit24_overview](/imgstore/custom/Unit24_overview.jpg)
 
-- Основную часть занимают ячейки, организованные в виде матрицы 16x16. Один ряд ячеек представляет собой 1 регистр. Нумерация разрядов идёт справа-налево для линий данных и слева-направо для линий индексации.
-- Справа вверху находятся 8 декодеров 2-в-4. Они из 16 входов делают 32 выхода, причем входы декодируются по 2 близлежащих рязряда. Затем эти 32 выхода подаются на массив 4x16 операций AND, каждая из 16 линеек выдает по 4 выхода влево. Совместно эти схемы образуют декодер 4-в-16, для выбора ряда.
-- Слева вверху находятся входы/выходы с регистров.
-- Вверху по середине находится схема IO enable для буферов, чуть ниже находится страховочная схема Input enable для ячеек. Output enable для ячеек не предусмотрено, то ли забыли добавить, то ли забили на неё)))
+- The main part is occupied by cells organized as a 16x16 matrix. One row of cells represents a single register. Bit numbering is from right to left for data lines and from left to right for index lines.
+- On the upper right side are 8 2-in-4 decoders. They turn 16 inputs into 32 outputs, and the inputs are decoded by 2 nearby bits. These 32 outputs are then fed into a 4x16 array of AND operations, with each of the 16 lanes giving out 4 outputs to the left. Together, these circuits form a 4-in-16 decoder, for row selection.
+- At the top left are the I/Os from the registers.
+- Up in the middle is the IO enable circuit for the buffers, just below is the Input enable safety circuit for the cells.
+- Output enable for the cells is not provided.
 
 ### Cell
 
 ![Unit24_cell_tran](/imgstore/custom/Unit24_cell_tran.jpg)
 
-В каждую ячейку приходит 4 провода сверху (1-4) и 4 сбоку (5-8). Всего таких ячеек 16 по вертикали и 16 по горизонтали.
+Each cell has 4 wires at the top (1-4) and 4 at the side (5-8). There are a total of 16 cells vertically and 16 horizontally.
 
 ![Unit24_cell](/imgstore/custom/Unit24_cell.jpg)
 
-Особенность регистров в том, что у них селективный вход (2-на-1) и селективный выход (1-на-2), для быстрого копирования значений.
+A special feature of the registers is that they have a selective input (2-on-1) and a selective output (1-on-2), for fast copying of values.
 
-Когда рисовал схемы произошла небольшая путаница в нумерации. Поэтому вот человеческое обозначение входов/выходов, чтобы не запутаться:
+When I drew the schematics there was a little confusion in the numbering. So here is the human notation of the inputs/outputs, so as not to get confused:
 
 - 1: Output 2
 - 2: Output 1
@@ -162,24 +161,24 @@ Output enable Unit-00 всегда включен (подключен к пит�
 - 7: Output 1 enable
 - 8: Output 2 enable
 
-От этих названий пляшем.
+We move from these names.
 
 ### IO Enable
 
-Разводит по внутренностям блока усиленные сигналы input/output enable.
+Drives amplified input/output enable signals through the internals of the unit.
 
 ![Unit24_io_enable](/imgstore/custom/Unit24_io_enable.jpg)
 
-У Unit22-25 OE1=OE2=1 (подсоединены к питанию), то есть используются оба выхода.
+Unit22-25 has OE1=OE2=1 (connected to the power supply), so both outputs are used.
 
 ### Register IO buffers
 
-Используются в основном для усиления выходного сигнала, а также в качестве tri-state буфера для включения/выключения обмена между определенными входами и выходами регистров.
+They are used mainly to amplify the output signal and also as a tri-state buffer to enable/disable the exchange between certain register inputs and outputs.
 
-На вход принимает 4 контрольных сигнала, приходящих со схемы IO Enable:
+The input receives 4 control signals coming from the IO Enable circuit:
 
-- IE1, IE2: input enable. Если IE=0, то соответствующий вход переходит в состояние tri-state (отключается).
-- OE1, OE2: output enable. Если OE=0, то соответствующий выход переходит в состояние tri-state (отключается).
+- IE1, IE2: input enable. If IE=0, the corresponding input goes into a tri-state (off).
+- OE1, OE2: output enable. If OE=0, then the corresponding output goes to tri-state (off).
 
 ![Unit24_reg_inputs_outputs](/imgstore/custom/Unit24_reg_inputs_outputs.jpg)
 
@@ -187,78 +186,78 @@ Output enable Unit-00 всегда включен (подключен к пит�
 
 ![Unit24_decoder_2-to-4](/imgstore/custom/Unit24_decoder_2-to-4.jpg)
 
-Часть декодера.
+Part of the decoder.
 
 ### ANDs
 
 ![Unit24_ands](/imgstore/custom/Unit24_ands.jpg)
 
-Очередной этап декодирования индекса регистра, массив 4x16 операций AND.
+The next step is to decode a register index, a 4x16 array of AND operations.
 
-На вход поступает 32 линии с декодеров 2-на-4, которые расположены выше. Эти линии насквозь пронизывают массив элементов AND и выборочно соединяются с входами AND.
+The input is 32 lines from the 2-by-4 decoders above. These lines loop through the array of AND elements and selectively connect to the AND inputs.
 
-На выходе каждой линейки AND - 4 выхода, 2 из которых идут сразу на ячейки, а ещё 2 поступают на схему Input Enable.
+The output of each AND line has 4 outputs, two of which go directly to the cells, and two more go to the Input Enable circuit.
 
-Схемы ANDs и 2-на-4 совместно составляют декодер ряда 4-на-16: 
+The ANDs and 2-on-4 circuits together make up the 4-on-16 row decoder:
 
 ![Unit24_decoder](/imgstore/custom/Unit24_decoder.jpg)
 
 ### Input enable
 
-2 выхода со схем AND идут на эту схему, где производится дополнительная операция AND между входными шлангами и IE1/IE2.
+The 2 outputs from the AND circuits go to this circuit where an additional AND operation is performed between the input wires and IE1/IE2.
 
-Если IE1/IE2=0, то соотв. выход 5/6 = 0 и вход ячейки перекрывается.
+If IE1/IE2=0, then so output 5/6 = 0 and the cell input is overlapped.
 
 ![Unit24_input_enable](/imgstore/custom/Unit24_input_enable.jpg)
 
-Здесь есть небольшая недоделка: в схеме присутствует контроль транзисторов 5/6 ячейки памяти (IE1/IE2), но нет контроля транзисторов 7/8 (которые открывают выходы). Хотя это не так нужно, потому что входы/выходы всё равно отключаются в схеме Register IO buffers. По сути эта схема Input enable тоже не нужна, но разработчики видимо перестраховались.
+There is a small flaw here: the circuit has control of transistors 5/6 of the memory cell (IE1/IE2), but no control of transistors 7/8 (which open the outputs). This is not necessary though, because the I/Os are disabled in the Register IO buffers circuit anyway. In fact, this Input enable scheme is not needed either, but the developers apparently over-insured.
 
-### Логическая схема
+### Logic
 
 ![Dualport16](/imgstore/custom/Dualport16.jpg)
 
-Не уверен только в нумерации выходных разрядов. Скорее всего (по аналогии с другими юнитами) нумерация разрядов идёт справа-налево.
-То есть там где на картинке написано Bit0 - на самом деле Bit31, картинку переделывать в лом.
+I am not sure only about the numbering of the output bits. Most likely (by analogy with other units) the numbering of bits goes from right to left.
+That is, where in the picture it says Bit0 is actually Bit31, it's not easy to redo the picture.
 
 ## SRAM
 
-Блоки данного типа представляют собой статическую память SRAM, использующуюся как кэш для различных данных.
+Blocks of this type are static SRAM used as a cache for various data.
 
 ![Cpu_unit_type3](/imgstore/custom/Cpu_unit_type3.jpg)
 
-Кэш данных имеет на входе 18 управляющих линий (среди них где-то линии шины адреса), а также 32x2 линии Data bus.
+The data cache has 18 control lines (among them are address bus lines somewhere) as well as 32x2 Data bus lines.
 
-Кэш инструкций имеет 17 управляющих линий (2 из них не используются) и 32x2 шину данных (инструкцию).
+The instruction cache has 17 control lines (2 of them are not used) and 32x2 data bus (instruction).
 
-Особенность шин данных у кешей заключается в том их линии спаренные для каждого разряда (кружочками показаны места где линии соединяются в одну):
+The peculiarity of data buses in the caches is that their lines are paired for each bit (circles show the places where the lines join into one):
 
 ![DCache_data_lines](/imgstore/custom/DCache_data_lines.jpg)
 
 ![ICache_data_lines](/imgstore/custom/ICache_data_lines.jpg)
 
-Одна линия работает на вход, другая на выход (шина данных двунаправленная). Такая организация возможно связана с тем, что перед реализацией схемы в силиконе она была проверена в симуляторе, в котором проще делать однонаправленные входы и выходы.
+One line works for input, the other for output (the data bus is bidirectional). This arrangement is probably due to the fact that before implementing the circuit in silicon it was tested in a simulator, in which it is easier to make unidirectional inputs and outputs.
 
-Функционально блоки состоят из:
+Functionally, the blocks consist of:
 
-- Декодер ряда (row decoder)
-- Декодер столбца (column decoder)
-- Логики управления
-- Входные буферы адресных линий
-- Буферы шины данных
-- Массив ячеек памяти
+- Row decoder
+- Column decoder
+- Control logic
+- Address line input buffers
+- Data bus buffers
+- Memory Cell Array
 
 ### SRAM cell
 
-Ячейка памяти представляет собой обычную CMOS SRAM-cell, на базе 6 транзисторов.
+The memory cell is a conventional CMOS SRAM-cell, based on 6 transistors.
 
 ![Sram_cell](/imgstore/custom/Sram_cell.jpg)
 
 ![Sram_cell_trans](/imgstore/custom/Sram_cell_trans.jpg)
 
-Элемент памяти - это Flip-flop, основанный на спаренных инверторах, входы которых подсоединены к column line через row line tri-state буфер.
+The memory element is a Flip-flop based on paired inverters whose inputs are connected to the column line via a row line tri-state buffer.
 
-Когда row = 0 ячейка находится в бистабильном состоянии и хранит заряд.
+When row = 0 the cell is in bistable state and stores the charge.
 
-Когда row = 1 - весь ряд ячеек "открывается", но заряд меняет только та, у которой линия column НЕ имеет значение Z (НЕ разорвана).
+When row = 1, the entire row of cells "opens", but only the one whose column line does NOT have a Z value (is NOT disconnected) changes the value.
 
-Управлением доступа к ячейкам занимается специальный Row/Column декодер, который на базе входной шины адреса формирует линии row/column.
+The cell access is controlled by a special Row/Column decoder, which generates row/column lines based on the input address bus.
