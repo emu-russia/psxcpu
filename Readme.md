@@ -17,12 +17,13 @@ The CPU on all revisions of the motherboard is represented by one large chip wit
 The CPU consists of the following components:
 
 - Slightly modified [LSI LR33300 core](core.md)
-- System coprocessor 2 ([GTE](gte.md))
-- [MDEC](mdec.md) (JPEG-like video decoder)
-- DMA controller (DMAC) (7 channels)
+- System coprocessor 0 ([COP0](cop0.md))
+- System coprocessor 2 aka Geometry Transformation Engine ([GTE](gte.md))
+- Motion Decoder aka [MDEC](mdec.md) (JPEG-like video decoder)
+- DMA controller ([DMAC](dmac.md)) (7 channels)
 - Interrupt controller (INTC)
-- DRAM controller (DRAMC)
-- [Bus controller](bu.md) (interface for ROM BIOS / GPU)
+- DRAM controller ([DRAMC](dramc.md))
+- [Bus controller](biu.md) (interface for ROM BIOS / GPU)
 - [SIO](sio.md) controller (RS-232-like serial interface), for two ports (SIO0 and SIO1)
 - [PIO](pio.md) controller (expansion port for additional devices)
 - [Root counters](rcnt.md) (3 hardware counters)
