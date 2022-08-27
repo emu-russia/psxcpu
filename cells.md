@@ -26,17 +26,17 @@ In some cases, the cell is also mirrored relative to a vertical axis. It seems t
 
 ## Cells Addressing
 
-Чтобы определиться с соединением между двумя блоками необходимо разработать механизм адресации на топологии процессора.
+To determine the connection between the two modules it is necessary to develop an addressing mechanism on the topology of the processor.
 
-Как мы уже ранее решили - процессор делится на 4 больших части: 00, 01, 02, 03.
+As we have already decided before - the processor is divided into 4 big parts: 00, 01, 02, 03.
 
-Поэтому адресация между ячейками будет базироваться на этих 4 частях.
+Therefore addressing between cells will be based on these 4 parts.
 
-Ряды стандартных ячеек будут нумероваться слева-направо, внутри каждой из частей, начиная с `00`.
+The rows of standard cells will be numbered from left to right, inside each of the parts, starting from `00`.
 
-Внутри ряда ячейки будет нумероваться сверху-вниз, начиная с `00`.
+Inside the rows, cells will be numbered from top to bottom, starting with `00`.
 
-Количество рядов в каждой из частей:
+The number of rows in each part:
 
 ![Psxcpu-cell-rows](/imgstore/cells/Psxcpu-cell-rows.jpg)
 
@@ -67,121 +67,121 @@ Cells Heatmap:
 
 Further description of the cell is divided into categories for easier reference.
 
-:warning: Топология и схемы ячеек получались в разное время и в разной последовательности. Иногда например находилась ячейка, а потом её усиленная версия. Но оказывалась что есть ещё "слабее" версия первой ячейки, поэтому обозначения их "мощности" (цифры после названия) весьма хаотичны.
+:warning: The topology and cell schematics were obtained at different times and in different sequences. Sometimes, for example, a cell was found, and then its strengthened version. But it turned out that there is even a "weaker" version of the first cell, so the designations of their "power" (numbers after the name) are quite chaotic.
 
-:warning: Некоторые ячейки вообще не понятно как называть, большая часть таких вынесены в категорию "композитных".
+:warning: Some cells do not know how to call it at all, most of them are placed in the category of "composite".
 
 Transistor schematic sources for all cells can be found here: https://drive.google.com/drive/u/2/folders/1ZomLORsXA5cFluM0va30vhQP0l_kxcaR
 
 ### Inverters
 
-Тут будут инверторы.
+There will be inverters.
 
-Чем больше _параллельно соединенных_ транзисторов в инверторе, тем больше его drive strength.
+The more transistors connected in _parallel_ in an inverter, the greater its drive strength.
 
-Чем больше _последовательно соединенных_ транзисторов в инверторе, тем дольше его propagation delay.
+The more transistors connected in _series_, the longer the propagation delay.
 
-#### Мини-версия инвертора (NOT)
+#### Mini inverter (NOT)
 
 ![Not_mini](/imgstore/cells/Not_mini.jpg)
 
-Этот инвертор мы обнаружили после более крупного собрата (NOT1), поэтому NOT пришлось переименовать в NOT1, а новым NOT стал этот мелкий )))
+We found this inverter after its larger counterpart (NOT1), so NOT had to be renamed NOT1, and the new NOT was this small one.
 
-#### Инвертор (NOT1)
+#### Inverter (NOT1)
 
 ![Cell000](/imgstore/cells/Cell000.jpg)
 
-Ничего особенного))
+Nothing special.
 
-#### Инвертор, 2 пары транзисторов (NOT2)
+#### Inverter, 2 pairs of transistors (NOT2)
 
 ![Not2](/imgstore/cells/Not2.jpg)
 
-:warning: Топологически очень похож на NAND2X:
+:warning: Topologically very similar to NAND2X:
 
 ![Nand2x](/imgstore/cells/Nand2x.jpg)
 
-Поэтому будь очень внимательным, не накосячь. NAND2X короче, чем NOT2, а также лапки с правой стороны идут под другими углами.
+So be very careful not to mess up. The NAND2X is shorter than the NOT2, and also the legs on the right side go at different angles.
 
-#### Инвертор, 3 пары транзисторов (NOT3)
+#### Inverter, 3 pairs of transistors (NOT3)
 
 ![Not3](/imgstore/cells/Not3.jpg)
 
-Разводка M1 позволяет делать альтернативный роутинг сверху. Также на вход может приходить с М2.
+The M1 wiring allows you to do alternate routing from above. Also the input can come from M2.
 
-#### Инвертор, 4 пары транзисторов (NOT4)
+#### Inverter, 4 pairs of transistors (NOT4)
 
 ![Not4](/imgstore/cells/Not4.jpg)
 
-#### Strong инвертор, 8 пар транзисторов (NOT8)
+#### Strong inverter, 8 pairs of transistors (NOT8)
 
 ![Pushpull](/imgstore/cells/Pushpull.jpg)
 
-Эти инверторы легко обнаружить по довольно внушительному металлическому экрану (это выход):
+These inverters are easy to spot by the rather impressive metal shield (this is the output):
 
 ![Pushpull_M1](/imgstore/cells/Pushpull_M1.jpg)
 
-Особенностью топологии является то, что вход и выход могут идти на М2, а могут альтернативными путями идти на М1.
+A feature of the topology is that input and output can go to M2, and can alternate paths go to M1.
 
-Альтернативный роутинг через М1. Дополнительный М1 показан голубым цветом, когда вход/выход идут на M2 - этого дополнительного М1 нет.
+Alternate routing through M1. Additional M1 is shown in blue, when input/output goes to M2 - this additional M1 is not present.
 
 ![Pushpull_alternate](/imgstore/cells/Pushpull_alternate.jpg)
 
-#### NOT12 (12 пар транзисторов)
+#### NOT12 (12 pairs of transistors)
 
 ![Not12](/imgstore/cells/Not12.jpg)
 
-Эту ячейку сложно с чем-то спутать :smiley:
+It's hard to mistake this cell for something else :smiley:
 
 ### Buffers
 
-Тут будут усилительные буферы.
+There will be amplifier buffers.
 
-Чем больше _параллельно соединенных_ транзисторов в буфере, тем больше его drive strength.
+The more transistors connected in _parallel_ in a buffer, the greater its drive strength.
 
-Чем больше _последовательно соединенных_ транзисторов в буфере, тем дольше его propagation delay.
+The more transistors connected in _series_ in the buffer, the longer its propagation delay.
 
-#### Буфер обычный, 2X
+#### Buffer regular, 2X
 
 ![Buf2x_circuit](/imgstore/cells/Buf2x_circuit.jpg)
 
-#### Буфер обычный, 4 пары транзисторов
+#### Buffer regular, 4 pairs of transistors
 
 ![Buf3x_circuit](/imgstore/cells/Buf3x_circuit.jpg)
 
-#### Буфер обычный, 4 пары транзисторов, усиленная диффузия
+#### Buffer regular, 4 pairs of transistors, reinforced diffusion
 
 ![Buf3x2_circuit](/imgstore/cells/Buf3x2_circuit.jpg)
 
-#### Двойной буфер
+#### Double buffer
 
-Двойной буфер отличается от обычного тем, что делает out = not(not(not(not(in)))), в то время как обычный буфер делает просто out = not(not(in)).
+The double buffer differs from the regular buffer in that it does out = not(not(not(in)))), while the regular buffer does just out = not(not(in)).
 
-Следовательно задержка распространения у двойного буфера будет дольше, чем у обычного.
+Hence the propagation delay of the double buffer will be longer than that of the regular buffer.
 
 ![Buf](/imgstore/cells/Buf.jpg)
 
 out = in
 
-:warning: Верхняя часть этой ячейки очень похожа на NOR2X:
+:warning: The top of this cell is very similar to NOR2X:
 
 ![Nor2x](/imgstore/cells/Nor2x.jpg)
 
-Не перепутай!!
+Don't mix it up!
 
-#### Двойной буфер, 4 пары транзисторов
+#### Double buffer, 4 pairs of transistors
 
 ![Buf2x](/imgstore/cells/Buf2x.jpg)
 
 ### Multiplexers
 
-Тут будут всякие мультиплексоры.
+There will be all sorts of multiplexers.
 
-#### Обычный мультиплексор (MUX)
+#### Regular multiplexer (MUX)
 
-Мультиплексор реализует конструкцию if-else в железном варианте. Если a = 0, то выход будет b, иначе с.
+The multiplexer implements the if-else construct in the hardware version. If a = 0, the output will be b, otherwise c.
 
-Для упрощения обозначения мультиплексор 2-в-1 на схемах будет обозначаться просто MUX (мультиплексоры большей разрядности достаточно редки).
+To simplify the notation, the 2-in-1 multiplexer will be referred to simply as MUX in the schematics (higher bit multiplexers are quite rare).
 
 ![21-mux](/imgstore/cells/21-mux.jpg)
 
@@ -197,37 +197,37 @@ abc | x
 111 | 1
 ```
 
-Функция: `x = a ? b : c`
+Function: `x = a ? b : c`
 
-В классическом варианте вход a называется s (select), а входы c и b - i0 и i1 соответственно. То есть если select = 0, то выбираем 0й вход (i0), а значение select = 1 выбирает 1й вход (i1). Поэтому классическая таблица истинности выглядит немного по другому. Мы ещё не решили какой вариант обозначения входов использовать, но скорее всего это будет классический вариант:
+In the classic version, input a is called s (select), and inputs c and b are i0 and i1, respectively. That is, if select = 0, we select the 0th input (i0), and the value select = 1 selects the 1st input (i1). So the classical truth table looks a little different. We haven't decided yet which variant of inputs to use, but most likely it will be the classical variant:
 
 ```
 x = (s == 0) ? i0 : i1;
 ```
 
-Все транзитные состояния схемы предлагаем рассмотреть читателю самостоятельно.
+We suggest that the reader examine all the transit states of the circuit for yourself.
 
-На картинке видно, что сбоку идёт какой-то левый провод, который ни к чему не присоединен. Дело в том, что он используется для альтернативного роутинга:
-- Вход a / s (select) может приходить как с M2, так и через М1 по этому альтернативному маршруту
-- Этот маршрут может использоваться просто для прокладки другого роутинга, то есть М1 проходит по всей ячейке, никак на неё не влияя.
+In the picture you can see that on the side there is some left wire which is not connected to anything. The point is that it is used for alternative routing:
+- Input a / s (select) can come either from M2 or through M1 via this alternate route
+- This route can be used simply to route another routing, that is, M1 goes through the entire cell without affecting it in any way.
 
-Выход с мультиплексора дополнительно нагружается спаренным push/pull инвертором, то есть эта ячейка даёт дополнительный запас по мощности на выходе, чтобы к ней можно было подключать длинные шланги.
+The output from the multiplexer is additionally loaded with a paired push/pull inverter, which means that this cell gives extra power reserve at the output so that long hoses can be connected to it.
 
-Существует также "усиленная" версия мультиплексора:
+There is also an "strengthened" version of the Multiplexer:
 
 ![Mux_strong](/imgstore/cells/Mux_strong.jpg)
 
-#### Инвертирующий мультиплексор (IMUX)
+#### Inverting multiplexer (IMUX)
 
-Отличается от обычного тем, что инвертирует входы.
+It differs from the regular one in that it inverts the inputs.
 
 ![IMUX](/imgstore/cells/IMUX.jpg)
 
-Также есть более мощная версия, с усиленным инвертором на выходе:
+There is also a more powerful version, with a reinforced inverter on the output:
 
 ![Imux_strong](/imgstore/cells/Imux_strong.jpg)
 
-Таблица истинности:
+Truth Table:
 ```
 abc | out
 000 | 1
@@ -240,23 +240,23 @@ abc | out
 111 | 0
 ```
 
-Нижний контакт `c` имеет специальную площадку, чтобы альтернативно приходить с M2. Но чаще вход приходит по М1 сверху или снизу.
+The lower terminal `c` has a special pad to alternatively come from M2. But more often the input comes from M1 from above or below.
 
-Вход `b` всегда приходит с M2.
+The input `b` always comes from M2.
 
-Кстати входы `b` и `c` идут на диффузию.
+By the way the inputs `b` and `c` go to the diffusion.
 
-#### Мультиплексор 3 в 1
+#### 3-in-1 Multiplexer
 
 ![3-mux](/imgstore/cells/3-mux.jpg)
 
-Если вход s1 == 1, то на выход идёт in2.
+If input s1 == 1, the output is in2.
 
-Иначе (s1 == 0) проверяется следующее условие:
-- Если s0 == 0 на выход идёт in0.
-- Если s0 == 1 на выход идёт in1.
+Otherwise (s1 == 0) the following condition is checked:
+- If s0 == 0 the output goes in0.
+- If s0 == 1, the output is in1.
 
-Или короче:
+Or shorter:
 
 ```
 sel:
@@ -265,36 +265,36 @@ sel:
 1X: out = in2
 ```
 
-#### Мультиплексор 4 в 1
+#### 4-in-1 Multiplexer
 
 ![4mux](/imgstore/cells/4mux.jpg)
 
-Выбирает один провод из 4-х.
+Selects one wire out of 4.
 
 ```
-s1 s0 | какой входной контакт подать на выход
+s1 s0 | which input to apply to the output
 0  0  | 0
 0  1  | 1
 1  0  | 2
 1  1  | 3
 ```
 
-- Иногда входные контакты 0-3 прикрепляются к земле/питанию (то есть хардкорно устанавливаются в 0/1).
-- Слева и справа есть место для транзитного прохода по М1
+- Sometimes the 0-3 input pins are attached to ground/power (i.e. hardcore set to 0/1).
+- There is room on the left and right for an M1 pass-through
 
-#### Редуцированный инвертирующий мультиплексор (IMUXR)
+#### Reduced inverting multiplexer (IMUXR)
 
-Иногда встречаются особенные мультиплескоры, у которых вход SEL реализован двумя контактами:
+Sometimes there are special multiplexers with the SEL input implemented as two ports:
 
 ![IMUXR1_trans1](/imgstore/cells/IMUXR1_trans1.jpg)
 
-Предполагается что sel1 != sel2 (иначе схема будет работать непредсказуемо)
+It is assumed that sel1 != sel2 (otherwise the circuit will work unpredictably).
 
-Такая компоновка называется Dual-Pass Logic:
+This layout is called Dual-Pass Logic:
 
 ![DPL](/imgstore/cells/DPL.jpg)
 
-Как указано, такой MUX не может выдавать сигнал на большую нагрузку, поэтому его использование ограничено локальным доменом ячеек.
+As indicated, such a MUX cannot output a heavy load signal, so its use is limited to the local cell domain.
 
 ### Logic elements OR
 
@@ -376,15 +376,15 @@ s1 s0 | какой входной контакт подать на выход
 
 ![22oai](/imgstore/cells/22oai.jpg)
 
-22-OAI реализует функцию Y = NAND(a|b, c|d).
+22-OAI implements the function Y = NAND(a|b, c|d).
 
-Также ещё такой вентиль называется 2-2 OR/NAND MUX. Практическая польза от такого вентиля пока не ясна. Скорее всего такое сочетание часто используется, поэтому разработчики добавили специальную ячейку для этого.
+It is also called 2-2 OR/NAND MUX. The practical use of such a gate is not clear yet. Most likely this combination is often used, so the developers added a special cell for it.
 
 #### 22-AOI
 
 ![22aoi](/imgstore/cells/22aoi.jpg)
 
-Реализует функцию Y = NOR(a&b, c&d)  (2-2 AND/NOR MUX).
+Implement function Y = NOR(a&b, c&d) (2-2 AND/NOR MUX).
 
 #### NOR & NAND
 
@@ -392,7 +392,7 @@ s1 s0 | какой входной контакт подать на выход
 
 Y = NOR(a,b) & NAND(c,d)
 
-Если A или B = 1, то выход 0. Если C и D = 1, то выход 0. В остальных случаях выход 1.
+If A or B = 1, output 0. If C and D = 1, output 0. In other cases the output is 1.
 
 ```
 abcd
@@ -420,7 +420,7 @@ abcd
 
 Y = NAND(a,b) | NOR(c,d)
 
-Если A или B = 0, то выход 1. Если C и D = 0, то выход 1. В остальных случаях выход 0.
+If A or B = 0, output 1. If C and D = 0, output 1. In other cases the output is 0.
 
 ```
 abcd
@@ -484,11 +484,11 @@ nand(a,b,c) & ~d
 
 ![Nand_and_xor](/imgstore/cells/Nand_and_xor.jpg)
 
-Используется в счётчиках, в роли элемента XOR.
+Used in counters, as an XOR element.
 
-Вверху находится операция NAND(a,b). Когда a и b = 1, на выходе 0. Иначе выход идёт с нижней половины.
+At the top is the NAND(a,b) operation. When a and b = 1, the output is 0. Otherwise, the output comes from the lower half.
 
-Нижняя половина это операция XOR(c,d)
+The lower half is the XOR(c,d) operation
 
 ![Counter2](/imgstore/cells/Counter2.jpg)
 
@@ -496,116 +496,114 @@ nand(a,b,c) & ~d
 
 ![Nor_or_and](/imgstore/cells/Nor_or_and.png)
 
-Используется в счётчиках, в роли элемента XNOR.
+Used in counters, as an XNOR element.
 
 ![Counter1](/imgstore/cells/Counter1.jpg)
 
 ### Triggers (synchronous memory elements)
 
-Edge-triggered схемы срабатывают не по уровню, а по факту смены уровня с 0 на 1 (задний фронт, raising edge, posedge в Verilog) или с 1 на 0 (передний фронт, falling edge, negedge в Verilog).
+Edge-triggered circuits are not triggered by level, but by a level change from 0 to 1 (rising edge, posedge in Verilog) or from 1 to 0 (falling edge, negedge in Verilog).
 
 ![Edges](/imgstore/cells/Edges.jpg)
 
-Смысл этого в том, чтобы "открыть" триггер только в первую половину _полутакта_ или в последнюю. То есть мы можем по идее умножить частоту, если использовать два триггера, один из которых настроен на задний фронт, а другой на передний.
+The point of this is to "open" the trigger only in the first or last part of full cycle. That is, we can ideally multiply the frequency if we use two triggers, one of which is set to the rising edge and the other to the falling edge.
 
-Если на входе "z" (отсоединен), то триггер не меняет своего значения. Такой способ позволяет сэкономить и не делать отдельный вход Enable.
+If the input is "z" (disconnected), the trigger does not change its value. This way we can economize and not make a separate Enable input.
 
-Либо мы можем за 1 полутакт сделать сразу два действия, опять же используя этот трюк. Первое действие мы вешаем на триггер по заднему фронту, а второе - на триггер по переднему фронту. Память DDR так и работает.
+Or we can do two actions in 1 half-cycle at once, again using this trick. We put the first action on the falling edge trigger and the second action on the rising edge trigger. This is how DDR memory works.
 
-Активная логика отличается от пассивной тем, что умеет запоминать некоторые состояния (в данном случае триггеры запоминают входное значение).
+Sequiental logic differs from the combinatorial logic in that it can remember some states (in this case the triggers remember the input value).
 
-Семейство триггеров по нарастающему фронту выглядит примерно так (в большинстве это довольно крупные ячейки, состоящие из нескольких частей):
+The family of triggers on the rising edge looks like this (most of them are rather large cells consisting of several parts):
 
 ![DFFs](/imgstore/cells/DFFs.jpg)
 
-Устройство современных DFF:
+The design of modern DFFs:
 
 ![Modern_dff](/imgstore/cells/Modern_dff.jpg)
 
-Master flip-flop открывается первым, т.к. CLK=0 заведен на PMOS. Slave открывается вторым.
+Master flip-flop opens first because CLK=0 is set to PMOS. The Slave opens second.
 
-В стандартных ячейках PSXCPU используется немного другая схема. Вместо FF на паре инверторов+MOSFET применяется инверторы+MUX.
+The standard PSXCPU cells use a slightly different design. Instead of FF on inverter+MOSFET pair, inverters+MUX are used.
 
-Если на CLK=0 первый MUX открывается для приема D, то это posedge DFF. Если на CLK=0 открывается второй MUX, а первый остается закрытым, то это negedge DFF.
+If at CLK=0 the first MUX opens to receive D, it posedge DFF. If at CLK=0 the second MUX opens and the first one stays closed, it is negedge DFF.
 
-Я не очень понимаю как это работает, но скорее всего вся фишка в propagation delay. Эту магию знать не обязательно, будем отталкиваться от того, что если вход DFF заходит в MUX, который открывается при CLK=0 MOSFET-ом P-типа, то это posedge DFF.
+I don't really understand how it works, but most likely the trick is propagation delay. It is not necessary to know this magic, we will start from the fact that if the DFF input goes to a MUX, which opens at CLK=0 by a P-type MOSFET, it is a posedge DFF.
 
-#### DFF срабатывающий по нарастающему фронту (posedge, смена CLK 0->1)
+#### DFF triggered on a rising edge (posedge, CLK 0->1 change)
 
 ![DFF](/imgstore/cells/DFF.jpg)
 
-Схемка для симуляции в Logisim лежит в SVN.
-
 ![DFF_logisim](/imgstore/cells/DFF_logisim.jpg)
 
-#### DFF по нарастающему фронту, со сбросом
+#### DFF on the rising edge, with reset
 
-Взяв за основу DFF, разработчики стали плодить его модификации.
+Taking DFF as a basis, the developers began to produce its modifications.
 
-Одна из них - DFF с дополнительным входом для сброса (причем вход в инверсной логике, как это обычно принято делать для сигналов сброса).
+One of them is a DFF with an additional reset input (with the input in inverse logic, as it is usually done for reset signals).
 
 ![DFFR_circuit](/imgstore/cells/DFFR_circuit.jpg)
 
-- Если /res (in2) равен нулю (сброс), то на выходе всегда будет 0
-- Иначе схема работает как обычный DFF, устанавливая значение по нарастающему фронту
+- If /res (in2) is zero (reset), the output will always be 0
+- Otherwise the circuit works like a regular DFF, setting the value on a rising edge
 
-На следующей схеме не отражается тонкая механика работы мультиплексоров с задержкой:
+The following diagram does not reflect the fine mechanics of delayed multiplexers:
 
 ![DFFR_logic](/imgstore/cells/DFFR_logic.png)
 
-(схема приведена чтобы примерно понимать какие логические элементы используются)
+(The schematic is given to get a rough idea of which logic elements are used)
 
-DFF со сбросом применяются например в счётчиках, а /RES используется когда нужно сбросить счётчик.
+DFF with reset are used e.g. in counters and /RES is used when you want to reset the counter.
 
-#### DFF по нарастающему фронту, селектируемый по MUX, со сбросом
+#### DFF on rising edge, selectable by MUX, with reset
 
-Данный вариант ячейки является гибридным: вместо обычного входа (D) на ней установлен мультиплексируемый вход.
+This variant of the cell is hybrid: instead of the usual input (D) it has a multiplexed input.
 
-Вероятнее всего комбинация MUX + DFF встречалась настолько часто, что разработчики решили добавить гибридную ячейку.
+Most likely, the combination of MUX + DFF was so common that the developers decided to add a hybrid cell.
 
-Схема не особо отличается от DFFR.
+The circuit is not very different from the DFFR.
 
-|Топология|Транзисторная схема|
+|Topology|Transistor circuit|
 |---|---|
 |![DFFR_MUX_topo](/imgstore/cells/DFFR_MUX_topo.jpg)|![DFFR_MUX_trans](/imgstore/cells/DFFR_MUX_trans.jpg)|
 
-Логическая схема (опять здесь не учитываются "медленные" MUXы):
+Logic circuit (again, "slow" MUXes are not taken into account here):
 
 ![DFFR_MUX_logic](/imgstore/cells/DFFR_MUX_logic.jpg)
 
-#### DFF по спадающему фронту (negedge)
+#### DFF on the falling edge (negedge)
 
 ![NDFF_trans](/imgstore/cells/NDFF_trans.jpg)
 
-Как видно, когда CLK=0, то нижний MUX (куда приходит вход D) остается закрытым, а верхний открывается. Как уже было сказано выше - такая магия формирует negedge DFF.
+As you can see, when CLK=0, the lower MUX (where input D comes in) stays closed and the upper one opens. As it was already said above - such magic forms negedge DFF.
 
 ### Latches (asynchronous memory elements)
 
-Тут будут всякие level-triggered девайсы 
+There will be all kinds of level-triggered items.
 
-#### D latches
+#### D Latches
 
 ![Dlatches](/imgstore/cells/Dlatches.jpg)
 
-/DLATCH запоминает значение когда CLK=0, DLATCH запоминает значение когда CLK=1.
+/DLATCH remembers the value when CLK=0, DLATCH remembers the value when CLK=1.
 
-Если на входе "z" (отсоединен), то защелка не меняет своего значения. Такой способ позволяет сэкономить и не делать отдельный вход Enable.
+If the input is "z" (disconnected) the latch does not change its value. This way you can economize and not make a separate Enable input.
 
-Транзисторная схема на примере /DLATCH:
+Transistor circuit on the example of /DLATCH:
 
 ![D1](/imgstore/cells/D1.jpg)
 
-Flow на примере /DLATCH:
+Flow by example /DLATCH:
 
 ![Ndlatch_flow](/imgstore/cells/Ndlatch_flow.jpg)
 
-При CLK=0 старое значение отсекается, а новое с входа in поступает на защелку. Там оно и хранится.
+When CLK=0 the old value is cut off and the new value from input in goes to the latch. This is where it is stored.
 
-При CLK=1 значение на защелке циркулирует туда-сюда и поступает на выход.
+At CLK=1 the value on the latch circulates back and forth and goes to the output.
 
-Выход кстати не инвертированный (Q=in).
+The output, by the way, is not inverted (Q=in).
 
-Защелка по CLK=1 отличается просто расположением боковых лапок.
+The latch at CLK=1 differs simply in the arrangement of the side legs.
 
 ![NDLATCH_logisim](/imgstore/cells/NDLATCH_logisim.jpg)
 
@@ -636,7 +634,7 @@ out2 = sum
 
 #### Carry Adder
 
-Этот элемент по функционалу похож на Full Adder, за исключением того, что его Carry In всегда равен 1.
+This item is similar to Full Adder in functionality, except that its Carry In always equals 1.
 
 ![Xnor_or](/imgstore/cells/Xnor_or.jpg)
 
@@ -651,24 +649,24 @@ out2 = OR (a,b) = carry out
 |---|---|
 |![WS1_circuit](/imgstore/cells/WS1_circuit.jpg)|![WS2_circuit](/imgstore/cells/WS2_circuit.jpg)|
 
-Не до конца понятно назначение этих ячеек, но они обычно находятся на последних стадиях умножителей. Так что скорее всего они занимаются вычислением взвешенной суммы промежуточных результатов.
+The purpose of these cells is not completely clear, but they are usually in the last stages of multipliers. So most likely they calculate the weighted sum of intermediate results.
 
-Поэтому кодовое обозначение их будет "взвешенные суммы" (weighted sum, WS).
+Therefore, the designation of them would be "weighted sums" (WS).
 
-- В верхней части находится инвертирующий мультиплексор (IMUX)
-- Чуть ниже два усиляющих инвертора для выходов out2/out3
-- Ещё ниже 3 мультиплексора, 2 используются для входов out2/out3 и ещё один для выходного IMUX
-- В самом низу находится селектирующая операция XNOR
+- At the top is an inverting multiplexer (IMUX)
+- Just below two amplifying inverters for out2/out3 outputs
+- Still below are three multiplexers, two are used for the out2/out3 inputs and another one for the output IMUX
+- At the very bottom is the selector operation XNOR
 
-Логические схемы:
+Logic circuits:
 
 ![WS_logic](/imgstore/cells/WS_logic.jpg)
 
-Отличия между двумя ячейками незначительные:
-- Переставляется инвертор после in2/in3 мультиплексора
-- Прямой/инвертированный вход in5 для out2/out3
+The differences between the two cells are insignificant:
+- The inverter after the in2/in3 multiplexer is repositioned
+- Direct/inverted input in5 for out2/out3
 
-Селектирующая операция XNOR определяет 2 поведения схемы.
+The XNOR selective operation defines 2 circuit behaviors.
 
 WS1:
 
@@ -700,55 +698,55 @@ out1 = !MUX (in1, in2, in3);
 out2 = out3 = in5
 ```
 
-Впервые встретились в схеме умножения матриц [MDEC IDCT](mdec.md), где они образуют цепочку:
+First met in the matrix multiplication circuit [MDEC IDCT](mdec.md), where they form a chain:
 
 ![WS_circuit](/imgstore/cells/WS_circuit.jpg)
 
-- WS1 и WS2 попеременно чередуются, для организации inverted carry-chain (трюк для уменьшения задержки распространения)
-- На входы in4/in5 подаются
+- WS1 and WS2 are alternately interleaved to organize inverted carry-chain (a trick to reduce propagation delay)
+- The inputs in4/in5 are fed ...
 
 #### MUX Array
 
-:warning: Название этой ячейки претерпело много вариаций, изначально мы решили называть её "Пайплайн", но потом упростили до "MUX Array".
+:warning: The name of this cell has undergone many variations, originally we decided to call it "Pipeline", but then we simplified it to "MUX Array".
 
-Эти ячейки находятся на начальных стадиях умножителей. Ячейка состоит из 4-х частей, каждая часть представляет собой 2 связанных мультиплексора.
+These cells are at the initial stages of the multipliers. The cell consists of 4 parts, each part is 2 connected multiplexers.
 
-Входной мультиплексор по сигналу C выбирает между двумя входами, а выходной мультиплексор по сигналу D выдает наружу либо предыдущее значение, либо текущее (то есть организует своеобразную цепочку сдвига на 1 разряд).
+The input multiplexer by signal C selects between the two inputs, and the output multiplexer by signal D outputs outside either the previous value or the current value (i.e. organizes a kind of shift chain by 1 bit).
 
 ![Pipeline](/imgstore/cells/Pipeline.jpg)
 
-Генерализованный конвеер операций, для разделния по тактам очередности действий (4-stage). Может образовывать более длинные цепочки.
+Generalized pipeline of operations, to divide by clock the sequence of actions (4-stage). It can form longer chains.
 
-Ячейка состоит из 4 этапов (stage) конвеера, каждый этап имеет два входа (1,2) и один выход (3). Управляется схема контрольными сигналами C1/C2 и D1/D2 (соединяются они между собой или нет - неизвестно).
+The cell consists of 4 stages, each stage has two inputs (1,2) and one output (3). The circuit is controlled by the control signals C1/C2 and D1/D2 (whether they are interconnected or not is unknown).
 
-Также схема имеет "стартовый" вход - in (для запуска конвеера) и "финиш" (сигнализирующий о том, что конвеер остановился) - out.
+The circuit also has a "start" input - in (to start the pipeline) and a "finish" input (signaling that the pipeline has stopped) - out.
 
-В основе работы каждого из этапов лежит 2 мультиплексора:
+Each stage is based on 2 multiplexers:
 
 |![Pipeline_C1_C2_flow](/imgstore/cells/Pipeline_C1_C2_flow.jpg)|![Pipeline_D1_D2_flow](/imgstore/cells/Pipeline_D1_D2_flow.jpg)|
 |---|---|
 
-Контрольные сигналы C1/C2 управляют входами 1 и 2. Контрольные сигналы D1/D2 выбирают что подавать на выход 3.
+Control signals C1/C2 control inputs 1 and 2. The control signals D1/D2 select what to feed to output 3.
 
-Когда C1 = 1, то на вход текущего этапа подается значение с контакта 1. Когда C2 = 1, то на вход текущего этапа подается значение с контакта 2.
+When C1 = 1, the value from contact 1 is fed to the current stage input. When C2 = 1, the value from pin 2 is fed to the current stage input.
 
-Когда D1 = 1, то на выход 3 идёт выбранный вход с контактов 1/2 текущего этапа.
-Когда D2 = 1, то на выход 3 идёт выход с предыдущего этапа.
+When D1 = 1, the selected input from pin 1/2 of the current stage goes to output 3.
+When D2 = 1, the output from the previous stage goes to output 3.
 
-По идее C1/C2 и D1/D2 должны работать согласованно и представлять собой один и тот же тактовый сигнал (CLK). Но пока это не подтверждено.
-Точно известно что C1 != C2 и D1 != D2 (они не могут быть одновременно 0 0 или 1 1).
+The idea is that C1/C2 and D1/D2 should be consistent and represent the same clock signal (CLK). But so far this has not been confirmed.
+What is certain is that C1 != C2 and D1 != D2 (they cannot be 0 0 or 1 1 at the same time).
 
-В общем и целом логика всей "колбасы" будет выглядеть следующим образом:
+In general, the logic of the whole "sausage" will look as follows:
 
 ![Pipeline_logic](/imgstore/cells/Pipeline_logic.jpg)
 
-:warning: Логика выхода 3 с каждого этапа инвертирована по отношению к входам 1/2 или значению с предыдущего этапа.
+:warning: Logic output 3 from each step is inverted with respect to inputs 1/2 or the value from the previous step.
 
-Выходной сигнал `out` (stop) дополнительно подтягивается небольшим буфером.
+The output signal `out` (stop) is additionally pulled up by a small buffer.
 
-Какой-то особой логики искать тут бессмысленно, равно как и искать аналогов в стандартных схемах умножителей.
+It makes no sense to look for any special logic here, as well as to look for analogues in standard multiplier circuits.
 
-Наряду с ячейками Weight sum это просто "ячейка-помощник", которая заменяет собой 8 мультиплексоров, для оптимизации места на кристалле.
+Along with the Weight sum cells it is just a "helper cell" which replaces the 8 multiplexers, to optimize the on-chip space.
 
 ### Cells for use with buses (Bus keeper, Tri-states)
 
