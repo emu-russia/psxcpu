@@ -2,7 +2,7 @@
 
 Reverse engineering of the SONY PlayStation CPU (CXD8530CQ).
 
-:warning: The information was moved from the old wiki in Russian. Information may need to be clarified here and there, and all sections will be translated to Eng.
+:warning: The information was moved from the old wiki in Russian. Information may need to be clarified here and there.
 
 ## IC103 Overview
 
