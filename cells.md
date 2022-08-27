@@ -40,7 +40,7 @@ In some cases, the cell is also mirrored relative to a vertical axis. It seems t
 
 ![Psxcpu-cell-rows](/imgstore/cells/Psxcpu-cell-rows.jpg)
 
-- Part 00: 81 rows
+- Part 00: 82 rows
 - Part 01: 81 rows
 - Part 02: 66 rows (counting from 16)
 - Part 03: 81 rows
