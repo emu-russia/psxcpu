@@ -1,121 +1,120 @@
-# Терминалы PSXCPU
+# PSXCPU Terminals
 
-:warning: Привести раздел в порядок, сделать разделы более понятным, возможно лучше в виде большой таблицы. Пометить In/Out.
+:warning: Put the section in order, make the sections clearer, perhaps better in the form of a large table. Label In/Out.
 
-У процессора очень много терминалов - 208. Это обусловлено большим количеством шин.
+The processor has very many terminals - 208. This is due to the large number of buses.
 
-Внутри их становится ещё больше, потому что VDD/VSS с одного вывода приходят сразу на 2 спаренных контактных площадки.
+There are even more inside because the VDD/VSS from one pin come to 2 paired pads at once.
 
-Питание и земля огибает процессор по краям, а также пересекает его крест-на-крест, поэтому центральную область мы называем "перекрестием".
+The power and ground wraps around the edges of the processor and also crosses it crosswise, so we call the central area "the crosshair".
 
-Чуть правее перекрестия находится вертикальная дистрибуция Main CLK по всему чипу.
+Slightly to the right of the crosshair is the vertical Main CLK distribution across the entire chip.
 
 ![IC103_contacts](/imgstore/pads/IC103_contacts.jpg)
 
 ![PSXCPU_pads_service_manual](/imgstore/pads/PSXCPU_pads_service_manual.jpg)
 
-## Тайминг и сброс CPU
+## CPU Timing and Reset
 
-- CRYSTALP: входной CLK, 67.73 MHz
-- SYSCLK0: CLK на вход GPU (33.3 MHz)
-- SYSCLK1: CLK на девайсы Sub bus (33.3 MHz)
-- DSYSCLK: CLK \* 2 на вход GPU (66.67 MHz NTSC, 64.5 MHz PAL)
-- /EXT_RESET: сброс (приходит с общего сигнала RES3.3 от блока питания)
+- CRYSTALP: input CLK, 67.73 MHz
+- SYSCLK0: CLK to GPU input (33.3 MHz)
+- SYSCLK1: CLK on Sub bus devices (33.3 MHz)
+- DSYSCLK: CLK \* 2 to GPU input (66.67 MHz NTSC, 64.5 MHz PAL)
+- /EXT_RESET: reset (comes from the common signal RES3.3 from the power supply)
 
 ![CPU_clk](/imgstore/pads/CPU_clk.jpg)
 
 ## PIO
 
-- /CS0: Выбрать PIO на Sub bus. Одновременно на шину может быть подключен только один девайс, во избежание конфликта шин. Этим управляют контакты группы "CS" (chip select).
+- /CS0: Select PIO on the sub bus. Only one device can be connected to the bus at a time to avoid bus conflicts. This is controlled by the signals in the "CS" (chip select) group.
 - DACK5 / DREQ5: PIO DMA
-- /INTIN10: контакт совмещен с контроллерами/картами памяти и PIO (общий сигнал прерывания).
+- /INTIN10: contact is combined with controllers/memory cards and PIO (common interrupt signal).
 
 ## SIO
 
-- RXD1, TXD1, /DSR1, /DTR1, /CTS1, /RTS1: классический последовательный интерфейс
+- RXD1, TXD1, /DSR1, /DTR1, /CTS1, /RTS1: conventional serial interface
 
-## Контроллеры/карты памяти
+## Memory controllers/memory cards.
 
-Представляют собой вариацию SIO.
+Represents a variation of the SIO.
 
-- /SCK0: тайминг для контроллеров (строб?)
-- RXD0, TXD0, /DSR0, /DTR0A, /DTR0B: последовательный интерфейс. DTR имеет два контакта, поскольку у нас два порта для контроллеров/карт памяти (Port A и Port B)
+- /SCK0: timing for controllers (?)
+- RXD0, TXD0, /DSR0, /DTR0A, /DTR0B: serial interface. DTR has two pins because we have two ports for controllers/memory cards (Port A and Port B)
 
 ![Front_jack](/imgstore/pads/Front_jack.jpg)
 
 ## DRAM
 
-В более новых материнках оперативная память представляет собой один чип (IC106), но раньше их было больше (4). Мы будем ориентироваться на более новый вариант, потому что это удобно.
+In newer motherboards the RAM is a single chip (IC106), but previously there were more (4). We will focus on the newer version because it is convenient.
 
-- DD: 32-разрядная DRAM Data bus. Предназначена для передачи данных между CPU и DRAM.
-- DA: 13-разрядная DRAM Address bus. Процессор выставляет адрес, для доступа к DRAM.
+- DD: 32-bit DRAM data bus. Designed for data transfer between CPU and DRAM.
+- DA: 13 bit DRAM Address bus. The CPU sets the address to access the DRAM.
 - /DWE: write enable
-- /DRAS0, /DCAS0, /DCAS1, /DCAS2, /DCAS3: рефреш
+- /DRAS0, /DCAS0, /DCAS1, /DCAS2, /DCAS3: refresh
 
 ![DA0_routing](/imgstore/pads/DA0_routing.png)
 
 ## ROM BIOS + Sub Bus
 
-ROM подсоединен к Sub bus.
+The ROM is connected to the sub bus.
 
-- /CS2: Подключить ROM к шине Sub bus. Непосредственно обмен данным (OE) включается, если активен сигнал read enable (/SRD). Ну это понятно, ROM можно только читать :)
-- /SWR0, /SWR1: Sub bus write enable. SWR0 предназначен как для внутренних девайсов Sub bus, так и для PIO, а вот SWR1 подается почему-то эксклюзивно только на PIO.
+- /CS2: Connect the ROM to the Sub bus. Direct data exchange (OE) is enabled if the read enable signal (/SRD) is active.
+- /SWR0, /SWR1: Sub bus write enable. SWR0 is for internal devices, as well as for PIO, but SWR1 is exclusive to PIO for some reason.
 - /SRD: Sub bus read enable.
 
-## Интерфейс GPU
+## GPU Interface
 
-- VD: шина данных 32-бит, подключена к Main bus
-- VA2: адресная шина, 1-бит :) Дело в том, что у GPU всего-лишь два 32-разрядных регистра (GP0/GP1), поэтому для их адресации достаточно одной адресной линии.
+- VD: 32-bit data bus, connected to Main bus
+- VA2: address bus, 1-bit :) The thing is that the GPU only has two 32-bit registers (GP0/GP1), therefore one address line is enough for addressing them.
 - /VRD, /VWR: read/write enable
-- /CS7: Выбрать GPU
-- DREQ2, DACK2: GPU DMA. Когда для передачи данных используется контроллер прямого доступа к памяти, графический 
-процессор посылает сигнал запроса на захват шины, устанавливая низкий логический уровень на контакте GPUDREQ. Получив такой запрос, процессор освобождает шины, извещая об этом установкой низкого логического уровня на выходе GPUDACK.
-- /INTIN0: сигнал прерывания GPU VBLANK
-- TCLK0: выходит с контакта GPU PCK (pixel clock), может использоваться в качестве Root Counter 0 (счетчик точек)
-- TCLK1: выходит с контакта GPU HBLANK, может использоваться в качестве Root Counter 1 (счетчик горизонтальных линий)
-- /INTIN1: общее прерывание GPU (может быть вызвано отправкой специальной команды в GPU, но насколько мне известно в играх не используется)
+- /CS7: Select GPU
+- DREQ2, DACK2: GPU DMA. When a direct memory access controller is used to transfer data, the GPU sends a bus-capture request signal by setting the logic low on the GPUDREQ pin. Upon receiving such a request, the processor releases the buses, signaling this by setting a low logic level on the GPUDACK output.
+- /INTIN0: GPU VBLANK interrupt signal
+- TCLK0: comes out of the GPU PCK (pixel clock) pin, can be used as Root Counter 0 (point counter)
+- TCLK1: comes out from GPU HBLANK pin, can be used as Root Counter 1 (horizontal line counter)
+- /INTIN1: general interrupt of the GPU (can be caused by sending a special command to the GPU, but as far as I know is not used in games)
 
-## Интерфейс CD-ROM
+## CD-ROM Interface
 
-- /CS5: выбрать CD-контроллер
-- /INTIN2: прерывание от CD-контроллера
+- /CS5: Select CD-controller
+- /INTIN2: interrupt from CD-controller
 
-## Интерфейс SPU
+## SPU Interface
 
-- /CS4: выбрать SPU
-- /INTIN9: прерывание от SPU
+- /CS4: Select SPU
+- /INTIN9: interrupt from SPU
 - DACK4, /DREQ4: SPU DMA
 
-## Схемы терминалов
+## Terminal Schematics
 
-Ниже рассмотрена схемотехника всех вариантов терминалов.
+Below is a schematic of all the terminal designs.
 
-:warning: Привести раздел в порядок, отвязать терминал от названий (DD/DA), собрать всю топологию всех вариантов терминалов.
+:warning: Put the section in order, deassociate the terminal from the names (DD/DA), assemble all the topology of all the terminal designs.
 
-### Терминал Output
+### Output Terminal
 
-На контакт поступает 1 провод (собственно разряд адреса).
+The pin has 1 wire (the actual address bit).
 
-Контакт устроен просто. Вначале DA подается на цепочку push-pull инверторов, для предварительного усиления:
+The pin is simple. First the DA is fed to the push-pull inverter chain, for pre-amplification:
 
 ![DA1](/imgstore/pads/DA1.jpg)
 
-Затем значение в инвертированной форме подается на мощный инвертор, который выходит сразу на контакт.
+Then the value in inverted form is fed to the power inverter, which goes straight to the pin.
 
 ![DA2](/imgstore/pads/DA2.jpg)
 
-На картинке представлена только одна половина "гребенки" инвертора, вторая часть не попала в слайды, которые делал декапер. Примерное устройство инвертора такое-же как у контакта шины DD, за исключением того, что нет входного провода и ESD.
+The picture shows only one half of the "comb" of the inverter, the other half didn't make it into the slides the decapper did. The approximate design of the inverter is the same as the DD bus pin, except that there is no input wire and no ESD.
 
-### Терминал Inout + TriState
+### Inout + TriState Terminal
 
-Внутренне контакты шины DD имеют разводку на 6 шлангов:
+The DD bus inner pins are routed to 6 ports:
 
 ![DD_pad](/imgstore/pads/DD_pad.jpg)
 
-- WR=1, когда цикл записи (CPU выдает данные наружу)
-- RD=1, когда цикл чтения (CPU получает данные снаружи). Я не совсем уверен что это RD, это может быть например и сигнал сброса RES=1 и ещё что-нибудь ещё, что не даёт шине работать наружу. Так или иначе, но шина работает наружу только при комбинации ab = 10.
-- CPU/DD(n): данные для выдачи на шину данных
-- DD(n)/CPU: данные для чтения
-- e/f: назначение пока не понятно. Эти линии соединяют контакты по-очереди (F приходит с предыдущего контакта, а E уходит на вход F следующего). Самый первый F и самый последний E уходят куда-то далеко в недра CPU. Возможно какая-то грязная схема, для проверки входных данных на 0.
+- WR=1 when write cycle (CPU outputs data outward)
+- RD=1 when reading loop (CPU gets data outward). I'm not quite sure what it is RD, it could be for example the RES=1 reset signal or something else that keeps the bus from working outward. Anyway, the bus only works outward when the combination ab = 10.
+- CPU/DD(n): data to output to the bus
+- DD(n)/CPU: read data
+- e/f: the purpose is not yet clear. These lines connect the pins one by one (F comes from the previous pin and E goes to the F input of the next one). The very first F and the very last E go somewhere far into the depths of the CPU. Probably some kind of dirty circuit, to check the input data for 0.
 
-Замечание: в усилительной "гребенке" на выходе используются не все транзисторы, большая часть отключена. Также входной шланг соединяется с какими-то демоническими кусками диффузии с отсоединенными транзисторами, скорее всего это защита от статики (ESD). Ещё один элемент ESD - это инвертор без выхода (диод?)
+Note: not all transistors are used in the amplifier "comb" at the output, most are disconnected. Also, the input hose connects to some demonic pieces of diffusion with the transistors disconnected, most likely this is static protection (ESD). Another ESD element is an inverter with no output (diode?)
