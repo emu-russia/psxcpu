@@ -27,7 +27,7 @@ The CPU consists of the following components:
 - [SIO](sio.md) controller (RS-232-like serial interface), for two ports (SIO0 and SIO1)
 - [PIO](pio.md) controller (expansion port for additional devices)
 - [Root counters](rcnt.md) (3 hardware counters)
-- Built-in instruction cache and data cache (data cache with direct access capability)
+- Built-in instruction cache and data cache (data cache with direct access capability aka "ScratchPad")
 - Dedicated "mini-caches" (R-buffer and W-buffer)
 
 Microphotograph of a chip:
