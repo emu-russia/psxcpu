@@ -12,13 +12,6 @@ Cells in its glory:
 
 ## active_sequenced
 
-Workspaces (\*.wrk) for patterns tool to identify cells over polysilicon images (images are supplied by request, they are too big).
+Workspaces (\*.wrk) for Patterns tool to identify cells over polysilicon images (images are here: https://drive.google.com/drive/u/1/folders/1ytoTS_vl4F2xwJpaPSVvHei9QjYtd-Dr).
 
 See notes.txt about current progress and some info.
-
-## Additional resources
-
-- M1 cells interconnections stitched by rows: https://drive.google.com/file/d/1A6z6ZubVnuhC8zOan4aQl5zeZk-KMy15/view?usp=sharing
-- Another uncompleted database: http://psxdev.ru/cells
-- Some description (mostly Russian, use google translate): http://wiki.psxdev.ru/index.php/CPU_CELLS
-- Patterns database (patterns_db) is most complete standard cells collection: https://github.com/ogamespec/psxdev/tree/master/tools/patterns/Build

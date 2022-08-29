@@ -51,6 +51,16 @@ Stitched areas with standard cells.
 
 https://drive.google.com/drive/u/2/folders/1fDKUR1nrEk5RCaYHKYP0jsDJLMzKCZ7X
 
+### active_sequenced_images
+
+These pictures were used to get a list of cells in the folder `/cells/active_sequenced` (for WRK files).
+
+In essence, it is a chopped up dataset `PolyStitched`.
+
+![legend](/cells/active_sequenced/legend.jpg)
+
+https://drive.google.com/drive/u/1/folders/1ytoTS_vl4F2xwJpaPSVvHei9QjYtd-Dr
+
 ### DCache
 
 DCache Topology.
