@@ -31,6 +31,12 @@ A stitched M2 that can be used to rebuild a netlist.
 
 https://drive.google.com/drive/u/1/folders/1gm7yAS0Q0RMlnaueThbbUc0msHZU09Ft
 
+### M1 Lap1 Fused
+
+![lap1_Fused_sm](/imgstore/lap1_Fused_sm.jpg)
+
+https://drive.google.com/drive/u/1/folders/1BWaV7qeUzVNYJ-a94BVtwIwGwX7uTTBI
+
 ### Cell Interconnects
 
 Within the same row, cells are often directly connected to each other using M1.
