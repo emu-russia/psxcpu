@@ -49,7 +49,7 @@ You can find out the revision of the chip from the marking on the cover, removin
 
 There is also a tattoo on the lower right corner of the chip. The revision of the chip is indicated in the first line:
 
-![6f18eaaedc260890621c89afba5b0b46](/imgstore/6f18eaaedc260890621c89afba5b0b46.jpg)
+![cpurev_90048](/imgstore/cpurev_90048.jpg)
 
 This document by Ken Kutaragi (http://www.hotchips.org/wp-content/uploads/hc_archives/hc11/2_Mon/hc99.k1.kutaragi.pdf) shows the old architecture compared to the one we are studying, though the second picture is on the side :smiley:
 
