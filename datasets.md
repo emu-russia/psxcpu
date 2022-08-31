@@ -33,7 +33,9 @@ https://drive.google.com/drive/u/1/folders/1gm7yAS0Q0RMlnaueThbbUc0msHZU09Ft
 
 ### M1 Lap1 Fused
 
-![lap1_Fused_sm](/imgstore/lap1_Fused_sm.jpg)
+|20X|50X|
+|---|---|
+|![lap1_20x_Fused_sm](/imgstore/lap1_20x_Fused_sm.jpg)|![lap1_Fused_sm](/imgstore/lap1_Fused_sm.jpg)|
 
 https://drive.google.com/drive/u/1/folders/1BWaV7qeUzVNYJ-a94BVtwIwGwX7uTTBI
 
