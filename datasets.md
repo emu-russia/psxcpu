@@ -27,7 +27,7 @@ This section contains more or less processed datasets.
 
 A stitched M2 that can be used to rebuild a netlist.
 
-![m2_Fused_sm](/imgstore/cells/m2_Fused_sm.jpg)
+![m2_Fused_sm](/imgstore/m2_Fused_sm.jpg)
 
 https://drive.google.com/drive/u/1/folders/1gm7yAS0Q0RMlnaueThbbUc0msHZU09Ft
 
