@@ -39,6 +39,12 @@ https://drive.google.com/drive/u/1/folders/1gm7yAS0Q0RMlnaueThbbUc0msHZU09Ft
 
 https://drive.google.com/drive/u/1/folders/1BWaV7qeUzVNYJ-a94BVtwIwGwX7uTTBI
 
+### M1 Lap2 Fused
+
+![lap2_Fused_sm](/imgstore/lap2_Fused_sm.jpg)
+
+https://drive.google.com/drive/u/1/folders/1Bs6g3hyMySYPuSzomyJ62MnTsNKNFTE7
+
 ### Cell Interconnects
 
 Within the same row, cells are often directly connected to each other using M1.
