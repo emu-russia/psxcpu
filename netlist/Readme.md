@@ -1,6 +1,6 @@
 # Netlist
 
-This section is about restoring Netlist connections of standard cells, custom units and PSXCPU terminals.
+This section is about restoring netlist connections of standard cells, custom units and PSXCPU terminals.
 
 ## Master Dataset
 
