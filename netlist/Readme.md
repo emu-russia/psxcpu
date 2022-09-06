@@ -12,7 +12,7 @@ Let's choose this one: https://drive.google.com/drive/u/1/folders/1gm7yAS0Q0RMln
 
 A semi-automatic approach is used for wire reconstruction:
 
-![method](imgstore/netlist/method.png)
+![method](/imgstore/netlist/method.png)
 
 - Drawing all the wires by hand is not physically possible, or it would take a gazillion hours.
 - Instead, the outermost vias of the wire are drawn and automatically joined as a wire by a script
@@ -23,4 +23,4 @@ A semi-automatic approach is used for wire reconstruction:
 
 Not much so far.
 
-![progress](imgstore/netlist/progress.png)
+![progress](/imgstore/netlist/progress.png)
