@@ -19,6 +19,15 @@ A semi-automatic approach is used for wire reconstruction:
 - If the wire has "dog legs", only the "patch" (single segment) is put on the preset
 - If a wire has intermediate vias, they are marked as `x`, so that the wire recovery process is not interrupted on these vias
 
+## Tool
+
+Deroute is used as the tool to untangle wires: https://github.com/emu-russia/Deroute
+
+Parameters:
+- Lambda: 6.0
+- Vias Size: 2
+- Wire Size: 3
+
 ## Progress
 
 Not much so far.
