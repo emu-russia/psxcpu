@@ -6,7 +6,7 @@ This section contains raw datasets, straight from the microscope (usually over-1
 
 Initial datasets are done by:
 - The first dataset was made by Mikhail @zeptobars (M2, poly at 40x). Acid etching was used to obtain the dataset on poly, so the photos contain a lot of debris (bits of wires, dirt), but nevertheless all the necessary information can be extracted from it.
-- The second set of M2 and M1 datasets was made by an anonymous decaper, but by the "signature" of the photos you can still tell by whom :smiley:
+- The second set of M2 and M1 datasets was made by an anonymous decaper
 
 Datasets:
 
