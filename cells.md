@@ -785,7 +785,7 @@ Lambda parameters allow you to accurately describe the cell and can be used for 
 
 ## Pockets
 
-PSXCPU uses P-pockets. For a long time it was not clear at all whether they are there (obviously they should be). But they are practically not visible and appear only when lapping the chip:
+PSXCPU uses N-pockets for P-diffusion. For a long time it was not clear at all whether they are there (obviously they should be). But they are practically not visible and appear only when lapping the chip:
 
 ![pocket](/imgstore/cells/pocket.jpg)
 
