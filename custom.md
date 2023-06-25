@@ -2,12 +2,12 @@
 
 This section is about the different memory blocks inside the PSXCPU.
 
+According to the available documents of the mid-90's - such large "cells" were called `Megacells`. LSI Logic EDA (MDE) could use them along with regular cells.
+
 :warning: The section needs to be re-checked and cleared of bitard-punk vocabulary.
 
-The CPU chip is made with semi-custom IC technology. This means that most of the logic is generated automatically, but some of the special blocks are made "by hand".
-
-At the edges of the CPU there are many such blocks, the purpose of most of which is not yet clear.
-The blocks are numbered according to the part of the CPU in which they are located to make them easy to identify. As we understand what function they perform, they will be renamed.
+At the edges of the CPU there are many such blocks.
+The blocks are numbered according to the part of the CPU in which they are located to make them easy to identify.
 
 ![Cpu_units](/imgstore/custom/Cpu_units.jpg)
 
@@ -30,7 +30,7 @@ There are a total of 16 blocks on the chip, which can be divided into 3 types. A
 	- Unit-25 (GTE registers?) 16 16-bit dual port
 - SRAM:
 	- Unit-10 (mdec output RGB macroblock(?) 768 bytes)(24x8 vertical, 32 horizontal)
-	- Unit-26 (data cache 1024 bytes)(32x8 vertical, 32 horizontal)
+	- Unit-26 (data ScratchPad 1024 bytes)(32x8 vertical, 32 horizontal)
 	- Unit-30 (instruction cache 4096 bytes)(32x8 vertical, 128 horizontal)
 
 ## Constant Table Memory
@@ -225,7 +225,7 @@ Blocks of this type are static SRAM used as a cache for various data.
 
 ![Cpu_unit_type3](/imgstore/custom/Cpu_unit_type3.jpg)
 
-The data cache has 18 control lines (among them are address bus lines somewhere) as well as 32x2 Data bus lines.
+The data "cache" (ScratchPad) has 18 control lines (among them are address bus lines somewhere) as well as 32x2 Data bus lines.
 
 The instruction cache has 17 control lines (2 of them are not used) and 32x2 data bus (instruction).
 
@@ -246,7 +246,7 @@ Functionally, the blocks consist of:
 - Data bus buffers
 - Memory Cell Array
 
-### SRAM cell
+### SRAM Cell
 
 The memory cell is a conventional CMOS SRAM-cell, based on 6 transistors.
 

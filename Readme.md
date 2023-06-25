@@ -36,6 +36,8 @@ Microphotograph of a chip:
 
 As you can see most of the chip is taken up by the "mess" of synthesized HDL logic, and at the edges there are various memory and registers (see [Custom Blocks](custom.md)).
 
+From the available documents of the mid-90s we know that PSXCPU is most likely based on the LSI Logic framework called `CoreWare`. The MDE or C-MDE program was most likely used as the EDA.
+
 ## CPU Revisions
 
 - The very first Japanese consoles (SCPH-1000 / PU-7) and old versions of PU-8 came with revision 90025.
