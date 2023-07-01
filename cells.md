@@ -75,25 +75,23 @@ Transistor schematic sources for all cells can be found here: https://drive.goog
 
 ### Inverters
 
-There will be inverters.
-
 The more transistors connected in _parallel_ in an inverter, the greater its drive strength.
 
 The more transistors connected in _series_, the longer the propagation delay.
 
-#### Mini inverter (NOT)
+#### NOT - Mini inverter
 
 ![Not_mini](/imgstore/cells/Not_mini.jpg)
 
 We found this inverter after its larger counterpart (NOT1), so NOT had to be renamed NOT1, and the new NOT was this small one.
 
-#### Inverter (NOT1)
+#### NOT1 - Inverter
 
-![Cell000](/imgstore/cells/Cell000.jpg)
+![NOT1](/imgstore/cells/NOT1.jpg)
 
 Nothing special.
 
-#### Inverter, 2 pairs of transistors (NOT2)
+#### NOT2 - Inverter, 2 pairs of transistors
 
 ![Not2](/imgstore/cells/Not2.jpg)
 
@@ -103,31 +101,31 @@ Nothing special.
 
 So be very careful not to mess up. The NAND2X is shorter than the NOT2, and also the legs on the right side go at different angles.
 
-#### Inverter, 3 pairs of transistors (NOT3)
+#### NOT3 - Inverter, 3 pairs of transistors
 
 ![Not3](/imgstore/cells/Not3.jpg)
 
 The M1 wiring allows you to do alternate routing from above. Also the input can come from M2.
 
-#### Inverter, 4 pairs of transistors (NOT4)
+#### NOT4 - Inverter, 4 pairs of transistors
 
 ![Not4](/imgstore/cells/Not4.jpg)
 
-#### Strong inverter, 8 pairs of transistors (NOT8)
+#### NOT8 - Strong inverter, 8 pairs of transistors
 
-![Pushpull](/imgstore/cells/Pushpull.jpg)
+![NOT8](/imgstore/cells/NOT8.jpg)
 
 These inverters are easy to spot by the rather impressive metal shield (this is the output):
 
-![Pushpull_M1](/imgstore/cells/Pushpull_M1.jpg)
+![NOT8_M1](/imgstore/cells/NOT8_M1.jpg)
 
 A feature of the topology is that input and output can go to M2, and can alternate paths go to M1.
 
 Alternate routing through M1. Additional M1 is shown in blue, when input/output goes to M2 - this additional M1 is not present.
 
-![Pushpull_alternate](/imgstore/cells/Pushpull_alternate.jpg)
+![NOT8_alternate](/imgstore/cells/NOT8_alternate.jpg)
 
-#### NOT12 (12 pairs of transistors)
+#### NOT12 - 12 pairs of transistors
 
 ![Not12](/imgstore/cells/Not12.jpg)
 
@@ -141,27 +139,25 @@ The more transistors connected in _parallel_ in a buffer, the greater its drive 
 
 The more transistors connected in _series_ in the buffer, the longer its propagation delay.
 
-#### Buffer regular, 2X
+#### BUF2X - Buffer regular, 2X
 
 ![Buf2x_circuit](/imgstore/cells/Buf2x_circuit.jpg)
 
-#### Buffer regular, 4 pairs of transistors
+#### BUF3X - Buffer regular, 4 pairs of transistors
 
 ![Buf3x_circuit](/imgstore/cells/Buf3x_circuit.jpg)
 
-#### Buffer regular, 4 pairs of transistors, reinforced diffusion
+#### BUF3X2 - Buffer regular, 4 pairs of transistors, reinforced diffusion
 
 ![Buf3x2_circuit](/imgstore/cells/Buf3x2_circuit.jpg)
 
-#### Double buffer
+#### BUF4X - Double buffer
 
 The double buffer differs from the regular buffer in that it does out = not(not(not(in)))), while the regular buffer does just out = not(not(in)).
 
 Hence the propagation delay of the double buffer will be longer than that of the regular buffer.
 
-![Buf](/imgstore/cells/Buf.jpg)
-
-out = in
+![BUF4X](/imgstore/cells/BUF4X.jpg)
 
 :warning: The top of this cell is very similar to NOR2X:
 
@@ -169,33 +165,44 @@ out = in
 
 Don't mix it up!
 
-#### Double buffer, 4 pairs of transistors
+#### BUF5X - Double buffer, 4 pairs of transistors
 
-![Buf2x](/imgstore/cells/Buf2x.jpg)
+![BUF5X](/imgstore/cells/BUF5X.jpg)
+
+#### BUF6X
+
+![BUF6X](/imgstore/cells/BUF6X.jpg)
 
 ### Multiplexers
 
 There will be all sorts of multiplexers.
 
-#### Regular multiplexer (MUX)
+#### MUX
+
+![MUX](/imgstore/cells/MUX.jpg)
+
+#### MUX1
+
+![MUX1](/imgstore/cells/MUX1.jpg)
+
+#### MUX2X - Regular multiplexer
 
 The multiplexer implements the if-else construct in the hardware version. If a = 0, the output will be b, otherwise c.
 
 To simplify the notation, the 2-in-1 multiplexer will be referred to simply as MUX in the schematics (higher bit multiplexers are quite rare).
 
-![21-mux](/imgstore/cells/21-mux.jpg)
+![MUX2X](/imgstore/cells/MUX2X.jpg)
 
-```
-abc | x
-000 | 0
-001 | 1
-010 | 0 
-011 | 1
-100 | 0
-101 | 0
-110 | 1
-111 | 1
-```
+|abc | x|
+|---|---|
+|000 | 0|
+|001 | 1|
+|010 | 0|
+|011 | 1|
+|100 | 0|
+|101 | 0|
+|110 | 1|
+|111 | 1|
 
 Function: `x = a ? b : c`
 
@@ -213,32 +220,34 @@ In the picture you can see that on the side there is some left wire which is not
 
 The output from the multiplexer is additionally loaded with a paired push/pull inverter, which means that this cell gives extra power reserve at the output so that long hoses can be connected to it.
 
+#### MUX3X
+
 There is also an "strengthened" version of the Multiplexer:
 
-![Mux_strong](/imgstore/cells/Mux_strong.jpg)
+![MUX3X](/imgstore/cells/MUX3X.jpg)
 
-#### Inverting multiplexer (IMUX)
+#### IMUX1
+
+![IMUX1](/imgstore/cells/IMUX1.jpg)
+
+#### IMUX - Inverting multiplexer
 
 It differs from the regular one in that it inverts the inputs.
 
 ![IMUX](/imgstore/cells/IMUX.jpg)
 
-There is also a more powerful version, with a reinforced inverter on the output:
-
-![Imux_strong](/imgstore/cells/Imux_strong.jpg)
-
 Truth Table:
-```
-abc | out
-000 | 1
-001 | 1
-010 | 0
-011 | 0
-100 | 1
-101 | 0
-110 | 1
-111 | 0
-```
+
+|abc | out|
+|---|---|
+|000 | 1|
+|001 | 1|
+|010 | 0|
+|011 | 0|
+|100 | 1|
+|101 | 0|
+|110 | 1|
+|111 | 0|
 
 The lower terminal `c` has a special pad to alternatively come from M2. But more often the input comes from M1 from above or below.
 
@@ -246,7 +255,17 @@ The input `b` always comes from M2.
 
 By the way the inputs `b` and `c` go to the diffusion.
 
-#### 3-in-1 Multiplexer
+#### IMUX2X
+
+There is also a more powerful version, with a reinforced inverter on the output:
+
+![IMUX2X](/imgstore/cells/IMUX2X.jpg)
+
+#### IMUX3X
+
+![IMUX3X](/imgstore/cells/IMUX3X.jpg)
+
+#### 3-MUX - 3-in-1 Multiplexer
 
 ![3-mux](/imgstore/cells/3-mux.jpg)
 
@@ -258,43 +277,53 @@ Otherwise (s1 == 0) the following condition is checked:
 
 Or shorter:
 
-```
-sel:
-00: out = in0
-01: out = in1
-1X: out = in2
-```
+|sel|out =|
+|---|---|
+|00|in0|
+|01|in1|
+|1X|in2|
 
-#### 4-in-1 Multiplexer
+#### 3-MUX3X
 
-![4mux](/imgstore/cells/4mux.jpg)
+![3-MUX3X](/imgstore/cells/3-MUX3X.jpg)
+
+#### 4-MUX - 4-in-1 Multiplexer
+
+![4-MUX](/imgstore/cells/4-MUX.jpg)
 
 Selects one wire out of 4.
 
-```
-s1 s0 | which input to apply to the output
-0  0  | 0
-0  1  | 1
-1  0  | 2
-1  1  | 3
-```
+|s1 |s0 | which input to apply to the output|
+|---|---|---|
+|0  |0  | 0|
+|0  |1  | 1|
+|1  |0  | 2|
+|1  |1  | 3|
 
 - Sometimes the 0-3 input pins are attached to ground/power (i.e. hardcore set to 0/1).
 - There is room on the left and right for an M1 pass-through
 
-#### Reduced inverting multiplexer (IMUXR)
+#### 4-MUX3X
+
+![4-MUX3X](/imgstore/cells/4-MUX3X.jpg)
+
+#### IMUXR1 - Reduced inverting multiplexer
 
 Sometimes there are special multiplexers with the SEL input implemented as two ports:
 
-![IMUXR1_trans1](/imgstore/cells/IMUXR1_trans1.jpg)
+![IMUXR1](/imgstore/cells/IMUXR1.jpg)
 
 It is assumed that sel1 != sel2 (otherwise the circuit will work unpredictably).
 
-This layout is called Dual-Pass Logic:
+This layout is called Dual-Pass Logic ("dual rails"):
 
 ![DPL](/imgstore/cells/DPL.jpg)
 
 As indicated, such a MUX cannot output a heavy load signal, so its use is limited to the local cell domain.
+
+#### IMUXR2
+
+![IMUXR2](/imgstore/cells/IMUXR2.jpg)
 
 ### Logic elements OR
 
@@ -750,7 +779,7 @@ Along with the Weight sum cells it is just a "helper cell" which replaces the 8 
 
 ### Cells for use with buses (Bus keeper, Tri-states)
 
-#### Bus Keeper
+#### BUS_KEEPER - Bus Keeper
 
 |![BUS_KEEPER_1](/imgstore/cells/poly/BUS_KEEPER_1.jpg) ![BUS_KEEPER_2](/imgstore/cells/poly/BUS_KEEPER_2.jpg)|![BUS_KEEPER](/imgstore/cells/m1/BUS_KEEPER.jpg)|
 |---|---|
@@ -759,29 +788,13 @@ BUS keeper is to keep last state on the bus, basically, it's flipflop constructe
 
 ![bus_keeper](/cells/cells_circuits/bus_keeper.png)
 
-## Lambda cell parameters
+#### TRISTATE2
 
-Each standard cell library have so-called lambda parameters. They define in units of cells ratio of areas: how much place will take P-diffusion, how much takes the gap between the P- and N- diffusion regions, what size of wires and how they can pass through the cell when installing routing and so forth.
+![TRISTATE2](/imgstore/cells/TRISTATE2.jpg)
 
-The unit of lambda adopted thickness of the thin element, in our case - is the thickness of polysilicon tracks.
+#### TRISTATE3
 
-Calculate lambda parameters of some cell.
-
-First, we find the thickness of the polysilicon, as the average sum:
-
-![Lambda_avg_poly](/imgstore/cells/Lambda_avg_poly.jpg)
-
-Then we measure the width of the different parts of the cell and divide by the thickness of the polysilicon. We get the lambda values:
-
-![Lamda_parts](/imgstore/cells/Lamda_parts.jpg)
-
-- The width of the P-diffusion 13 lambda
-- The width of the gap 7 lambda
-- The width of the N-diffusion 11 lambda
-
-Lambda parameters allow you to accurately describe the cell and can be used for example when zooming cells in specific cell research programs.
-
-:warning: Does this section even make sense? Anyone who studies standard cells first learns about the lambda parameter.
+![TRISTATE3](/imgstore/cells/TRISTATE3.jpg)
 
 ## Pockets
 
