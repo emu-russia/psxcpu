@@ -133,8 +133,6 @@ It's hard to mistake this cell for something else :smiley:
 
 ### Buffers
 
-There will be amplifier buffers.
-
 The more transistors connected in _parallel_ in a buffer, the greater its drive strength.
 
 The more transistors connected in _series_ in the buffer, the longer its propagation delay.
@@ -417,6 +415,18 @@ As indicated, such a MUX cannot output a heavy load signal, so its use is limite
 
 ### Composite logic (AO, OA, NAND+NOR etc)
 
+#### 12-OAI
+
+![12oai](/imgstore/cells/12oai.jpg)
+
+y = ~ (a & (b|c));
+
+#### 12-AOI
+
+![12-aoi](/imgstore/cells/12-aoi.png)
+
+y = ~ (a | (b&c));
+
 #### 22-OAI
 
 ![22oai](/imgstore/cells/22oai.jpg)
@@ -430,6 +440,32 @@ It is also called 2-2 OR/NAND MUX. The practical use of such a gate is not clear
 ![22aoi](/imgstore/cells/22aoi.jpg)
 
 Implement function Y = NOR(a&b, c&d) (2-2 AND/NOR MUX).
+
+#### 31-AOI
+
+![31-AOI](/imgstore/cells/31-AOI.jpg)
+
+```
+abcd
+0000	1
+0001    0
+0010    1
+0011    0
+0100    1
+0101    0
+0110    1
+0111	0
+1000    1
+1001    0
+1010    1
+1011    0
+1100    1
+1101    0
+1110	0    
+1111	0
+
+nand(a,b,c) & ~d
+```
 
 #### NOR & NAND
 
@@ -487,44 +523,6 @@ abcd
 1111	0
 ```
 
-#### 12-OAI
-
-![12oai](/imgstore/cells/12oai.jpg)
-
-y = ~ (a & (b|c));
-
-#### 12-AOI
-
-![12-aoi](/imgstore/cells/12-aoi.png)
-
-y = ~ (a | (b&c));
-
-#### 31-AOI
-
-![31-AOI](/imgstore/cells/31-AOI.jpg)
-
-```
-abcd
-0000	1
-0001    0
-0010    1
-0011    0
-0100    1
-0101    0
-0110    1
-0111	0
-1000    1
-1001    0
-1010    1
-1011    0
-1100    1
-1101    0
-1110	0    
-1111	0
-
-nand(a,b,c) & ~d
-```
-
 #### NAND & XOR
 
 ![Nand_and_xor](/imgstore/cells/Nand_and_xor.jpg)
@@ -545,7 +543,37 @@ Used in counters, as an XNOR element.
 
 ![Counter1](/imgstore/cells/Counter1.jpg)
 
-### Triggers (synchronous memory elements)
+### Latches
+
+There will be all kinds of level-triggered items.
+
+#### D Latches
+
+![Dlatches](/imgstore/cells/Dlatches.jpg)
+
+/DLATCH remembers the value when CLK=0, DLATCH remembers the value when CLK=1.
+
+If the input is "z" (disconnected) the latch does not change its value. This way you can economize and not make a separate Enable input.
+
+Transistor circuit on the example of /DLATCH:
+
+![D1](/imgstore/cells/D1.jpg)
+
+Flow by example /DLATCH:
+
+![Ndlatch_flow](/imgstore/cells/Ndlatch_flow.jpg)
+
+When CLK=0 the old value is cut off and the new value from input in goes to the latch. This is where it is stored.
+
+At CLK=1 the value on the latch circulates back and forth and goes to the output.
+
+The output, by the way, is not inverted (Q=in).
+
+The latch at CLK=1 differs simply in the arrangement of the side legs.
+
+![NDLATCH_logisim](/imgstore/cells/NDLATCH_logisim.jpg)
+
+### DFFs
 
 Edge-triggered circuits are not triggered by level, but by a level change from 0 to 1 (rising edge, posedge in Verilog) or from 1 to 0 (falling edge, negedge in Verilog).
 
@@ -577,9 +605,8 @@ I don't really understand how it works, but most likely the trick is propagation
 
 #### DFF triggered on a rising edge (posedge, CLK 0->1 change)
 
-![DFF](/imgstore/cells/DFF.jpg)
-
-![DFF_logisim](/imgstore/cells/DFF_logisim.jpg)
+|![DFF](/imgstore/cells/DFF.jpg)|![DFF_logisim](/imgstore/cells/DFF_logisim.jpg)|
+|---|---|
 
 #### DFF on the rising edge, with reset
 
@@ -622,36 +649,6 @@ Logic circuit (again, "slow" MUXes are not taken into account here):
 
 As you can see, when CLK=0, the lower MUX (where input D comes in) stays closed and the upper one opens. As it was already said above - such magic forms negedge DFF.
 
-### Latches (asynchronous memory elements)
-
-There will be all kinds of level-triggered items.
-
-#### D Latches
-
-![Dlatches](/imgstore/cells/Dlatches.jpg)
-
-/DLATCH remembers the value when CLK=0, DLATCH remembers the value when CLK=1.
-
-If the input is "z" (disconnected) the latch does not change its value. This way you can economize and not make a separate Enable input.
-
-Transistor circuit on the example of /DLATCH:
-
-![D1](/imgstore/cells/D1.jpg)
-
-Flow by example /DLATCH:
-
-![Ndlatch_flow](/imgstore/cells/Ndlatch_flow.jpg)
-
-When CLK=0 the old value is cut off and the new value from input in goes to the latch. This is where it is stored.
-
-At CLK=1 the value on the latch circulates back and forth and goes to the output.
-
-The output, by the way, is not inverted (Q=in).
-
-The latch at CLK=1 differs simply in the arrangement of the side legs.
-
-![NDLATCH_logisim](/imgstore/cells/NDLATCH_logisim.jpg)
-
 ### Cells for the multiplier
 
 #### Full Adder
@@ -688,7 +685,7 @@ out1 = XNOR (a,b) = sum
 out2 = OR (a,b) = carry out
 ```
 
-#### Weighted Sum
+#### WS1, WS2 - Weighted Sum
 
 |WS1|WS2|
 |---|---|
@@ -750,7 +747,7 @@ First met in the matrix multiplication circuit [MDEC IDCT](mdec.md), where they 
 - WS1 and WS2 are alternately interleaved to organize inverted carry-chain (a trick to reduce propagation delay)
 - The inputs in4/in5 are fed ...
 
-#### MUX Array
+#### MUX_ARRAY - MUX Array
 
 :warning: The name of this cell has undergone many variations, originally we decided to call it "Pipeline", but then we simplified it to "MUX Array".
 
