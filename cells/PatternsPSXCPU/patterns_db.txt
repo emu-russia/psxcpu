@@ -5,11 +5,6 @@
 
 # Pattern types: CellNot, CellBuffer, CellMux, CellLogic, CellAdder, CellBusSupp, CellFlipFlop, CellLatch, CellOther
 
-# Vias Syntax:
-# vias pattern_name, vias_name, offset_x, offset_y, type, reserved
-
-# Vias types: ViasInput, ViasOutput, ViasInout
-
 # Inverters and Buffers
 
 pattern NOT, CellNot, 5.0, 1, 1, "patterns_db/NOT.jpg"
@@ -198,6 +193,11 @@ pattern UNK_BIG, CellOther, 5.0, 0, 0, "patterns_db/UNK_BIG.jpg"
 pattern GARBAGE, CellOther, 5.0, 0, 0, "patterns_db/GARBAGE.jpg"
 
 # -----------------------------------------------------------------------------------
+
+# Vias Syntax:
+# vias pattern_name, vias_name, offset_x, offset_y, type, reserved
+
+# Vias types: ViasInput, ViasOutput, ViasInout
 
 #vias NOT1, in, 14.2, 3.2, ViasInput, 0
 #vias NOT1, out, 14.4, 0.4, ViasOutput, 0
