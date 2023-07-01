@@ -5,11 +5,6 @@
 
 # Pattern types: CellNot, CellBuffer, CellMux, CellLogic, CellAdder, CellBusSupp, CellFlipFlop, CellLatch, CellOther
 
-# Vias Syntax:
-# vias pattern_name, vias_name, offset_x, offset_y, type, reserved
-
-# Vias types: ViasInput, ViasOutput, ViasInout
-
 # Inverters and Buffers
 
 pattern NOT, CellNot, 5.0, 1, 1, "patterns_db/NOT.jpg"
@@ -199,9 +194,32 @@ pattern GARBAGE, CellOther, 5.0, 0, 0, "patterns_db/GARBAGE.jpg"
 
 # -----------------------------------------------------------------------------------
 
-#vias NOT1, in, 14.2, 3.2, ViasInput, 0
-#vias NOT1, out, 14.4, 0.4, ViasOutput, 0
+# Vias Syntax:
+# vias pattern_name, vias_name, offset_x, offset_y, type, reserved
 
-#vias DLATCH, in, 5.0, 5.0, ViasInput, 0
+# Vias types: ViasInput, ViasOutput, ViasInout
+
+vias NOT1, a, 14.62, 3.10, ViasInput, 0
+vias NOT1, x, 17.24, 1.10, ViasOutput, 0
+
+vias MUX_ARRAY, x, 15.99, 1.19, ViasOutput, 0
+vias MUX_ARRAY, c1, 1.59, 15.69, ViasInput, 0
+vias MUX_ARRAY, c2, 29.09, 14.19, ViasInput, 0
+vias MUX_ARRAY, d1, 6.29, 31.19, ViasInput, 0
+vias MUX_ARRAY, d2, 22.89, 21.69, ViasInput, 0
+vias MUX_ARRAY, a, 16.23, 101.98, ViasInput, 0
+
+vias DFF, q, 15.36, 0.88, ViasOutput, 0
+vias DFF, d, 14.88, 39.52, ViasInput, 0
+vias DFF, clk, 17.04, 12.00, ViasInput, 0
+
+vias WS1, in1, 14.31, 8.97, ViasInput, 0
+vias WS1, in2, 17.97, 46.45, ViasInput, 0
+vias WS1, in3, 17.21, 68.73, ViasInput, 0
+vias WS1, in5, 14.31, 91.74, ViasInput, 0
+vias WS1, in4, 17.55, 89.55, ViasInput, 0
+vias WS1, out1, 16.04, 3.67, ViasOutput, 0
+vias WS1, out2, 15.97, 24.69, ViasOutput, 0
+vias WS1, out3, 15.97, 30.07, ViasOutput, 0
 
 # EOF

@@ -75,25 +75,23 @@ Transistor schematic sources for all cells can be found here: https://drive.goog
 
 ### Inverters
 
-There will be inverters.
-
 The more transistors connected in _parallel_ in an inverter, the greater its drive strength.
 
 The more transistors connected in _series_, the longer the propagation delay.
 
-#### Mini inverter (NOT)
+#### NOT - Mini inverter
 
-![Not_mini](/imgstore/cells/Not_mini.jpg)
+![Not](/imgstore/cells/Not.jpg)
 
 We found this inverter after its larger counterpart (NOT1), so NOT had to be renamed NOT1, and the new NOT was this small one.
 
-#### Inverter (NOT1)
+#### NOT1 - Inverter
 
-![Cell000](/imgstore/cells/Cell000.jpg)
+![NOT1](/imgstore/cells/NOT1.jpg)
 
 Nothing special.
 
-#### Inverter, 2 pairs of transistors (NOT2)
+#### NOT2 - Inverter, 2 pairs of transistors
 
 ![Not2](/imgstore/cells/Not2.jpg)
 
@@ -103,31 +101,31 @@ Nothing special.
 
 So be very careful not to mess up. The NAND2X is shorter than the NOT2, and also the legs on the right side go at different angles.
 
-#### Inverter, 3 pairs of transistors (NOT3)
+#### NOT3 - Inverter, 3 pairs of transistors
 
 ![Not3](/imgstore/cells/Not3.jpg)
 
 The M1 wiring allows you to do alternate routing from above. Also the input can come from M2.
 
-#### Inverter, 4 pairs of transistors (NOT4)
+#### NOT4 - Inverter, 4 pairs of transistors
 
 ![Not4](/imgstore/cells/Not4.jpg)
 
-#### Strong inverter, 8 pairs of transistors (NOT8)
+#### NOT8 - Strong inverter, 8 pairs of transistors
 
-![Pushpull](/imgstore/cells/Pushpull.jpg)
+![NOT8](/imgstore/cells/NOT8.jpg)
 
 These inverters are easy to spot by the rather impressive metal shield (this is the output):
 
-![Pushpull_M1](/imgstore/cells/Pushpull_M1.jpg)
+![NOT8_M1](/imgstore/cells/NOT8_M1.jpg)
 
 A feature of the topology is that input and output can go to M2, and can alternate paths go to M1.
 
 Alternate routing through M1. Additional M1 is shown in blue, when input/output goes to M2 - this additional M1 is not present.
 
-![Pushpull_alternate](/imgstore/cells/Pushpull_alternate.jpg)
+![NOT8_alternate](/imgstore/cells/NOT8_alternate.jpg)
 
-#### NOT12 (12 pairs of transistors)
+#### NOT12 - 12 pairs of transistors
 
 ![Not12](/imgstore/cells/Not12.jpg)
 
@@ -135,33 +133,29 @@ It's hard to mistake this cell for something else :smiley:
 
 ### Buffers
 
-There will be amplifier buffers.
-
 The more transistors connected in _parallel_ in a buffer, the greater its drive strength.
 
 The more transistors connected in _series_ in the buffer, the longer its propagation delay.
 
-#### Buffer regular, 2X
+#### BUF2X - Buffer regular, 2X
 
 ![Buf2x_circuit](/imgstore/cells/Buf2x_circuit.jpg)
 
-#### Buffer regular, 4 pairs of transistors
+#### BUF3X - Buffer regular, 4 pairs of transistors
 
 ![Buf3x_circuit](/imgstore/cells/Buf3x_circuit.jpg)
 
-#### Buffer regular, 4 pairs of transistors, reinforced diffusion
+#### BUF3X2 - Buffer regular, 4 pairs of transistors, reinforced diffusion
 
 ![Buf3x2_circuit](/imgstore/cells/Buf3x2_circuit.jpg)
 
-#### Double buffer
+#### BUF4X - Double buffer
 
 The double buffer differs from the regular buffer in that it does out = not(not(not(in)))), while the regular buffer does just out = not(not(in)).
 
 Hence the propagation delay of the double buffer will be longer than that of the regular buffer.
 
-![Buf](/imgstore/cells/Buf.jpg)
-
-out = in
+![BUF4X](/imgstore/cells/BUF4X.jpg)
 
 :warning: The top of this cell is very similar to NOR2X:
 
@@ -169,33 +163,44 @@ out = in
 
 Don't mix it up!
 
-#### Double buffer, 4 pairs of transistors
+#### BUF5X - Double buffer, 4 pairs of transistors
 
-![Buf2x](/imgstore/cells/Buf2x.jpg)
+![BUF5X](/imgstore/cells/BUF5X.jpg)
+
+#### BUF6X
+
+![BUF6X](/imgstore/cells/BUF6X.jpg)
 
 ### Multiplexers
 
 There will be all sorts of multiplexers.
 
-#### Regular multiplexer (MUX)
+#### MUX
+
+![MUX](/imgstore/cells/MUX.jpg)
+
+#### MUX1
+
+![MUX1](/imgstore/cells/MUX1.jpg)
+
+#### MUX2X - Regular multiplexer
 
 The multiplexer implements the if-else construct in the hardware version. If a = 0, the output will be b, otherwise c.
 
 To simplify the notation, the 2-in-1 multiplexer will be referred to simply as MUX in the schematics (higher bit multiplexers are quite rare).
 
-![21-mux](/imgstore/cells/21-mux.jpg)
+![MUX2X](/imgstore/cells/MUX2X.jpg)
 
-```
-abc | x
-000 | 0
-001 | 1
-010 | 0 
-011 | 1
-100 | 0
-101 | 0
-110 | 1
-111 | 1
-```
+|abc | x|
+|---|---|
+|000 | 0|
+|001 | 1|
+|010 | 0|
+|011 | 1|
+|100 | 0|
+|101 | 0|
+|110 | 1|
+|111 | 1|
 
 Function: `x = a ? b : c`
 
@@ -205,40 +210,40 @@ In the classic version, input a is called s (select), and inputs c and b are i0 
 x = (s == 0) ? i0 : i1;
 ```
 
-We suggest that the reader examine all the transit states of the circuit for yourself.
-
 In the picture you can see that on the side there is some left wire which is not connected to anything. The point is that it is used for alternative routing:
 - Input a / s (select) can come either from M2 or through M1 via this alternate route
 - This route can be used simply to route another routing, that is, M1 goes through the entire cell without affecting it in any way.
 
 The output from the multiplexer is additionally loaded with a paired push/pull inverter, which means that this cell gives extra power reserve at the output so that long hoses can be connected to it.
 
+#### MUX3X
+
 There is also an "strengthened" version of the Multiplexer:
 
-![Mux_strong](/imgstore/cells/Mux_strong.jpg)
+![MUX3X](/imgstore/cells/MUX3X.jpg)
 
-#### Inverting multiplexer (IMUX)
+#### IMUX1
+
+![IMUX1](/imgstore/cells/IMUX1.jpg)
+
+#### IMUX - Inverting multiplexer
 
 It differs from the regular one in that it inverts the inputs.
 
 ![IMUX](/imgstore/cells/IMUX.jpg)
 
-There is also a more powerful version, with a reinforced inverter on the output:
-
-![Imux_strong](/imgstore/cells/Imux_strong.jpg)
-
 Truth Table:
-```
-abc | out
-000 | 1
-001 | 1
-010 | 0
-011 | 0
-100 | 1
-101 | 0
-110 | 1
-111 | 0
-```
+
+|abc | out|
+|---|---|
+|000 | 1|
+|001 | 1|
+|010 | 0|
+|011 | 0|
+|100 | 1|
+|101 | 0|
+|110 | 1|
+|111 | 0|
 
 The lower terminal `c` has a special pad to alternatively come from M2. But more often the input comes from M1 from above or below.
 
@@ -246,7 +251,17 @@ The input `b` always comes from M2.
 
 By the way the inputs `b` and `c` go to the diffusion.
 
-#### 3-in-1 Multiplexer
+#### IMUX2X
+
+There is also a more powerful version, with a reinforced inverter on the output:
+
+![IMUX2X](/imgstore/cells/IMUX2X.jpg)
+
+#### IMUX3X
+
+![IMUX3X](/imgstore/cells/IMUX3X.jpg)
+
+#### 3-MUX - 3-in-1 Multiplexer
 
 ![3-mux](/imgstore/cells/3-mux.jpg)
 
@@ -258,89 +273,105 @@ Otherwise (s1 == 0) the following condition is checked:
 
 Or shorter:
 
-```
-sel:
-00: out = in0
-01: out = in1
-1X: out = in2
-```
+|sel|out =|
+|---|---|
+|00|in0|
+|01|in1|
+|1X|in2|
 
-#### 4-in-1 Multiplexer
+#### 3-MUX3X
 
-![4mux](/imgstore/cells/4mux.jpg)
+![3-MUX3X](/imgstore/cells/3-MUX3X.jpg)
+
+#### 4-MUX - 4-in-1 Multiplexer
+
+![4-MUX](/imgstore/cells/4-MUX.jpg)
 
 Selects one wire out of 4.
 
-```
-s1 s0 | which input to apply to the output
-0  0  | 0
-0  1  | 1
-1  0  | 2
-1  1  | 3
-```
+|s1 |s0 | which input to apply to the output|
+|---|---|---|
+|0  |0  | 0|
+|0  |1  | 1|
+|1  |0  | 2|
+|1  |1  | 3|
 
 - Sometimes the 0-3 input pins are attached to ground/power (i.e. hardcore set to 0/1).
 - There is room on the left and right for an M1 pass-through
 
-#### Reduced inverting multiplexer (IMUXR)
+#### 4-MUX3X
+
+![4-MUX3X](/imgstore/cells/4-MUX3X.jpg)
+
+#### IMUXR1 - Reduced inverting multiplexer
 
 Sometimes there are special multiplexers with the SEL input implemented as two ports:
 
-![IMUXR1_trans1](/imgstore/cells/IMUXR1_trans1.jpg)
+![IMUXR1](/imgstore/cells/IMUXR1.jpg)
 
 It is assumed that sel1 != sel2 (otherwise the circuit will work unpredictably).
 
-This layout is called Dual-Pass Logic:
+This layout is called Dual-Pass Logic ("dual rails"):
 
 ![DPL](/imgstore/cells/DPL.jpg)
 
 As indicated, such a MUX cannot output a heavy load signal, so its use is limited to the local cell domain.
 
+#### IMUXR2
+
+![IMUXR2](/imgstore/cells/IMUXR2.jpg)
+
 ### Logic elements OR
 
-#### OR, OR2X, OR3X
+#### OR, OR2X, OR3X, OR4X
 
-|OR|OR2X|OR3X|OR4|
+|OR|OR2X|OR3X|OR4X|
 |---|---|---|---|
-|![Or_small](/imgstore/cells/Or_small.jpg)|![Or2x](/imgstore/cells/Or2x.jpg)|![Or3x](/imgstore/cells/Or3x.jpg)|![OR4X](/imgstore/cells/OR4X.jpg)|
+|![Or](/imgstore/cells/Or.jpg)|![Or2x](/imgstore/cells/Or2x.jpg)|![Or3x](/imgstore/cells/Or3x.jpg)|![OR4X](/imgstore/cells/OR4X.jpg)|
 
-#### 3-OR, 3-OR2X
+#### 3-OR, 3-OR2X, 3-OR3X, 3-OR4X
 
-|3-OR|3-OR2X|
-|---|---|
-|![3or](/imgstore/cells/3or.jpg)|![3or2x](/imgstore/cells/3or2x.jpg)|
+|3-OR|3-OR2X|3-OR3X|3-OR4X|
+|---|---|---|---|
+|![3-or](/imgstore/cells/3-or.jpg)|![3-or2x](/imgstore/cells/3-or2x.jpg)|![3-OR3X](/imgstore/cells/3-OR3X.jpg)|![3-OR4X](/imgstore/cells/3-OR4X.jpg)|
 
 ### Logic elements NOR
 
-#### NOR, NOR2X, NOR3X
+#### NOR, NOR2X, NOR3X, NOR4X
 
-|NOR|NOR2X|NOR3X|
-|---|---|---|
-|![Nor](/imgstore/cells/Nor.jpg)|![Nor2x](/imgstore/cells/Nor2x.jpg)|![Nor3x_trans](/imgstore/cells/Nor3x_trans.jpg)|
+|NOR|NOR2X|NOR3X|NOR4X|
+|---|---|---|---|
+|![Nor](/imgstore/cells/Nor.jpg)|![Nor2x](/imgstore/cells/Nor2x.jpg)|![Nor3x](/imgstore/cells/Nor3x.jpg)|![NOR4X](/imgstore/cells/NOR4X.jpg)|
 
-#### 3-NOR, 3-NOR2X, 3-NOR4X
+#### 3-NOR, 3-NOR2X, 3-NOR4X, 3-NOR6X
 
-|3-NOR|3-NOR2X|3-NOR4X|
-|---|---|---|
-|![3-nor](/imgstore/cells/3-nor.jpg)|![3-nor-2x](/imgstore/cells/3-nor-2x.jpg)|![3-nor-4x](/imgstore/cells/3-nor-4x.png)|
+|3-NOR|3-NOR2X|3-NOR4X|3-NOR6X|
+|---|---|---|---|
+|![3-nor](/imgstore/cells/3-nor.jpg)|![3-nor2x](/imgstore/cells/3-nor2x.jpg)|![3-nor4x](/imgstore/cells/3-nor4x.png)|![3-NOR6X](/imgstore/cells/3-NOR6X.jpg)|
 
 #### 5-NOR
 
 ![5-nor](/imgstore/cells/5-nor.jpg)
 
-#### 6-NOR
+#### 6-NOR, 6-NOR3X
 
-![6-nor](/imgstore/cells/6-nor.jpg)
+|6-NOR|6-NOR3X|
+|---|---|
+|![6-nor](/imgstore/cells/6-nor.jpg)|![6-NOR3X](/imgstore/cells/6-NOR3X.jpg)|
 
 ### Logic elements AND
 
-#### AND
+#### AND1, AND, AND2X, AND3X
 
-![And](/imgstore/cells/And.jpg)
+|AND1|AND|AND2X|AND3X|
+|---|---|---|---|
+|![AND1](/imgstore/cells/AND1.jpg)|![And](/imgstore/cells/And.jpg)|![AND2X](/imgstore/cells/AND2X.jpg)|![AND3X](/imgstore/cells/AND3X.jpg)|
 
-#### 3-AND
+#### 3-AND, 3-AND2X, 3-AND3X, 3-AND4X
 
-![3-and](/imgstore/cells/3-and.jpg)
+|3-AND|3-AND2X|3-AND3X|3-AND4X|
+|---|---|---|---|
+|![3-and](/imgstore/cells/3-and.jpg)|![3-AND2X](/imgstore/cells/3-AND2X.jpg)|![3-AND3X](/imgstore/cells/3-AND3X.jpg)|![3-AND4X](/imgstore/cells/3-AND4X.jpg)|
 
 ### Logic elements NAND
 
@@ -348,17 +379,19 @@ As indicated, such a MUX cannot output a heavy load signal, so its use is limite
 
 |NAND|NAND2X|NAND3X|NAND4X|
 |---|---|---|---|
-|![Nand](/imgstore/cells/Nand.jpg)|![Nand2x](/imgstore/cells/Nand2x.jpg)|![Nand3x](/imgstore/cells/Nand3x.jpg)|![Nand-2](/imgstore/cells/Nand-2.jpg)|
+|![Nand](/imgstore/cells/Nand.jpg)|![Nand2x](/imgstore/cells/Nand2x.jpg)|![Nand3x](/imgstore/cells/Nand3x.jpg)|![Nand4x](/imgstore/cells/Nand4x.jpg)|
 
-#### 3-NAND, 3-NAND2X, 3-NAND4X
+#### 3-NAND, 3-NAND2X, 3-NAND4X, 3-NAND5X
 
-|3-NAND|3-NAND2X|3-NAND4X|
-|---|---|---|
-|![3-nand](/imgstore/cells/3-nand.jpg)|![3nand_2x](/imgstore/cells/3nand_2x.jpg)|![3-nand_4x](/imgstore/cells/3-nand_4x.jpg)|
+|3-NAND|3-NAND2X|3-NAND4X|3-NAND5X|
+|---|---|---|---|
+|![3-nand](/imgstore/cells/3-nand.jpg)|![3-nand2x](/imgstore/cells/3-nand2x.jpg)|![3-nand4x](/imgstore/cells/3-nand4x.jpg)|![3-NAND5X](/imgstore/cells/3-NAND5X.jpg)|
 
-#### 5-NAND
+#### 5-NAND, 5-NAND3X
 
-![5-nand](/imgstore/cells/5-nand.jpg)
+|5-NAND|5-NAND3X|
+|---|---|
+|![5-nand](/imgstore/cells/5-nand.jpg)|![5-NAND3X](/imgstore/cells/5-NAND3X.jpg)|
 
 #### 6-NAND, 6-NAND3X
 
@@ -368,9 +401,31 @@ As indicated, such a MUX cannot output a heavy load signal, so its use is limite
 
 ### Logic elements XOR/XNOR
 
-![Xnor](/imgstore/cells/Xnor.jpg)
+#### XOR, XOR2, XOR3
+
+|XOR|XOR2|XOR3|
+|---|---|---|
+|![XOR](/imgstore/cells/XOR.jpg)|![XOR2](/imgstore/cells/XOR2.jpg)|![XOR3](/imgstore/cells/XOR3.jpg)|
+
+#### XNOR1, XNOR, XNOR2, XNOR3
+
+|XNOR1|XNOR|XNOR2|XNOR3|
+|---|---|---|---|
+|![XNOR1](/imgstore/cells/XNOR1.jpg)|![Xnor](/imgstore/cells/Xnor.jpg)|![XNOR2](/imgstore/cells/XNOR2.jpg)|![XNOR3](/imgstore/cells/XNOR3.jpg)|
 
 ### Composite logic (AO, OA, NAND+NOR etc)
+
+#### 12-OAI
+
+![12oai](/imgstore/cells/12oai.jpg)
+
+y = ~ (a & (b|c));
+
+#### 12-AOI
+
+![12-aoi](/imgstore/cells/12-aoi.png)
+
+y = ~ (a | (b&c));
 
 #### 22-OAI
 
@@ -385,6 +440,32 @@ It is also called 2-2 OR/NAND MUX. The practical use of such a gate is not clear
 ![22aoi](/imgstore/cells/22aoi.jpg)
 
 Implement function Y = NOR(a&b, c&d) (2-2 AND/NOR MUX).
+
+#### 31-AOI
+
+![31-AOI](/imgstore/cells/31-AOI.jpg)
+
+```
+abcd
+0000	1
+0001    0
+0010    1
+0011    0
+0100    1
+0101    0
+0110    1
+0111	0
+1000    1
+1001    0
+1010    1
+1011    0
+1100    1
+1101    0
+1110	0    
+1111	0
+
+nand(a,b,c) & ~d
+```
 
 #### NOR & NAND
 
@@ -442,44 +523,6 @@ abcd
 1111	0
 ```
 
-#### 12-OAI
-
-![12oai](/imgstore/cells/12oai.jpg)
-
-y = ~ (a & (b|c));
-
-#### 12-AOI
-
-![12-aoi](/imgstore/cells/12-aoi.png)
-
-y = ~ (a | (b&c));
-
-#### 31-AOI
-
-![31-AOI](/imgstore/cells/31-AOI.jpg)
-
-```
-abcd
-0000	1
-0001    0
-0010    1
-0011    0
-0100    1
-0101    0
-0110    1
-0111	0
-1000    1
-1001    0
-1010    1
-1011    0
-1100    1
-1101    0
-1110	0    
-1111	0
-
-nand(a,b,c) & ~d
-```
-
 #### NAND & XOR
 
 ![Nand_and_xor](/imgstore/cells/Nand_and_xor.jpg)
@@ -500,7 +543,37 @@ Used in counters, as an XNOR element.
 
 ![Counter1](/imgstore/cells/Counter1.jpg)
 
-### Triggers (synchronous memory elements)
+### Latches
+
+There will be all kinds of level-triggered items.
+
+#### D Latches
+
+![Dlatches](/imgstore/cells/Dlatches.jpg)
+
+/DLATCH remembers the value when CLK=0, DLATCH remembers the value when CLK=1.
+
+If the input is "z" (disconnected) the latch does not change its value. This way you can economize and not make a separate Enable input.
+
+Transistor circuit on the example of /DLATCH:
+
+![D1](/imgstore/cells/D1.jpg)
+
+Flow by example /DLATCH:
+
+![Ndlatch_flow](/imgstore/cells/Ndlatch_flow.jpg)
+
+When CLK=0 the old value is cut off and the new value from input in goes to the latch. This is where it is stored.
+
+At CLK=1 the value on the latch circulates back and forth and goes to the output.
+
+The output, by the way, is not inverted (Q=in).
+
+The latch at CLK=1 differs simply in the arrangement of the side legs.
+
+![NDLATCH_logisim](/imgstore/cells/NDLATCH_logisim.jpg)
+
+### DFFs
 
 Edge-triggered circuits are not triggered by level, but by a level change from 0 to 1 (rising edge, posedge in Verilog) or from 1 to 0 (falling edge, negedge in Verilog).
 
@@ -532,9 +605,8 @@ I don't really understand how it works, but most likely the trick is propagation
 
 #### DFF triggered on a rising edge (posedge, CLK 0->1 change)
 
-![DFF](/imgstore/cells/DFF.jpg)
-
-![DFF_logisim](/imgstore/cells/DFF_logisim.jpg)
+|![DFF](/imgstore/cells/DFF.jpg)|![DFF_logisim](/imgstore/cells/DFF_logisim.jpg)|
+|---|---|
 
 #### DFF on the rising edge, with reset
 
@@ -577,36 +649,6 @@ Logic circuit (again, "slow" MUXes are not taken into account here):
 
 As you can see, when CLK=0, the lower MUX (where input D comes in) stays closed and the upper one opens. As it was already said above - such magic forms negedge DFF.
 
-### Latches (asynchronous memory elements)
-
-There will be all kinds of level-triggered items.
-
-#### D Latches
-
-![Dlatches](/imgstore/cells/Dlatches.jpg)
-
-/DLATCH remembers the value when CLK=0, DLATCH remembers the value when CLK=1.
-
-If the input is "z" (disconnected) the latch does not change its value. This way you can economize and not make a separate Enable input.
-
-Transistor circuit on the example of /DLATCH:
-
-![D1](/imgstore/cells/D1.jpg)
-
-Flow by example /DLATCH:
-
-![Ndlatch_flow](/imgstore/cells/Ndlatch_flow.jpg)
-
-When CLK=0 the old value is cut off and the new value from input in goes to the latch. This is where it is stored.
-
-At CLK=1 the value on the latch circulates back and forth and goes to the output.
-
-The output, by the way, is not inverted (Q=in).
-
-The latch at CLK=1 differs simply in the arrangement of the side legs.
-
-![NDLATCH_logisim](/imgstore/cells/NDLATCH_logisim.jpg)
-
 ### Cells for the multiplier
 
 #### Full Adder
@@ -643,7 +685,7 @@ out1 = XNOR (a,b) = sum
 out2 = OR (a,b) = carry out
 ```
 
-#### Weighted Sum
+#### WS1, WS2 - Weighted Sum
 
 |WS1|WS2|
 |---|---|
@@ -705,7 +747,7 @@ First met in the matrix multiplication circuit [MDEC IDCT](mdec.md), where they 
 - WS1 and WS2 are alternately interleaved to organize inverted carry-chain (a trick to reduce propagation delay)
 - The inputs in4/in5 are fed ...
 
-#### MUX Array
+#### MUX_ARRAY - MUX Array
 
 :warning: The name of this cell has undergone many variations, originally we decided to call it "Pipeline", but then we simplified it to "MUX Array".
 
@@ -750,7 +792,7 @@ Along with the Weight sum cells it is just a "helper cell" which replaces the 8 
 
 ### Cells for use with buses (Bus keeper, Tri-states)
 
-#### Bus Keeper
+#### BUS_KEEPER - Bus Keeper
 
 |![BUS_KEEPER_1](/imgstore/cells/poly/BUS_KEEPER_1.jpg) ![BUS_KEEPER_2](/imgstore/cells/poly/BUS_KEEPER_2.jpg)|![BUS_KEEPER](/imgstore/cells/m1/BUS_KEEPER.jpg)|
 |---|---|
@@ -759,29 +801,13 @@ BUS keeper is to keep last state on the bus, basically, it's flipflop constructe
 
 ![bus_keeper](/cells/cells_circuits/bus_keeper.png)
 
-## Lambda cell parameters
+#### TRISTATE2
 
-Each standard cell library have so-called lambda parameters. They define in units of cells ratio of areas: how much place will take P-diffusion, how much takes the gap between the P- and N- diffusion regions, what size of wires and how they can pass through the cell when installing routing and so forth.
+![TRISTATE2](/imgstore/cells/TRISTATE2.jpg)
 
-The unit of lambda adopted thickness of the thin element, in our case - is the thickness of polysilicon tracks.
+#### TRISTATE3
 
-Calculate lambda parameters of some cell.
-
-First, we find the thickness of the polysilicon, as the average sum:
-
-![Lambda_avg_poly](/imgstore/cells/Lambda_avg_poly.jpg)
-
-Then we measure the width of the different parts of the cell and divide by the thickness of the polysilicon. We get the lambda values:
-
-![Lamda_parts](/imgstore/cells/Lamda_parts.jpg)
-
-- The width of the P-diffusion 13 lambda
-- The width of the gap 7 lambda
-- The width of the N-diffusion 11 lambda
-
-Lambda parameters allow you to accurately describe the cell and can be used for example when zooming cells in specific cell research programs.
-
-:warning: Does this section even make sense? Anyone who studies standard cells first learns about the lambda parameter.
+![TRISTATE3](/imgstore/cells/TRISTATE3.jpg)
 
 ## Pockets
 
