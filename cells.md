@@ -81,7 +81,7 @@ The more transistors connected in _series_, the longer the propagation delay.
 
 #### NOT - Mini inverter
 
-![Not_mini](/imgstore/cells/Not_mini.jpg)
+![Not](/imgstore/cells/Not.jpg)
 
 We found this inverter after its larger counterpart (NOT1), so NOT had to be renamed NOT1, and the new NOT was this small one.
 
@@ -212,8 +212,6 @@ In the classic version, input a is called s (select), and inputs c and b are i0 
 x = (s == 0) ? i0 : i1;
 ```
 
-We suggest that the reader examine all the transit states of the circuit for yourself.
-
 In the picture you can see that on the side there is some left wire which is not connected to anything. The point is that it is used for alternative routing:
 - Input a / s (select) can come either from M2 or through M1 via this alternate route
 - This route can be used simply to route another routing, that is, M1 goes through the entire cell without affecting it in any way.
@@ -327,49 +325,55 @@ As indicated, such a MUX cannot output a heavy load signal, so its use is limite
 
 ### Logic elements OR
 
-#### OR, OR2X, OR3X
+#### OR, OR2X, OR3X, OR4X
 
-|OR|OR2X|OR3X|OR4|
+|OR|OR2X|OR3X|OR4X|
 |---|---|---|---|
-|![Or_small](/imgstore/cells/Or_small.jpg)|![Or2x](/imgstore/cells/Or2x.jpg)|![Or3x](/imgstore/cells/Or3x.jpg)|![OR4X](/imgstore/cells/OR4X.jpg)|
+|![Or](/imgstore/cells/Or.jpg)|![Or2x](/imgstore/cells/Or2x.jpg)|![Or3x](/imgstore/cells/Or3x.jpg)|![OR4X](/imgstore/cells/OR4X.jpg)|
 
-#### 3-OR, 3-OR2X
+#### 3-OR, 3-OR2X, 3-OR3X, 3-OR4X
 
-|3-OR|3-OR2X|
-|---|---|
-|![3or](/imgstore/cells/3or.jpg)|![3or2x](/imgstore/cells/3or2x.jpg)|
+|3-OR|3-OR2X|3-OR3X|3-OR4X|
+|---|---|---|---|
+|![3-or](/imgstore/cells/3-or.jpg)|![3-or2x](/imgstore/cells/3-or2x.jpg)|![3-OR3X](/imgstore/cells/3-OR3X.jpg)|![3-OR4X](/imgstore/cells/3-OR4X.jpg)|
 
 ### Logic elements NOR
 
-#### NOR, NOR2X, NOR3X
+#### NOR, NOR2X, NOR3X, NOR4X
 
-|NOR|NOR2X|NOR3X|
-|---|---|---|
-|![Nor](/imgstore/cells/Nor.jpg)|![Nor2x](/imgstore/cells/Nor2x.jpg)|![Nor3x_trans](/imgstore/cells/Nor3x_trans.jpg)|
+|NOR|NOR2X|NOR3X|NOR4X|
+|---|---|---|---|
+|![Nor](/imgstore/cells/Nor.jpg)|![Nor2x](/imgstore/cells/Nor2x.jpg)|![Nor3x](/imgstore/cells/Nor3x.jpg)|![NOR4X](/imgstore/cells/NOR4X.jpg)|
 
-#### 3-NOR, 3-NOR2X, 3-NOR4X
+#### 3-NOR, 3-NOR2X, 3-NOR4X, 3-NOR6X
 
-|3-NOR|3-NOR2X|3-NOR4X|
-|---|---|---|
-|![3-nor](/imgstore/cells/3-nor.jpg)|![3-nor-2x](/imgstore/cells/3-nor-2x.jpg)|![3-nor-4x](/imgstore/cells/3-nor-4x.png)|
+|3-NOR|3-NOR2X|3-NOR4X|3-NOR6X|
+|---|---|---|---|
+|![3-nor](/imgstore/cells/3-nor.jpg)|![3-nor2x](/imgstore/cells/3-nor2x.jpg)|![3-nor4x](/imgstore/cells/3-nor4x.png)|![3-NOR6X](/imgstore/cells/3-NOR6X.jpg)|
 
 #### 5-NOR
 
 ![5-nor](/imgstore/cells/5-nor.jpg)
 
-#### 6-NOR
+#### 6-NOR, 6-NOR3X
 
-![6-nor](/imgstore/cells/6-nor.jpg)
+|6-NOR|6-NOR3X|
+|---|---|
+|![6-nor](/imgstore/cells/6-nor.jpg)|![6-NOR3X](/imgstore/cells/6-NOR3X.jpg)|
 
 ### Logic elements AND
 
-#### AND
+#### AND1, AND, AND2X, AND3X
 
-![And](/imgstore/cells/And.jpg)
+|AND1|AND|AND2X|AND3X|
+|---|---|---|---|
+|![AND1](/imgstore/cells/AND1.jpg)|![And](/imgstore/cells/And.jpg)|![AND2X](/imgstore/cells/AND2X.jpg)|![AND3X](/imgstore/cells/AND3X.jpg)|
 
-#### 3-AND
+#### 3-AND, 3-AND2X, 3-AND3X, 3-AND4X
 
-![3-and](/imgstore/cells/3-and.jpg)
+|3-AND|3-AND2X|3-AND3X|3-AND4X|
+|---|---|---|---|
+|![3-AND](/imgstore/cells/3-AND.jpg)|![3-AND2X](/imgstore/cells/3-AND2X.jpg)|![3-AND3X](/imgstore/cells/3-AND3X.jpg)|![3-AND4X](/imgstore/cells/3-AND4X.jpg)|
 
 ### Logic elements NAND
 
@@ -377,17 +381,19 @@ As indicated, such a MUX cannot output a heavy load signal, so its use is limite
 
 |NAND|NAND2X|NAND3X|NAND4X|
 |---|---|---|---|
-|![Nand](/imgstore/cells/Nand.jpg)|![Nand2x](/imgstore/cells/Nand2x.jpg)|![Nand3x](/imgstore/cells/Nand3x.jpg)|![Nand-2](/imgstore/cells/Nand-2.jpg)|
+|![Nand](/imgstore/cells/Nand.jpg)|![Nand2x](/imgstore/cells/Nand2x.jpg)|![Nand3x](/imgstore/cells/Nand3x.jpg)|![Nand4x](/imgstore/cells/Nand4x.jpg)|
 
-#### 3-NAND, 3-NAND2X, 3-NAND4X
+#### 3-NAND, 3-NAND2X, 3-NAND4X, 3-NAND5X
 
-|3-NAND|3-NAND2X|3-NAND4X|
-|---|---|---|
-|![3-nand](/imgstore/cells/3-nand.jpg)|![3nand_2x](/imgstore/cells/3nand_2x.jpg)|![3-nand_4x](/imgstore/cells/3-nand_4x.jpg)|
+|3-NAND|3-NAND2X|3-NAND4X|3-NAND5X|
+|---|---|---|---|
+|![3-nand](/imgstore/cells/3-nand.jpg)|![3-nand2x](/imgstore/cells/3-nand2x.jpg)|![3-nand4x](/imgstore/cells/3-nand4x.jpg)|![3-NAND5X](/imgstore/cells/3-NAND5X.jpg)|
 
-#### 5-NAND
+#### 5-NAND, 5-NAND3X
 
-![5-nand](/imgstore/cells/5-nand.jpg)
+|5-NAND|5-NAND3X|
+|---|---|
+|![5-nand](/imgstore/cells/5-nand.jpg)|![5-NAND3X](/imgstore/cells/5-NAND3X.jpg)|
 
 #### 6-NAND, 6-NAND3X
 
@@ -397,7 +403,17 @@ As indicated, such a MUX cannot output a heavy load signal, so its use is limite
 
 ### Logic elements XOR/XNOR
 
-![Xnor](/imgstore/cells/Xnor.jpg)
+#### XOR, XOR2, XOR3
+
+|XOR|XOR2|XOR3|
+|---|---|---|
+|![XOR](/imgstore/cells/XOR.jpg)|![XOR2](/imgstore/cells/XOR2.jpg)|![XOR3](/imgstore/cells/XOR3.jpg)|
+
+#### XNOR1, XNOR, XNOR2, XNOR3
+
+|XNOR1|XNOR|XNOR2|XNOR3|
+|---|---|---|---|
+|![Xnor](/imgstore/cells/Xnor.jpg)|![XNOR](/imgstore/cells/XNOR.jpg)|![XNOR2](/imgstore/cells/XNOR2.jpg)|![XNOR3](/imgstore/cells/XNOR3.jpg)|
 
 ### Composite logic (AO, OA, NAND+NOR etc)
 
