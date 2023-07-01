@@ -373,7 +373,7 @@ As indicated, such a MUX cannot output a heavy load signal, so its use is limite
 
 |3-AND|3-AND2X|3-AND3X|3-AND4X|
 |---|---|---|---|
-|![3-AND](/imgstore/cells/3-AND.jpg)|![3-AND2X](/imgstore/cells/3-AND2X.jpg)|![3-AND3X](/imgstore/cells/3-AND3X.jpg)|![3-AND4X](/imgstore/cells/3-AND4X.jpg)|
+|![3-and](/imgstore/cells/3-and.jpg)|![3-AND2X](/imgstore/cells/3-AND2X.jpg)|![3-AND3X](/imgstore/cells/3-AND3X.jpg)|![3-AND4X](/imgstore/cells/3-AND4X.jpg)|
 
 ### Logic elements NAND
 
@@ -413,7 +413,7 @@ As indicated, such a MUX cannot output a heavy load signal, so its use is limite
 
 |XNOR1|XNOR|XNOR2|XNOR3|
 |---|---|---|---|
-|![Xnor](/imgstore/cells/Xnor.jpg)|![XNOR](/imgstore/cells/XNOR.jpg)|![XNOR2](/imgstore/cells/XNOR2.jpg)|![XNOR3](/imgstore/cells/XNOR3.jpg)|
+|![XNOR1](/imgstore/cells/XNOR1.jpg)|![Xnor](/imgstore/cells/Xnor.jpg)|![XNOR2](/imgstore/cells/XNOR2.jpg)|![XNOR3](/imgstore/cells/XNOR3.jpg)|
 
 ### Composite logic (AO, OA, NAND+NOR etc)
 
