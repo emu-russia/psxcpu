@@ -199,9 +199,14 @@ pattern GARBAGE, CellOther, 5.0, 0, 0, "patterns_db/GARBAGE.jpg"
 
 # Vias types: ViasInput, ViasOutput, ViasInout
 
-#vias NOT1, in, 14.2, 3.2, ViasInput, 0
-#vias NOT1, out, 14.4, 0.4, ViasOutput, 0
+vias NOT1, a, 14.62, 3.10, ViasInput, 0
+vias NOT1, x, 17.24, 1.10, ViasOutput, 0
 
-#vias DLATCH, in, 5.0, 5.0, ViasInput, 0
+vias MUX_ARRAY, x, 15.99, 1.19, ViasOutput, 0
+vias MUX_ARRAY, c1, 1.59, 15.69, ViasInput, 0
+vias MUX_ARRAY, c2, 29.09, 14.19, ViasInput, 0
+vias MUX_ARRAY, d1, 6.29, 31.19, ViasInput, 0
+vias MUX_ARRAY, d2, 22.89, 21.69, ViasInput, 0
+vias MUX_ARRAY, a, 16.23, 101.98, ViasInput, 0
 
 # EOF
