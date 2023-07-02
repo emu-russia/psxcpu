@@ -8,13 +8,11 @@ Standard cells are placed by rows. Connections between cells are made using two 
 
 Thus M1 runs parallel to the rows of cells, and M2 (the top layer) - perpendicularly.
 
-Quite often automatic router place route directly on the area of the cell, if there exist free space for it:
+Quite often automatic router place route directly on the area of the cell (via M1), if there exist free space for it:
 
 ![row_m1](/imgstore/cells/row_m1.jpg)
 
 Ground and power supply are also by M1.
-
-M1 is also sometimes used for the connection between adjacent cells, just inside the row of cells, without going beyond its boundaries.
 
 Cells under a microscope look like this:
 
@@ -554,6 +552,7 @@ There will be all kinds of level-triggered items.
 /DLATCH remembers the value when CLK=0, DLATCH remembers the value when CLK=1.
 
 If the input is "z" (disconnected) the latch does not change its value. This way you can economize and not make a separate Enable input.
+These kinds of latches are also called Transparent Latches.
 
 Transistor circuit on the example of /DLATCH:
 
@@ -632,6 +631,7 @@ DFF with reset are used e.g. in counters and /RES is used when you want to reset
 This variant of the cell is hybrid: instead of the usual input (D) it has a multiplexed input.
 
 Most likely, the combination of MUX + DFF was so common that the developers decided to add a hybrid cell.
+This DFF is also sometimes called TFF and is used in the JTAG Boundary Scan mechanism: one of the multiplexer inputs is used in "operation" mode and the other is used for testing and sequential value loading.
 
 The circuit is not very different from the DFFR.
 

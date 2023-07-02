@@ -18,6 +18,6 @@ Bottom mclk special block (presumably symmetrical to the upper one, but it is ne
 |---|---|---|
 |TBD|![mclk_bot_m1](/imgstore/custom/mclk_bot_m1.jpg)|TBD|
 
-In LSI chips, the CLK layout is usually called the `Clock Tree`: multiple clusters of DFF and other `always (@CLK)` sensitive blocks are symmetrically connected to a common CLK wire to minimize the Jitter effect.
+In large scale chips, the CLK layout is usually called the `Clock Tree`: multiple clusters of DFF and other `always (@CLK)` sensitive blocks are symmetrically connected to a common CLK wire to minimize the Jitter effect.
 
 ![mclk_closeup](/imgstore/mclk_closeup.jpg)
