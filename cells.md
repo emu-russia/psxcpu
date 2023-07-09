@@ -756,6 +756,14 @@ BUS keeper is to keep last state on the bus, basically, it's flipflop constructe
 
 ![TRISTATE3](/imgstore/cells/TRISTATE3.jpg)
 
+### Misc
+
+#### FILLER - Constant Generator
+
+This cell was previously identified as a filler, but is most likely a 0/1 constant generator, but not connected (not used). It is present in a single instance.
+
+![FILLER](/imgstore/cells/m1/FILLER.jpg)
+
 ## Pockets
 
 PSXCPU uses N-pockets for P-diffusion. For a long time it was not clear at all whether they are there (obviously they should be). But they are practically not visible and appear only when lapping the chip:
