@@ -276,7 +276,7 @@ Selects one wire out of 4.
 
 ![4-MUX3X](/imgstore/cells/4-MUX3X.jpg)
 
-#### IMUXR1 - Reduced inverting multiplexer
+#### IMUXR1 - Dual-rails inverting multiplexer
 
 Sometimes there are special multiplexers with the SEL input implemented as two ports:
 
@@ -297,6 +297,8 @@ As indicated, such a MUX cannot output a heavy load signal, so its use is limite
 #### DEMUX
 
 ![DEMUX](/imgstore/cells/DEMUX.jpg)
+
+Can be used as a complement generator (from single rail makes dual rails).
 
 ### Logic elements OR
 
@@ -489,11 +491,21 @@ There will be all kinds of level-triggered items.
 If the input is "z" (disconnected) the latch does not change its value. This way you can economize and not make a separate Enable input.
 These kinds of latches are also called Transparent Latches.
 
-Transistor circuit on the example of /DLATCH:
+#### DLATCH(2X), DLATCH4X, DLATCHR2X, DLATCHR4X
 
-![D1](/imgstore/cells/D1.jpg)
+|![DLATCH2X](/imgstore/cells/DLATCH2X.jpg)|![DLATCH4X](/imgstore/cells/DLATCH4X.jpg)|![DLATCHR2X](/imgstore/cells/DLATCHR2X.jpg)|![DLATCHR4X](/imgstore/cells/DLATCHR4X.jpg)|
+|---|---|---|---|
 
-Flow by example /DLATCH:
+#### NDLATCH(2X), NDLATCH4X, NDLATCHR2X, NDLATCHR4X
+
+|![NDLATCH2X](/imgstore/cells/NDLATCH2X.jpg)|![NDLATCH4X](/imgstore/cells/NDLATCH4X.jpg)|![NDLATCHR2X](/imgstore/cells/NDLATCHR2X.jpg)|![NDLATCHR4X](/imgstore/cells/NDLATCHR4X.jpg)|
+|---|---|---|---|
+
+Transistor circuit on the example of /DLATCH(2X):
+
+![NDLATCH_logisim](/imgstore/cells/NDLATCH_logisim.jpg)
+
+Flow by example /DLATCH(2X):
 
 ![Ndlatch_flow](/imgstore/cells/Ndlatch_flow.jpg)
 
@@ -504,8 +516,6 @@ At CLK=1 the value on the latch circulates back and forth and goes to the output
 The output, by the way, is not inverted (Q=in).
 
 The latch at CLK=1 differs simply in the arrangement of the side legs.
-
-![NDLATCH_logisim](/imgstore/cells/NDLATCH_logisim.jpg)
 
 ### DFFs
 
