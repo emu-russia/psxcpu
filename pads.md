@@ -1,10 +1,10 @@
 # PSXCPU Terminals
 
-:warning: Put the section in order, make the sections clearer, perhaps better in the form of a large table. Label In/Out.
-
 The processor has very many terminals - 208. This is due to the large number of buses.
 
 There are even more inside because the VDD/VSS from one pin come to 2 paired pads at once.
+
+## Power Distribution & Bonding
 
 The power and ground wraps around the edges of the processor and also crosses it crosswise, so we call the central area "the crosshair".
 
@@ -12,78 +12,72 @@ Slightly to the right of the crosshair is the vertical Main CLK distribution acr
 
 ![IC103_contacts](/imgstore/pads/IC103_contacts.jpg)
 
+## Pinout
+
 ![PSXCPU_pads_service_manual](/imgstore/pads/PSXCPU_pads_service_manual.jpg)
 
-## CPU Timing and Reset
+## Signals
 
-- CRYSTALP: input CLK, 67.73 MHz
-- SYSCLK0: CLK to GPU input (33.3 MHz)
-- SYSCLK1: CLK on Sub bus devices (33.3 MHz)
-- DSYSCLK: CLK \* 2 to GPU input (66.67 MHz NTSC, 64.5 MHz PAL)
-- /EXT_RESET: reset (comes from the common signal RES3.3 from the power supply)
-
-![CPU_clk](/imgstore/pads/CPU_clk.jpg)
-
-## PIO
-
-- /CS0: Select PIO on the sub bus. Only one device can be connected to the bus at a time to avoid bus conflicts. This is controlled by the signals in the "CS" (chip select) group.
-- DACK5 / DREQ5: PIO DMA
-- /INTIN10: contact is combined with controllers/memory cards and PIO (common interrupt signal).
-
-## SIO
-
-- RXD1, TXD1, /DSR1, /DTR1, /CTS1, /RTS1: conventional serial interface
-
-## Memory controllers/memory cards.
-
-Represents a variation of the SIO.
-
-- /SCK0: timing for controllers (?)
-- RXD0, TXD0, /DSR0, /DTR0A, /DTR0B: serial interface. DTR has two pins because we have two ports for controllers/memory cards (Port A and Port B)
-
-![Front_jack](/imgstore/pads/Front_jack.jpg)
-
-## DRAM
-
-In newer motherboards the RAM is a single chip (IC106), but previously there were more (4). We will focus on the newer version because it is convenient.
-
-- DD: 32-bit DRAM data bus. Designed for data transfer between CPU and DRAM.
-- DA: 13 bit DRAM Address bus. The CPU sets the address to access the DRAM.
-- /DWE: write enable
-- /DRAS0, /DCAS0, /DCAS1, /DCAS2, /DCAS3: refresh
-
-![DA0_routing](/imgstore/pads/DA0_routing.png)
-
-## ROM BIOS + Sub Bus
-
-The ROM is connected to the sub bus.
-
-- /CS2: Connect the ROM to the Sub bus. Direct data exchange (OE) is enabled if the read enable signal (/SRD) is active.
-- /SWR0, /SWR1: Sub bus write enable. SWR0 is for internal devices, as well as for PIO, but SWR1 is exclusive to PIO for some reason.
-- /SRD: Sub bus read enable.
-
-## GPU Interface
-
-- VD: 32-bit data bus, connected to Main bus
-- VA2: address bus, 1-bit :) The thing is that the GPU only has two 32-bit registers (GP0/GP1), therefore one address line is enough for addressing them.
-- /VRD, /VWR: read/write enable
-- /CS7: Select GPU
-- DREQ2, DACK2: GPU DMA. When a direct memory access controller is used to transfer data, the GPU sends a bus-capture request signal by setting the logic low on the GPUDREQ pin. Upon receiving such a request, the processor releases the buses, signaling this by setting a low logic level on the GPUDACK output.
-- /INTIN0: GPU VBLANK interrupt signal
-- TCLK0: comes out of the GPU PCK (pixel clock) pin, can be used as Root Counter 0 (point counter)
-- TCLK1: comes out from GPU HBLANK pin, can be used as Root Counter 1 (horizontal line counter)
-- /INTIN1: general interrupt of the GPU (can be caused by sending a special command to the GPU, but as far as I know is not used in games)
-
-## CD-ROM Interface
-
-- /CS5: Select CD-controller
-- /INTIN2: interrupt from CD-controller
-
-## SPU Interface
-
-- /CS4: Select SPU
-- /INTIN9: interrupt from SPU
-- DACK4, /DREQ4: SPU DMA
+|Signal/Group|Direction|Description|
+|---|---|---|
+|CPU Timing and Reset|||
+|CRYSTALP| |input CLK, 67.73 MHz ![CPU_clk](/imgstore/pads/CPU_clk.jpg)|
+|SYSCLK0| |CLK to GPU input (33.3 MHz)|
+|SYSCLK1| |CLK on Sub bus devices (33.3 MHz)|
+|DSYSCLK| |CLK \* 2 to GPU input (66.67 MHz NTSC, 64.5 MHz PAL)|
+|/EXT_RESET| | reset (comes from the common signal RES3.3 from the power supply)|
+|PIO|||
+|/CS0| |Select PIO on the sub bus. Only one device can be connected to the bus at a time to avoid bus conflicts. This is controlled by the signals in the "CS" (chip select) group.|
+|DACK5| | PIO DMA| 
+|DREQ5| | PIO DMA|
+|/INTIN10| |combined with controllers/memory cards and PIO (common interrupt signal)|
+|SIO|||
+|RXD1| | |
+|TXD1| | |
+|/DSR1| | |
+|/DTR1| | |
+|/CTS1| | |
+|/RTS1| |conventional serial interface|
+|Controllers/memory cards|||
+|/SCK0| |timing for controllers (?)|
+|RXD0| | |
+|TXD0| | |
+|/DSR0| | |
+|/DTR0A| | |
+|/DTR0B| |serial interface. DTR has two pins because we have two ports for controllers/memory cards (Port A and Port B); Represents a variation of the SIO. ![Front_jack](/imgstore/pads/Front_jack.jpg)|
+|DRAM|||
+|DD| |32-bit DRAM data bus. Designed for data transfer between CPU and DRAM|
+|DA| |13 bit DRAM Address bus. The CPU sets the address to access the DRAM; ![DA0_routing](/imgstore/pads/DA0_routing.png)|
+|/DWE| | write enable|
+|/DRAS0| | |
+|/DCAS0| | |
+|/DCAS1| | |
+|/DCAS2| | |
+|/DCAS3| |refresh|
+|ROM BIOS + Sub Bus|||
+|/CS2| |Connect the ROM to the Sub bus. Direct data exchange (OE) is enabled if the read enable signal (/SRD) is active|
+|/SWR0, /SWR1| |Sub bus write enable. SWR0 is for internal devices, as well as for PIO, but SWR1 is exclusive to PIO for some reason|
+|/SRD| |Sub bus read enable. The ROM is connected to the sub bus.|
+|GPU Interface|||
+|VD| |32-bit data bus, connected to Main bus|
+|VA2| |address bus, 1-bit :) The thing is that the GPU only has two 32-bit registers (GP0/GP1), therefore one address line is enough for addressing them|
+|/VRD| |read enable|
+|/VWR| |write enable|
+|/CS7| |Select GPU|
+|DREQ2| |GPU DMA|
+|DACK2| |GPU DMA. When a direct memory access controller is used to transfer data, the GPU sends a bus-capture request signal by setting the logic low on the GPUDREQ pin. Upon receiving such a request, the processor releases the buses, signaling this by setting a low logic level on the GPUDACK output|
+|/INTIN0| |GPU VBLANK interrupt signal|
+|TCLK0| |comes out of the GPU PCK (pixel clock) pin, can be used as Root Counter 0 (point counter)|
+|TCLK1| |comes out from GPU HBLANK pin, can be used as Root Counter 1 (horizontal line counter)|
+|/INTIN1| |general interrupt of the GPU (can be caused by sending a special command to the GPU, but as far as I know is not used in games)|
+|CD-ROM Interface|||
+|/CS5| |Select CD-controller|
+|/INTIN2| |interrupt from CD-controller|
+|SPU Interface|||
+|/CS4| |Select SPU|
+|/INTIN9| |interrupt from SPU|
+|DACK4| |SPU DMA|
+|/DREQ4| |SPU DMA|
 
 ## Terminal Schematics
 

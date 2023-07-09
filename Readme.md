@@ -61,7 +61,7 @@ From the picture you can conclude roughly the location of the main components (t
 
 Also there is information about number of transistors in final revision of CPU - 850K (2 layers Al, 350 nm). The old architecture contains 1000K transistors and 3 layers of metal.
 
-## Hardware Interface
+## CPU Block Diagram
 
 We will be guided by the picture from the PU-22 (SCPH-7500) service manual when the CPU was most fully connected to the other parts.
 
