@@ -431,8 +431,6 @@ y = ~ (a | (b&c));
 
 22-OAI implements the function Y = NAND(a|b, c|d).
 
-It is also called 2-2 OR/NAND MUX. The practical use of such a gate is not clear yet. Most likely this combination is often used, so the developers added a special cell for it.
-
 #### 22-AOI
 
 ![22aoi](/imgstore/cells/22aoi.jpg)
@@ -465,61 +463,15 @@ abcd
 nand(a,b,c) & ~d
 ```
 
-#### NOR & NAND
+#### NOR & NAND (211-AOI)
 
-![Nor_nand](/imgstore/cells/Nor_nand.jpg)
+|![Nor_nand](/imgstore/cells/Nor_nand.jpg)|![NOR_NAND_logisim](/cells/cells_circuits/NOR_NAND_logisim.jpg)|
+|---|---|
 
-Y = NOR(a,b) & NAND(c,d)
+#### NAND \| NOR (211-OAI)
 
-If A or B = 1, output 0. If C and D = 1, output 0. In other cases the output is 1.
-
-```
-abcd
-0000	1			
-0001    1
-0010    1
-0011    0
-0100    0
-0101    0
-0110    0
-0111    0
-1000    0
-1001    0
-1010    0
-1011    0
-1100	0    
-1101    0
-1110    0
-1111    0
-```
-
-#### NAND | NOR
-
-![Nand_or_nor](/imgstore/cells/Nand_or_nor.jpg)
-
-Y = NAND(a,b) | NOR(c,d)
-
-If A or B = 0, output 1. If C and D = 0, output 1. In other cases the output is 0.
-
-```
-abcd
-0000	1
-0001    1
-0010    1
-0011    1
-0100    1
-0101    1
-0110    1
-0111	1
-1000    1
-1001    1
-1010    1
-1011    1
-1100    1
-1101    0
-1110    0
-1111	0
-```
+|![Nand_or_nor](/imgstore/cells/Nand_or_nor.jpg)|![NAND_NOR_logisim](/cells/cells_circuits/NAND_NOR_logisim.jpg)|
+|---|---|
 
 #### NAND & XOR
 
@@ -533,7 +485,7 @@ The lower half is the XOR(c,d) operation
 
 ![Counter2](/imgstore/cells/Counter2.jpg)
 
-#### NOR | AND
+#### NOR \| AND
 
 ![Nor_or_and](/imgstore/cells/Nor_or_and.png)
 
