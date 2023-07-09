@@ -1,5 +1,7 @@
 # PSXCPU Cells Library
 
+:warning: This section is being cleaned up. Cells were searched and reverse-engineered at different time periods, so there is some disorder here.
+
 PSX CPU is based on standard cells.
 
 PSX CPU built on CMOS technology. P and N channel transistors differ in size (P-doping is 1.3-1.5 times thicker). Diffusion is shown in yellow, and the polysilicon as purple. P-type diffusion is usually thickier rather diffusion of N-type, and is closer to the power supply. Accordingly, the diffusion of N-type is usually close to the ground.
