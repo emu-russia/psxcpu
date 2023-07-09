@@ -503,7 +503,7 @@ These kinds of latches are also called Transparent Latches.
 
 Transistor circuit on the example of /DLATCH(2X):
 
-![NDLATCH_logisim](/imgstore/cells/NDLATCH_logisim.jpg)
+![NDLATCH2X_logisim](/imgstore/cells/NDLATCH2X_logisim.jpg)
 
 Flow by example /DLATCH(2X):
 
