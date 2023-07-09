@@ -169,7 +169,7 @@ Don't mix it up!
 
 ![BUF6X](/imgstore/cells/BUF6X.jpg)
 
-### Multiplexers
+### Plexers
 
 There will be all sorts of multiplexers.
 
@@ -181,36 +181,11 @@ There will be all sorts of multiplexers.
 
 ![MUX1](/imgstore/cells/MUX1.jpg)
 
-#### MUX2X - Regular multiplexer
-
-The multiplexer implements the if-else construct in the hardware version. If a = 0, the output will be b, otherwise c.
-
-To simplify the notation, the 2-in-1 multiplexer will be referred to simply as MUX in the schematics (higher bit multiplexers are quite rare).
+#### MUX2X
 
 ![MUX2X](/imgstore/cells/MUX2X.jpg)
 
-|abc | x|
-|---|---|
-|000 | 0|
-|001 | 1|
-|010 | 0|
-|011 | 1|
-|100 | 0|
-|101 | 0|
-|110 | 1|
-|111 | 1|
-
 Function: `x = a ? b : c`
-
-In the classic version, input a is called s (select), and inputs c and b are i0 and i1, respectively. That is, if select = 0, we select the 0th input (i0), and the value select = 1 selects the 1st input (i1). So the classical truth table looks a little different. We haven't decided yet which variant of inputs to use, but most likely it will be the classical variant:
-
-```
-x = (s == 0) ? i0 : i1;
-```
-
-In the picture you can see that on the side there is some left wire which is not connected to anything. The point is that it is used for alternative routing:
-- Input a / s (select) can come either from M2 or through M1 via this alternate route
-- This route can be used simply to route another routing, that is, M1 goes through the entire cell without affecting it in any way.
 
 The output from the multiplexer is additionally loaded with a paired push/pull inverter, which means that this cell gives extra power reserve at the output so that long hoses can be connected to it.
 
@@ -318,6 +293,10 @@ As indicated, such a MUX cannot output a heavy load signal, so its use is limite
 #### IMUXR2
 
 ![IMUXR2](/imgstore/cells/IMUXR2.jpg)
+
+#### DEMUX
+
+![DEMUX](/imgstore/cells/DEMUX.jpg)
 
 ### Logic elements OR
 
@@ -492,6 +471,10 @@ The lower half is the XOR(c,d) operation
 Used in counters, as an XNOR element.
 
 ![Counter1](/imgstore/cells/Counter1.jpg)
+
+#### 222-AOI
+
+![222-AOI](/imgstore/cells/222-AOI.jpg)
 
 ### Latches
 
