@@ -4,6 +4,8 @@ Reverse engineering of the SONY PlayStation CPU (CXD8530CQ).
 
 :warning: The information was moved from the old wiki in Russian. Information may need to be clarified here and there.
 
+:warning: A number of sections and repository contents may be redundant because the repository was built from different sources (site, old wiki, forum, etc.). Over time, everything will fall into place as it should.
+
 ## IC103 Overview
 
 The CPU on all revisions of the motherboard is represented by one large chip with 208 pins, under the designation IC103.
