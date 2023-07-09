@@ -1,5 +1,7 @@
 # PSXCPU Cells Library
 
+:warning: This section is being cleaned up. Cells were searched and reverse-engineered at different time periods, so there is some disorder here.
+
 PSX CPU is based on standard cells.
 
 PSX CPU built on CMOS technology. P and N channel transistors differ in size (P-doping is 1.3-1.5 times thicker). Diffusion is shown in yellow, and the polysilicon as purple. P-type diffusion is usually thickier rather diffusion of N-type, and is closer to the power supply. Accordingly, the diffusion of N-type is usually close to the ground.
@@ -169,7 +171,7 @@ Don't mix it up!
 
 ![BUF6X](/imgstore/cells/BUF6X.jpg)
 
-### Multiplexers
+### Plexers
 
 There will be all sorts of multiplexers.
 
@@ -181,36 +183,11 @@ There will be all sorts of multiplexers.
 
 ![MUX1](/imgstore/cells/MUX1.jpg)
 
-#### MUX2X - Regular multiplexer
-
-The multiplexer implements the if-else construct in the hardware version. If a = 0, the output will be b, otherwise c.
-
-To simplify the notation, the 2-in-1 multiplexer will be referred to simply as MUX in the schematics (higher bit multiplexers are quite rare).
+#### MUX2X
 
 ![MUX2X](/imgstore/cells/MUX2X.jpg)
 
-|abc | x|
-|---|---|
-|000 | 0|
-|001 | 1|
-|010 | 0|
-|011 | 1|
-|100 | 0|
-|101 | 0|
-|110 | 1|
-|111 | 1|
-
 Function: `x = a ? b : c`
-
-In the classic version, input a is called s (select), and inputs c and b are i0 and i1, respectively. That is, if select = 0, we select the 0th input (i0), and the value select = 1 selects the 1st input (i1). So the classical truth table looks a little different. We haven't decided yet which variant of inputs to use, but most likely it will be the classical variant:
-
-```
-x = (s == 0) ? i0 : i1;
-```
-
-In the picture you can see that on the side there is some left wire which is not connected to anything. The point is that it is used for alternative routing:
-- Input a / s (select) can come either from M2 or through M1 via this alternate route
-- This route can be used simply to route another routing, that is, M1 goes through the entire cell without affecting it in any way.
 
 The output from the multiplexer is additionally loaded with a paired push/pull inverter, which means that this cell gives extra power reserve at the output so that long hoses can be connected to it.
 
@@ -301,7 +278,7 @@ Selects one wire out of 4.
 
 ![4-MUX3X](/imgstore/cells/4-MUX3X.jpg)
 
-#### IMUXR1 - Reduced inverting multiplexer
+#### IMUXR1 - Dual-rails inverting multiplexer
 
 Sometimes there are special multiplexers with the SEL input implemented as two ports:
 
@@ -318,6 +295,12 @@ As indicated, such a MUX cannot output a heavy load signal, so its use is limite
 #### IMUXR2
 
 ![IMUXR2](/imgstore/cells/IMUXR2.jpg)
+
+#### DEMUX
+
+![DEMUX](/imgstore/cells/DEMUX.jpg)
+
+Can be used as a complement generator (from single rail makes dual rails).
 
 ### Logic elements OR
 
@@ -493,6 +476,10 @@ Used in counters, as an XNOR element.
 
 ![Counter1](/imgstore/cells/Counter1.jpg)
 
+#### 222-AOI
+
+![222-AOI](/imgstore/cells/222-AOI.jpg)
+
 ### Latches
 
 There will be all kinds of level-triggered items.
@@ -506,11 +493,21 @@ There will be all kinds of level-triggered items.
 If the input is "z" (disconnected) the latch does not change its value. This way you can economize and not make a separate Enable input.
 These kinds of latches are also called Transparent Latches.
 
-Transistor circuit on the example of /DLATCH:
+#### DLATCH(2X), DLATCH4X, DLATCHR2X, DLATCHR4X
 
-![D1](/imgstore/cells/D1.jpg)
+|![DLATCH2X](/imgstore/cells/DLATCH2X.jpg)|![DLATCH4X](/imgstore/cells/DLATCH4X.jpg)|![DLATCHR2X](/imgstore/cells/DLATCHR2X.jpg)|![DLATCHR4X](/imgstore/cells/DLATCHR4X.jpg)|
+|---|---|---|---|
 
-Flow by example /DLATCH:
+#### NDLATCH(2X), NDLATCH4X, NDLATCHR2X, NDLATCHR4X
+
+|![NDLATCH2X](/imgstore/cells/NDLATCH2X.jpg)|![NDLATCH4X](/imgstore/cells/NDLATCH4X.jpg)|![NDLATCHR2X](/imgstore/cells/NDLATCHR2X.jpg)|![NDLATCHR4X](/imgstore/cells/NDLATCHR4X.jpg)|
+|---|---|---|---|
+
+Transistor circuit on the example of /DLATCH(2X):
+
+![NDLATCH2X_logisim](/imgstore/cells/NDLATCH2X_logisim.jpg)
+
+Flow by example /DLATCH(2X):
 
 ![Ndlatch_flow](/imgstore/cells/Ndlatch_flow.jpg)
 
@@ -521,8 +518,6 @@ At CLK=1 the value on the latch circulates back and forth and goes to the output
 The output, by the way, is not inverted (Q=in).
 
 The latch at CLK=1 differs simply in the arrangement of the side legs.
-
-![NDLATCH_logisim](/imgstore/cells/NDLATCH_logisim.jpg)
 
 ### DFFs
 
