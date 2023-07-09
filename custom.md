@@ -78,9 +78,9 @@ If OE or IE is 0, the I/Os are "off" (Z), otherwise the I/Os are connected to th
 
 ![Unit00_io_enable](/imgstore/custom/Unit00_io_enable.jpg)
 
-Младшие 4 разряда tri-state буферов имеют альтернативную топологию (разводку металла), которая добавляет туда схему усиления входных сигналов OE / IE.
+The lower 4 bits of the tri-state buffers have an alternative topology (metal layout) that adds an amplification circuit for the OE / IE input signals there.
 
-Входные управляющие сигналы OE/IE приходят на 0й разряд буферов, при этом OE обычно подключен к питанию (OE=1, то есть выход всегда открыт).
+The input control signals OE/IE come on the 0th buffer bit, with OE normally connected to the power supply (OE=1, i.e. the output is always open).
 
 ### Unit-00 ScaleTableMatrix
 
