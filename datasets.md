@@ -83,7 +83,7 @@ In essence, it is a chopped up dataset `PolyStitched`.
 
 https://drive.google.com/drive/u/1/folders/1ytoTS_vl4F2xwJpaPSVvHei9QjYtd-Dr
 
-### DCache
+### DCache (ScratchPad)
 
 DCache Topology.
 
@@ -91,6 +91,6 @@ DCache Topology.
 |---|
 |![DCache_poly_Fused_small](/imgstore/custom/DCache_poly_Fused_small.jpg)|
 
-https://drive.google.com/drive/u/1/folders/1_lbN6prezh-VNFZgkcWtbipd6SjFXTWO
+https://drive.google.com/drive/u/1/folders/1-4UZaXHdw9YEB1l71jSo1c_1_948NUOa
 
 TBD: You can't see the poly in the upper right corner, so you'll have to take additional photos.

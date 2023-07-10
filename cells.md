@@ -59,9 +59,9 @@ For convenience we have divided the types of categories and assigned them a cell
 
 At the moment, we made the identification of almost all cells. PSX CPU contains about 37,600 cells of 150 different types.
 
-Cells Heatmap:
+Cells map:
 
-![Psxcpu_cells_map_sm](/imgstore/cells/Psxcpu_cells_map_sm.jpg)
+![psxcpu_cells_map_sm](/cells/psxcpu_cells_map_sm.jpg)
 
 ## Cells By Category
 
