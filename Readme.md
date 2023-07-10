@@ -8,14 +8,6 @@ Reverse engineering of the SONY PlayStation CPU (CXD8530CQ).
 
 ## IC103 Overview
 
-The CPU on all revisions of the motherboard is represented by one large chip with 208 pins, under the designation IC103.
-
-|PCB|PU-7|older PU-8|newer PU-8|PU-18|PU-20|PU-22|PU-23|PM-41|PM-41(2)|
-|---|---|---|---|---|---|---|---|---|---|
-|IC103|![CXD8530BQ_package](/imgstore/CXD8530BQ_package.jpg)|![8530BQ_PU8_package](/imgstore/8530BQ_PU8_package.jpg)|![8530CQ_package](/imgstore/8530CQ_package.jpg)|![CXD8606AQ_package](/imgstore/CXD8606AQ_package.jpg)|![CXD8606BQ_package](/imgstore/CXD8606BQ_package.jpg)|![8606BQ_PU22_package](/imgstore/8606BQ_PU22_package.jpg)|![8606BQ_PU23_package](/imgstore/8606BQ_PU23_package.jpg)|![8606BQ_PM41_package](/imgstore/8606BQ_PM41_package.jpg)|![CXD8606CQ_package](/imgstore/CXD8606CQ_package.jpg)|
-||8530BQ|8530BQ|8530CQ|8606AQ|8606BQ|8606BQ|8606BQ|8606BQ|8606CQ|
-||L9A0025|L9A0025|L9A0048|L9A0082|L9B0082|L9B0082|L9B0082|L9B0082|L9A0182|
-
 The CPU consists of the following components:
 
 - Slightly modified [LSI LR33300 core](core.md)
@@ -36,11 +28,19 @@ Microphotograph of a chip:
 
 ![Cpu_overview](/imgstore/Cpu_overview.jpg)
 
-As you can see most of the chip is taken up by the "mess" of synthesized HDL logic, and at the edges there are various memory and registers (see [Custom Blocks](custom.md)).
+As you can see most of the chip is taken up by the "mess" of synthesized HDL logic (see [Cells](cells.md)), and at the edges there are various memory and registers (see [Custom Blocks](custom.md)).
 
 From the available documents of the mid-90s we know that PSXCPU is most likely based on the LSI Logic framework called `CoreWare`. The MDE or C-MDE program was most likely used as the EDA.
 
 ## CPU Revisions
+
+The CPU on all revisions of the motherboard is represented by one large chip with 208 pins, under the designation IC103.
+
+|PCB|PU-7|older PU-8|newer PU-8|PU-18|PU-20|PU-22|PU-23|PM-41|PM-41(2)|
+|---|---|---|---|---|---|---|---|---|---|
+|IC103|![CXD8530BQ_package](/imgstore/CXD8530BQ_package.jpg)|![8530BQ_PU8_package](/imgstore/8530BQ_PU8_package.jpg)|![8530CQ_package](/imgstore/8530CQ_package.jpg)|![CXD8606AQ_package](/imgstore/CXD8606AQ_package.jpg)|![CXD8606BQ_package](/imgstore/CXD8606BQ_package.jpg)|![8606BQ_PU22_package](/imgstore/8606BQ_PU22_package.jpg)|![8606BQ_PU23_package](/imgstore/8606BQ_PU23_package.jpg)|![8606BQ_PM41_package](/imgstore/8606BQ_PM41_package.jpg)|![CXD8606CQ_package](/imgstore/CXD8606CQ_package.jpg)|
+||8530BQ|8530BQ|8530CQ|8606AQ|8606BQ|8606BQ|8606BQ|8606BQ|8606CQ|
+||L9A0025|L9A0025|L9A0048|L9A0082|L9B0082|L9B0082|L9B0082|L9B0082|L9A0182|
 
 - The very first Japanese consoles (SCPH-1000 / PU-7) and old versions of PU-8 came with revision 90025.
 - Then they were quickly replaced by newer consoles (there was some bug in MDEC) which already had the revision 90048 chip.
