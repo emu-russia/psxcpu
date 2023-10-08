@@ -1,6 +1,6 @@
-# LR33300 Integrated Core
+# CW33300 Integrated Core
 
-The CPU includes the LSI LR33300 core.
+The CPU includes the LSI CoreWare CW33300 core. The core is compatible with the R3000 processor instruction set.
 
 Naturally, it is evenly spread over the chip, along with other components :smiley:
 

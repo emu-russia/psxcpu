@@ -10,7 +10,7 @@ Reverse engineering of the SONY PlayStation CPU (CXD8530CQ).
 
 The CPU consists of the following components:
 
-- Slightly modified [LSI LR33300 core](core.md)
+- Slightly modified [LSI CW33300 core](core.md)
 - System coprocessor 0 ([COP0](cop0.md))
 - System coprocessor 2 aka Geometry Transformation Engine ([GTE](gte.md))
 - Motion Decoder aka [MDEC](mdec.md) (JPEG-like video decoder)
@@ -36,16 +36,17 @@ From the available documents of the mid-90s we know that PSXCPU is most likely b
 
 The CPU on all revisions of the motherboard is represented by one large chip with 208 pins, under the designation IC103.
 
-|PCB|PU-7|older PU-8|newer PU-8|PU-18|PU-20|PU-22|PU-23|PM-41|PM-41(2)|
-|---|---|---|---|---|---|---|---|---|---|
-|IC103|![CXD8530BQ_package](/imgstore/CXD8530BQ_package.jpg)|![8530BQ_PU8_package](/imgstore/8530BQ_PU8_package.jpg)|![8530CQ_package](/imgstore/8530CQ_package.jpg)|![CXD8606AQ_package](/imgstore/CXD8606AQ_package.jpg)|![CXD8606BQ_package](/imgstore/CXD8606BQ_package.jpg)|![8606BQ_PU22_package](/imgstore/8606BQ_PU22_package.jpg)|![8606BQ_PU23_package](/imgstore/8606BQ_PU23_package.jpg)|![8606BQ_PM41_package](/imgstore/8606BQ_PM41_package.jpg)|![CXD8606CQ_package](/imgstore/CXD8606CQ_package.jpg)|
-||8530BQ|8530BQ|8530CQ|8606AQ|8606BQ|8606BQ|8606BQ|8606BQ|8606CQ|
-||L9A0025|L9A0025|L9A0048|L9A0082|L9B0082|L9B0082|L9B0082|L9B0082|L9A0182|
+|PCB|older PU-7(?)|PU-7|older PU-8|newer PU-8|PU-18|PU-20|PU-22|PU-23|PM-41|PM-41(2)|
+|---|---|---|---|---|---|---|---|---|---|---|
+|IC103| ??? |![CXD8530BQ_package](/imgstore/CXD8530BQ_package.jpg)|![8530BQ_PU8_package](/imgstore/8530BQ_PU8_package.jpg)|![8530CQ_package](/imgstore/8530CQ_package.jpg)|![CXD8606AQ_package](/imgstore/CXD8606AQ_package.jpg)|![CXD8606BQ_package](/imgstore/CXD8606BQ_package.jpg)|![8606BQ_PU22_package](/imgstore/8606BQ_PU22_package.jpg)|![8606BQ_PU23_package](/imgstore/8606BQ_PU23_package.jpg)|![8606BQ_PM41_package](/imgstore/8606BQ_PM41_package.jpg)|![CXD8606CQ_package](/imgstore/CXD8606CQ_package.jpg)|
+||8530AQ?|8530BQ|8530BQ|8530CQ|8606AQ|8606BQ|8606BQ|8606BQ|8606BQ|8606CQ|
+||???|L9A0025|L9A0025|L9A0048|L9A0082|L9B0082|L9B0082|L9B0082|L9B0082|L9A0182|
 
 - The very first Japanese consoles (SCPH-1000 / PU-7) and old versions of PU-8 came with revision 90025.
 - Then they were quickly replaced by newer consoles (there was some bug in MDEC) which already had the revision 90048 chip.
 - In consoles since SCPH-5500 (PU-18) the 90082 revision of the chips were added. These chips were present in all latest PSX models, also in the first version of PSOne motherboards (PM-41).
 - The latest versions of PSOne with PM-41(2) motherboards contained 90182 revision of the chip.
+- EDIT: Turns out that the oldest revisions of the PU-7 contain some old version of the chip, most likely the one in the pictures from Ken Kutaragi below (3 layers of metal, obvious separation of modules into rectangular regions).
 
 On this site we are examining the `90048` revision (which was in SCPH-1001). It is likely that the new revisions differ significantly in M1/M2 wiring as the new revision chip is "reassembled" from Verilog/VHDL. So, to trace other revisions means to re-trace the whole processor %)
 
