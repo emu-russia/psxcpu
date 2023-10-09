@@ -53,7 +53,7 @@ pattern XOR, CellLogic, 5.0, 6, 6, "patterns_db/XOR.jpg"
 pattern XOR2, CellLogic, 5.0, 7, 7, "patterns_db/XOR2.jpg"
 pattern XOR3, CellLogic, 5.0, 8, 8, "patterns_db/XOR3.jpg"
 
-# Ternary Logic
+# 3-Input Logic
 
 pattern 3-AND, CellLogic, 5.0, 4, 4, "patterns_db/3-AND.jpg"
 pattern 3-AND2X, CellLogic, 5.0, 4, 4, "patterns_db/3-AND2X.jpg"
