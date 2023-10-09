@@ -330,6 +330,12 @@ Can be used as a complement generator (from single rail makes dual rails).
 |---|---|---|---|
 |![3-nor](/imgstore/cells/3-nor.jpg)|![3-nor2x](/imgstore/cells/3-nor2x.jpg)|![3-nor4x](/imgstore/cells/3-nor4x.png)|![3-NOR6X](/imgstore/cells/3-NOR6X.jpg)|
 
+#### 4-NOR
+
+|4-NOR|4-NOR-3X|
+|---|---|
+|![4-nor](/imgstore/cells/4-nor.jpg)|![4-nor3x](/imgstore/cells/4-nor3x.jpg)|
+
 #### 5-NOR
 
 ![5-nor](/imgstore/cells/5-nor.jpg)
@@ -387,6 +393,10 @@ Can be used as a complement generator (from single rail makes dual rails).
 |XOR|XOR2|XOR3|
 |---|---|---|
 |![XOR](/imgstore/cells/XOR.jpg)|![XOR2](/imgstore/cells/XOR2.jpg)|![XOR3](/imgstore/cells/XOR3.jpg)|
+
+#### 3-XOR
+
+![3-XOR](/imgstore/cells/3-XOR.png)
 
 #### XNOR1, XNOR, XNOR2, XNOR3
 
@@ -623,7 +633,7 @@ out2 = sum
 
 #### Carry Adder
 
-This item is similar to Full Adder in functionality, except that its Carry In always equals 1.
+This cell is similar to Full Adder in functionality, except that its Carry In always equals 1.
 
 ![Xnor_or](/imgstore/cells/Xnor_or.jpg)
 
