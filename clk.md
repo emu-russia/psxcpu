@@ -18,6 +18,8 @@ Bottom mclk super buffer (symmetrical to the upper one):
 |---|---|---|
 |TBD|![mclk_bot_m1](/imgstore/custom/mclk_bot_m1.jpg)|![mclk_bot_m2](/imgstore/custom/mclk_bot_m2.jpg)|
 
+![mclk](/imgstore/mclk.png)
+
 The outputs from the two super buffers are short-circuited and feed the main mclk rail.
 
 In large scale chips, the CLK layout is usually called the `Clock Tree`: multiple clusters of DFF and other `always (@CLK)` sensitive blocks are symmetrically connected to a common CLK wire to minimize the Jitter effect.
